@@ -3,6 +3,7 @@
 
     <string name="app_name">TestXunFei</string>
     <string name="hello_world">Hello world!</string>
+    <string name="app_id">572bffb7</string>
     
     <!-- 语言 -->
     <string-array name="language_entries">

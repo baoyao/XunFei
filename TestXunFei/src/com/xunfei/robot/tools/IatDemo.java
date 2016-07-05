@@ -24,6 +24,7 @@ import com.iflytek.cloud.RecognizerResult;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechRecognizer;
+import com.iflytek.cloud.SpeechUtility;
 import com.iflytek.cloud.ui.RecognizerDialog;
 import com.iflytek.cloud.ui.RecognizerDialogListener;
 import com.iflytek.cloud.util.ContactManager;
@@ -50,6 +51,7 @@ public class IatDemo extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.iatdemo);
+		
 		initLayout();
 		// 初始化识别无UI识别对象
 		// 使用SpeechRecognizer对象，可根据回调消息自定义界面；

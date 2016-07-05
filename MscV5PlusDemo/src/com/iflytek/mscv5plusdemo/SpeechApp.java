@@ -3,6 +3,7 @@ package com.iflytek.mscv5plusdemo;
 import android.app.Application;
 
 import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechRecognizer;
 import com.iflytek.cloud.SpeechUtility;
 
 public class SpeechApp extends Application{
