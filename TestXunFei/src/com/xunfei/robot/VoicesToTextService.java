@@ -157,7 +157,7 @@ public class VoicesToTextService extends Service {
 
 		// 设置标点符号,设置为"0"返回结果无标点,设置为"1"返回结果有标点
 		mIat.setParameter(SpeechConstant.ASR_PTT,
-				mSharedPreferences.getString("iat_punc_preference", "1"));
+				mSharedPreferences.getString("iat_punc_preference", "0"));
 
 		// 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
 		// 注：AUDIO_FORMAT参数语记需要更新版本才能生效
@@ -235,38 +235,42 @@ public class VoicesToTextService extends Service {
 		}
 	};
 
-	private void setResult(String text) {
-		mResult.add(text);
-		BackgroundCache.getInstance().setResult(BackgroundCache.Mode.PEOPLE,
-				text);
-		if (!interceptResult(text))
-			startService(new Intent(this, TalkService.class));
+	private synchronized void setResult(String text) {
+		if (text != null && !text.trim().equals("")) {
+			mResult.add(text);
+			BackgroundCache.getInstance().setResult(
+					BackgroundCache.Mode.PEOPLE, text);
+			if (!interceptResult(text))
+				startService(new Intent(this, TalkService.class));
+		}
 	}
-
-	private List<String[]> tags=initTag();
-	private final int PLAY_SONG = 1;
 	
-	private List<String[]> initTag(){
-		List<String[]> tagets=new ArrayList<String[]>();
-		
-		tagets.clear();
-		String[] tag1=new String[]{"唱","首歌"};
+	private List<String[]> tags = initTag();
+	private final int PLAY_SONG = 0;
+
+	private List<String[]> initTag() {
+		List<String[]> tagets = new ArrayList<String[]>();
+
+		String[] tag1 = new String[] { "唱", "首歌" };
 		tagets.add(tag1);
-		
+
 		return tagets;
 	}
 
 	private boolean interceptResult(String text) {
+		Log.v("tt", "interceptResult000");
 		for (int i = 0; i < tags.size(); i++) {
-			String[] tag=tags.get(i);
-			boolean bool= true;
-			for(String t : tag){
+			String[] tag = tags.get(i);
+			boolean bool = true;
+			for (String t : tag) {
 				if (!text.contains(t)) {
+					Log.v("tt", "interceptResult111");
 					bool = false;
 					break;
 				}
 			}
-			if(bool){
+			if (bool) {
+				Log.v("tt", "interceptResult222");
 				doIntercept(i);
 				return true;
 			}

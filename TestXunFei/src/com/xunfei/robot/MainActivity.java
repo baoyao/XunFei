@@ -33,17 +33,8 @@ public class MainActivity extends Activity {
 			@Override
 			public void onCallback(String result) {
 				// TODO Auto-generated method stub
-				String str = "";
-				List<String> list = BackgroundCache.getInstance()
-						.getAllResult();
-				for (int i = 0; i < list.size(); i++) {
-					if (i % 2 == 0) {
-						str += "me: " + list.get(i);
-					} else {
-						str += "robot: " + list.get(i);
-					}
-					str += "\n";
-				}
+				String str = BackgroundCache.getInstance()
+						.getRequestResult();
 				txt.setText(str);
 			}
 

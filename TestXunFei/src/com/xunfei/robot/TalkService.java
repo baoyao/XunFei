@@ -83,7 +83,7 @@ public class TalkService extends Service {
 	
 	/**文字理解*/
 	private void startUnderstander(){
-//		text = BackgroundCache.getInstance().getResult();
+		text = BackgroundCache.getInstance().getResult();
 		showTip(text);
 		if(mTextUnderstander.isUnderstanding()){
 			mTextUnderstander.cancel();
@@ -103,7 +103,7 @@ public class TalkService extends Service {
 		if("".equals(mResult)){
 			mResult = "很抱歉，没有识别出来";
 		}
-//		startService(new Intent(this,TextToVoicesService.class));
+		startService(new Intent(this,TextToVoicesService.class));
 	}
 	
 	private String analyzeResult(String result){
@@ -173,7 +173,7 @@ public class TalkService extends Service {
 		mSpeechUnderstander.setParameter(SpeechConstant.VAD_EOS, mSharedPreferences.getString("understander_vadeos_preference", "1000"));
 		
 		// 设置标点符号，默认：1（有标点）
-		mSpeechUnderstander.setParameter(SpeechConstant.ASR_PTT, mSharedPreferences.getString("understander_punc_preference", "1"));
+		mSpeechUnderstander.setParameter(SpeechConstant.ASR_PTT, mSharedPreferences.getString("understander_punc_preference", "0"));
 		
 		// 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
 		// 注：AUDIO_FORMAT参数语记需要更新版本才能生效
