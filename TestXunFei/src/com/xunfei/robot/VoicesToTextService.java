@@ -31,6 +31,7 @@ import com.iflytek.cloud.ui.RecognizerDialogListener;
 import com.xunfei.robot.tools.IatSettings;
 import com.xunfei.robot.tools.JsonParser;
 import com.xunfei.robot.utils.BackgroundCache;
+import com.xunfei.robot.utils.BgLogic;
 import com.xunfei.robot.utils.Config;
 import com.xunfei.robot.utils.NetWorkUtil;
 
@@ -41,7 +42,7 @@ import com.xunfei.robot.utils.NetWorkUtil;
 public class VoicesToTextService extends Service {
 
 	private static String TAG = "tt";
-	
+
 	// 语音听写对象
 	private SpeechRecognizer mIat;
 	// 语音听写UI
@@ -50,38 +51,45 @@ public class VoicesToTextService extends Service {
 	private Toast mToast;
 	private Context mContext;
 	private String mEngineType = "cloud";
-	
+
 	// 用HashMap存储听写结果
 	private List<String> mResult = new ArrayList<String>();
-	
+
 	@Override
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		mContext = this;
 		// 使用SpeechRecognizer对象，可根据回调消息自定义界面；
 		mIat = SpeechRecognizer.createRecognizer(mContext, mInitListener);
-		mIatDialog = new RecognizerDialog(this,mInitListener);
-		mIatDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+		mIatDialog = new RecognizerDialog(this, mInitListener);
+		mIatDialog.getWindow().setType(
+				WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
 		mToast = Toast.makeText(mContext, "", Toast.LENGTH_SHORT);
-		mSharedPreferences = getSharedPreferences(IatSettings.PREFER_NAME, Activity.MODE_PRIVATE);
-		
+		mSharedPreferences = getSharedPreferences(IatSettings.PREFER_NAME,
+				Activity.MODE_PRIVATE);
+
 		refreshNetworkState();
-		
-		IntentFilter filter=new IntentFilter();
+
+		IntentFilter filter = new IntentFilter();
 		filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
 		registerReceiver(mNetWorkBroadcastReceiver, filter);
-
-		mHandler.sendEmptyMessageDelayed(1, Config.WAITING_TIME);
-		Log.v(TAG,"onCreate");
+		Log.v(TAG, "onCreate");
 	}
-	
-	private Handler mHandler = new Handler(){
+
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		// TODO Auto-generated method stub
+		mHandler.sendEmptyMessageDelayed(1, Config.WAITING_TIME);
+		return super.onStartCommand(intent, flags, startId);
+	}
+
+	private Handler mHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
 			startSpeek();
@@ -89,12 +97,14 @@ public class VoicesToTextService extends Service {
 	};
 
 	int ret = 0;// 函数调用返回值
-	private void startSpeek(){
-		Log.v(TAG,"startSpeek");
+
+	private void startSpeek() {
+		Log.v(TAG, "startSpeek");
 		clearResult();
 		// 设置参数
 		setParam();
-		boolean isShowDialog = mSharedPreferences.getBoolean(getString(R.string.pref_key_iat_show), true);
+		boolean isShowDialog = mSharedPreferences.getBoolean(
+				getString(R.string.pref_key_iat_show), true);
 		if (isShowDialog) {
 			// 显示听写对话框
 			mIatDialog.setListener(mRecognizerDialogListener);
@@ -113,13 +123,15 @@ public class VoicesToTextService extends Service {
 
 	/**
 	 * 参数设置
+	 * 
 	 * @param param
-	 * @return 
+	 * @return
 	 */
-	public void setParam(){
+	public void setParam() {
 		// 清空参数
 		mIat.setParameter(SpeechConstant.PARAMS, null);
-		String lag = mSharedPreferences.getString("iat_language_preference", "mandarin");
+		String lag = mSharedPreferences.getString("iat_language_preference",
+				"mandarin");
 		// 设置引擎
 		mIat.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD);
 		// 设置返回结果格式
@@ -128,28 +140,31 @@ public class VoicesToTextService extends Service {
 		if (lag.equals("en_us")) {
 			// 设置语言
 			mIat.setParameter(SpeechConstant.LANGUAGE, "en_us");
-		}else {
+		} else {
 			// 设置语言
 			mIat.setParameter(SpeechConstant.LANGUAGE, "zh_cn");
 			// 设置语言区域
-			mIat.setParameter(SpeechConstant.ACCENT,lag);
+			mIat.setParameter(SpeechConstant.ACCENT, lag);
 		}
 
 		// 设置语音前端点:静音超时时间，即用户多长时间不说话则当做超时处理
-		mIat.setParameter(SpeechConstant.VAD_BOS, mSharedPreferences.getString("iat_vadbos_preference", "4000"));
-		
+		mIat.setParameter(SpeechConstant.VAD_BOS,
+				mSharedPreferences.getString("iat_vadbos_preference", "4000"));
+
 		// 设置语音后端点:后端点静音检测时间，即用户停止说话多长时间内即认为不再输入， 自动停止录音
-		mIat.setParameter(SpeechConstant.VAD_EOS, mSharedPreferences.getString("iat_vadeos_preference", "1000"));
-		
+		mIat.setParameter(SpeechConstant.VAD_EOS,
+				mSharedPreferences.getString("iat_vadeos_preference", "1000"));
+
 		// 设置标点符号,设置为"0"返回结果无标点,设置为"1"返回结果有标点
-		mIat.setParameter(SpeechConstant.ASR_PTT, mSharedPreferences.getString("iat_punc_preference", "1"));
-		
+		mIat.setParameter(SpeechConstant.ASR_PTT,
+				mSharedPreferences.getString("iat_punc_preference", "1"));
+
 		// 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
 		// 注：AUDIO_FORMAT参数语记需要更新版本才能生效
-		mIat.setParameter(SpeechConstant.AUDIO_FORMAT,"wav");
-		mIat.setParameter(SpeechConstant.ASR_AUDIO_PATH, Environment.getExternalStorageDirectory()+"/msc/iat.wav");
+		mIat.setParameter(SpeechConstant.AUDIO_FORMAT, "wav");
+		mIat.setParameter(SpeechConstant.ASR_AUDIO_PATH,
+				Environment.getExternalStorageDirectory() + "/msc/iat.wav");
 	}
-	
 
 	/**
 	 * 听写UI监听器
@@ -169,7 +184,6 @@ public class VoicesToTextService extends Service {
 		}
 
 	};
-
 
 	/**
 	 * 听写监听器。
@@ -196,48 +210,93 @@ public class VoicesToTextService extends Service {
 		}
 
 		@Override
-		public void onResult(RecognizerResult results, boolean isLast) {		
+		public void onResult(RecognizerResult results, boolean isLast) {
 			String text = JsonParser.parseIatResult(results.getResultString());
 			setResult(text);
-			if(isLast) {
-				//TODO 最后的结果
+			if (isLast) {
+				// TODO 最后的结果
 			}
 		}
 
 		@Override
 		public void onVolumeChanged(int volume, byte[] data) {
 			showTip("当前正在说话，音量大小：" + volume);
-			Log.d(TAG, "返回音频数据："+data.length);
+			Log.d(TAG, "返回音频数据：" + data.length);
 		}
 
 		@Override
 		public void onEvent(int eventType, int arg1, int arg2, Bundle obj) {
 			// 以下代码用于获取与云端的会话id，当业务出错时将会话id提供给技术支持人员，可用于查询会话日志，定位出错原因
 			// 若使用本地能力，会话id为null
-			//	if (SpeechEvent.EVENT_SESSION_ID == eventType) {
-			//		String sid = obj.getString(SpeechEvent.KEY_EVENT_SESSION_ID);
-			//		Log.d(TAG, "session id =" + sid);
-			//	}
+			// if (SpeechEvent.EVENT_SESSION_ID == eventType) {
+			// String sid = obj.getString(SpeechEvent.KEY_EVENT_SESSION_ID);
+			// Log.d(TAG, "session id =" + sid);
+			// }
 		}
 	};
-	
-	private void setResult(String text){
+
+	private void setResult(String text) {
 		mResult.add(text);
-		BackgroundCache.getInstance().setResult(BackgroundCache.Mode.PEOPLE,text);
-		startService(new Intent(this,TalkService.class));
+		BackgroundCache.getInstance().setResult(BackgroundCache.Mode.PEOPLE,
+				text);
+		if (!interceptResult(text))
+			startService(new Intent(this, TalkService.class));
 	}
+
+	private List<String[]> tags=initTag();
+	private final int PLAY_SONG = 1;
 	
-	private void clearResult(){
+	private List<String[]> initTag(){
+		List<String[]> tagets=new ArrayList<String[]>();
+		
+		tagets.clear();
+		String[] tag1=new String[]{"唱","首歌"};
+		tagets.add(tag1);
+		
+		return tagets;
+	}
+
+	private boolean interceptResult(String text) {
+		for (int i = 0; i < tags.size(); i++) {
+			String[] tag=tags.get(i);
+			boolean bool= true;
+			for(String t : tag){
+				if (!text.contains(t)) {
+					bool = false;
+					break;
+				}
+			}
+			if(bool){
+				doIntercept(i);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private void doIntercept(int index) {
+		switch (index) {
+		case PLAY_SONG: {
+			BgLogic.playSong(this);
+		}
+			break;
+		default:
+			break;
+		}
+
+	}
+
+	private void clearResult() {
 		mResult.clear();
 	}
-	
-	private void refreshNetworkState(){
-		if(NetWorkUtil.isNetworkConnected(this)){
+
+	private void refreshNetworkState() {
+		if (NetWorkUtil.isNetworkConnected(this)) {
 			mEngineType = SpeechConstant.TYPE_CLOUD;
-		}else{
-			mEngineType =  SpeechConstant.TYPE_LOCAL;
+		} else {
+			mEngineType = SpeechConstant.TYPE_LOCAL;
 		}
-		Log.v(TAG,"refreshNetworkState: "+mEngineType);
+		Log.v(TAG, "refreshNetworkState: " + mEngineType);
 	}
 
 	/**
@@ -254,11 +313,9 @@ public class VoicesToTextService extends Service {
 		}
 	};
 
-
-	private void showTip(final String str)
-	{
-		Log.v(TAG,"showTip: "+str);
-		mHandler.post(new Runnable(){
+	private void showTip(final String str) {
+		Log.v(TAG, "showTip: " + str);
+		mHandler.post(new Runnable() {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
@@ -268,20 +325,18 @@ public class VoicesToTextService extends Service {
 		});
 	}
 
-	private BroadcastReceiver mNetWorkBroadcastReceiver=new BroadcastReceiver(){
+	private BroadcastReceiver mNetWorkBroadcastReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			// TODO Auto-generated method stub
 			refreshNetworkState();
 		}
 	};
-	
-	
-	
+
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
-		Log.v(TAG,"onDestroy");
+		Log.v(TAG, "onDestroy");
 		this.unregisterReceiver(mNetWorkBroadcastReceiver);
 		// 退出时释放连接
 		mIat.cancel();

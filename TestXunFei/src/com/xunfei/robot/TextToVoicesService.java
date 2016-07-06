@@ -90,10 +90,15 @@ public class TextToVoicesService extends Service {
 		mSharedPreferences = getSharedPreferences(TtsSettings.PREFER_NAME,
 				Activity.MODE_PRIVATE);
 		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
-		
-		mHandler.sendEmptyMessageDelayed(1, Config.WAITING_TIME);
 	}
 
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		// TODO Auto-generated method stub
+		mHandler.sendEmptyMessageDelayed(1, Config.WAITING_TIME);
+		return super.onStartCommand(intent, flags, startId);
+	}
+	
 	private Handler mHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -232,6 +237,7 @@ public class TextToVoicesService extends Service {
 		public void onCompleted(SpeechError error) {
 			if (error == null) {
 				showTip("播放完成");
+				TextToVoicesService.this.startService(new Intent(TextToVoicesService.this, VoicesToTextService.class));
 			} else if (error != null) {
 				showTip(error.getPlainDescription(true));
 			}

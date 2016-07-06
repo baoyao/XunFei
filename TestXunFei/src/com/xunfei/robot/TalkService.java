@@ -61,8 +61,13 @@ public class TalkService extends Service {
 
 		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 		mSharedPreferences = getSharedPreferences(UnderstanderSettings.PREFER_NAME, Activity.MODE_PRIVATE);
-		
+	}
+
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		// TODO Auto-generated method stub
 		mHandler.sendEmptyMessageDelayed(1, Config.WAITING_TIME);
+		return super.onStartCommand(intent, flags, startId);
 	}
 
 	private Handler mHandler = new Handler(){
@@ -73,12 +78,12 @@ public class TalkService extends Service {
 	};
 	
 	int ret = 0;// 函数调用返回值
-	private String text="你是谁";//深圳明天天气怎么样？
+	private String text="唱首歌";//深圳明天天气怎么样？
 	private String mResult="";
 	
 	/**文字理解*/
 	private void startUnderstander(){
-		text = BackgroundCache.getInstance().getResult();
+//		text = BackgroundCache.getInstance().getResult();
 		showTip(text);
 		if(mTextUnderstander.isUnderstanding()){
 			mTextUnderstander.cancel();
@@ -98,7 +103,7 @@ public class TalkService extends Service {
 		if("".equals(mResult)){
 			mResult = "很抱歉，没有识别出来";
 		}
-		startService(new Intent(this,TextToVoicesService.class));
+//		startService(new Intent(this,TextToVoicesService.class));
 	}
 	
 	private String analyzeResult(String result){

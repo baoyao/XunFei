@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.xunfei.robot.utils.BackgroundCache;
+import com.xunfei.robot.utils.BgLogic;
 import com.xunfei.robot.utils.BackgroundCache.Callback;
 
 public class MainActivity extends Activity {
@@ -65,6 +66,12 @@ public class MainActivity extends Activity {
 		default:
 			break;
 		}
+	}
 
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		this.stopService(new Intent(this, VoicesToTextService.class));
 	}
 }
