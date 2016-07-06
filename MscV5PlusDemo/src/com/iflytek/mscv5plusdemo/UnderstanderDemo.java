@@ -111,8 +111,8 @@ public class UnderstanderDemo extends Activity implements OnClickListener {
 			break;
 		// 开始文本理解
 		case R.id.text_understander:
+			String text = mUnderstanderText.getText().toString();	//合肥明天的天气怎么样？
 			mUnderstanderText.setText("");
-			String text = "合肥明天的天气怎么样？";	
 			showTip(text);
 			
 			if(mTextUnderstander.isUnderstanding()){

@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.iflytek.cloud.ErrorCode;
@@ -29,13 +30,15 @@ import com.iflytek.cloud.ui.RecognizerDialog;
 import com.iflytek.cloud.ui.RecognizerDialogListener;
 import com.xunfei.robot.tools.IatSettings;
 import com.xunfei.robot.tools.JsonParser;
+import com.xunfei.robot.utils.BackgroundCache;
+import com.xunfei.robot.utils.Config;
 import com.xunfei.robot.utils.NetWorkUtil;
 
 /**
  * @author houen.bao
  * @date Jul 5, 2016 3:52:50 PM
  */
-public class MainService extends Service {
+public class VoicesToTextService extends Service {
 
 	private static String TAG = "tt";
 	
@@ -60,10 +63,11 @@ public class MainService extends Service {
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
-		
+		mContext = this;
 		// 使用SpeechRecognizer对象，可根据回调消息自定义界面；
 		mIat = SpeechRecognizer.createRecognizer(mContext, mInitListener);
 		mIatDialog = new RecognizerDialog(this,mInitListener);
+		mIatDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
 		mToast = Toast.makeText(mContext, "", Toast.LENGTH_SHORT);
 		mSharedPreferences = getSharedPreferences(IatSettings.PREFER_NAME, Activity.MODE_PRIVATE);
 		
@@ -73,7 +77,8 @@ public class MainService extends Service {
 		filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
 		registerReceiver(mNetWorkBroadcastReceiver, filter);
 
-		mHandler.sendEmptyMessageDelayed(1, 1000);
+		mHandler.sendEmptyMessageDelayed(1, Config.WAITING_TIME);
+		Log.v(TAG,"onCreate");
 	}
 	
 	private Handler mHandler = new Handler(){
@@ -85,6 +90,7 @@ public class MainService extends Service {
 
 	int ret = 0;// 函数调用返回值
 	private void startSpeek(){
+		Log.v(TAG,"startSpeek");
 		clearResult();
 		// 设置参数
 		setParam();
@@ -217,6 +223,8 @@ public class MainService extends Service {
 	
 	private void setResult(String text){
 		mResult.add(text);
+		BackgroundCache.getInstance().setResult(BackgroundCache.Mode.PEOPLE,text);
+		startService(new Intent(this,TalkService.class));
 	}
 	
 	private void clearResult(){
@@ -229,6 +237,7 @@ public class MainService extends Service {
 		}else{
 			mEngineType =  SpeechConstant.TYPE_LOCAL;
 		}
+		Log.v(TAG,"refreshNetworkState: "+mEngineType);
 	}
 
 	/**
@@ -248,6 +257,7 @@ public class MainService extends Service {
 
 	private void showTip(final String str)
 	{
+		Log.v(TAG,"showTip: "+str);
 		mHandler.post(new Runnable(){
 			@Override
 			public void run() {
@@ -271,9 +281,11 @@ public class MainService extends Service {
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
+		Log.v(TAG,"onDestroy");
 		this.unregisterReceiver(mNetWorkBroadcastReceiver);
 		// 退出时释放连接
 		mIat.cancel();
 		mIat.destroy();
+		stopService(new Intent(this, TalkService.class));
 	}
 }
