@@ -31,6 +31,7 @@ import com.iflytek.cloud.ui.RecognizerDialogListener;
 import com.xunfei.robot.tools.IatSettings;
 import com.xunfei.robot.tools.JsonParser;
 import com.xunfei.robot.utils.BackgroundCache;
+import com.xunfei.robot.utils.OpenAppUtils;
 import com.xunfei.robot.utils.SongUtils;
 import com.xunfei.robot.utils.Config;
 import com.xunfei.robot.utils.NetWorkUtil;
@@ -247,12 +248,16 @@ public class VoicesToTextService extends Service {
 	
 	private List<String[]> tags = initTag();
 	private final int PLAY_SONG = 0;
+	private final int OPEN_APP = 1;
 
 	private List<String[]> initTag() {
 		List<String[]> tagets = new ArrayList<String[]>();
 
 		String[] tag1 = new String[] { "唱", "首歌" };
 		tagets.add(tag1);
+
+		String[] tag2 = new String[] { "打开" };
+		tagets.add(tag2);
 
 		return tagets;
 	}
@@ -271,17 +276,22 @@ public class VoicesToTextService extends Service {
 			}
 			if (bool) {
 				Log.v("tt", "interceptResult222");
-				doIntercept(i);
+				doIntercept(i,text);
 				return true;
 			}
 		}
 		return false;
 	}
 
-	private void doIntercept(int index) {
+	private void doIntercept(int index,String text) {
 		switch (index) {
 		case PLAY_SONG: {
 			SongUtils.playSong(this);
+		}
+			break;
+		case OPEN_APP: {
+			String tagText="打开";
+			OpenAppUtils.getInstance(this).openApp(text.substring(text.indexOf(tagText)+tagText.length()));
 		}
 			break;
 		default:

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.xunfei.robot.TextToVoicesService;
+import com.xunfei.robot.utils.BackgroundCache.Mode;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -24,14 +27,13 @@ public class OpenAppUtils {
 	private static PackageManager mPm;
 	
 	private static OpenAppUtils mOpenAppUtils;
-
-	private OpenAppUtils(Context context) {
-		mContext = context;
-	}
+	
+	private OpenAppUtils() {}
 	
 	public static OpenAppUtils getInstance(Context context){
 		if(mOpenAppUtils==null){
-			mOpenAppUtils=new OpenAppUtils(context);
+			mOpenAppUtils=new OpenAppUtils();
+			mContext = context;
 			mAppInfoList = getInstallAppInfo();
 			mPm = mContext.getPackageManager();
 		}
@@ -40,14 +42,17 @@ public class OpenAppUtils {
 	
 	public static void openApp(String appName){
 		for(ApplicationInfo app : mAppInfoList){
-			if(app.loadLabel(mPm).toString().contains(appName)){
+			String label=app.loadLabel(mPm).toString();
+			Log.v(TAG,"app label: "+label);
+			if(label.contains(appName)){
+				Log.v(TAG,"app packageName: "+app.packageName);
 				Intent intent=mPm.getLaunchIntentForPackage(app.packageName);
 				mContext.startActivity(intent);
-				break;
+				return;
 			}
 		}
+		ForwardControl.getInstance(mContext).startTextToVoicesService(Mode.ROBOT, "很抱歉，没有找到您想打开的应用");
 	}
-	
 	
 	private static List<ApplicationInfo> getInstallAppInfo() {
 		PackageManager mypm = mContext.getPackageManager();
