@@ -1,5 +1,7 @@
 package com.xunfei.robot;
 
+import java.util.Random;
+
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -106,6 +108,15 @@ public class TalkService extends Service {
 		startService(new Intent(this,TextToVoicesService.class));
 	}
 	
+	String[] errorMess=new String[]{"知之为知之,不知为不知,是不知也","这种问题我怎么可能知道呢",
+			"很抱歉，不能回答您的这个问题","我以为我什么问题都知道了，除了你这个"};
+	private void doErrorMessage(){
+		int index = new Random().nextInt(errorMess.length);
+		mResult = errorMess[index];
+		BackgroundCache.getInstance().setResult(BackgroundCache.Mode.ROBOT,mResult);
+		startService(new Intent(this,TextToVoicesService.class));
+	}
+	
 	private String analyzeResult(String result){
 		try{
 			JSONObject root=new JSONObject(result);
@@ -132,11 +143,12 @@ public class TalkService extends Service {
 							String text = result.getResultString();
 							if (!TextUtils.isEmpty(text)) {
 								setResult(text);
-								showTip(text);
+								showTip("result: "+text);
 							}
 			            } else {
 			                Log.d(TAG, "understander result:null");
 			                showTip("识别结果不正确。");
+			                doErrorMessage();
 			            }
 					}
 				});
@@ -146,7 +158,6 @@ public class TalkService extends Service {
 		public void onError(SpeechError error) {
 			// 文本语义不能使用回调错误码14002，请确认您下载sdk时是否勾选语义场景和私有语义的发布
 			showTip("onError Code："	+ error.getErrorCode());
-			
 		}
 	};
 

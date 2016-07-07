@@ -55,7 +55,7 @@ map.txt
 .gitignore~
 *.*~
 *~
-
+install*.*
 
 
 

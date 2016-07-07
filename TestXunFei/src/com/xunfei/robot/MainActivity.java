@@ -16,7 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.xunfei.robot.utils.BackgroundCache;
-import com.xunfei.robot.utils.BgLogic;
+import com.xunfei.robot.utils.SongUtils;
 import com.xunfei.robot.utils.BackgroundCache.Callback;
 
 public class MainActivity extends Activity {
@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
 
 		});
 		// this.startActivity(new Intent(this, IatDemo.class));
+		SongUtils.playSong(this);
 	}
 
 	public void onButtonClick(View view) {

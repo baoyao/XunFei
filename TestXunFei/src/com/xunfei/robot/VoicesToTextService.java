@@ -31,7 +31,7 @@ import com.iflytek.cloud.ui.RecognizerDialogListener;
 import com.xunfei.robot.tools.IatSettings;
 import com.xunfei.robot.tools.JsonParser;
 import com.xunfei.robot.utils.BackgroundCache;
-import com.xunfei.robot.utils.BgLogic;
+import com.xunfei.robot.utils.SongUtils;
 import com.xunfei.robot.utils.Config;
 import com.xunfei.robot.utils.NetWorkUtil;
 
@@ -281,7 +281,7 @@ public class VoicesToTextService extends Service {
 	private void doIntercept(int index) {
 		switch (index) {
 		case PLAY_SONG: {
-			BgLogic.playSong(this);
+			SongUtils.playSong(this);
 		}
 			break;
 		default:
@@ -345,6 +345,7 @@ public class VoicesToTextService extends Service {
 		// 退出时释放连接
 		mIat.cancel();
 		mIat.destroy();
+		SongUtils.onDestroy();
 		stopService(new Intent(this, TalkService.class));
 	}
 }
