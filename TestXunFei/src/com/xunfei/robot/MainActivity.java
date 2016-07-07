@@ -40,7 +40,6 @@ public class MainActivity extends Activity {
 
 		});
 		// this.startActivity(new Intent(this, IatDemo.class));
-		SongUtils.playSong(this);
 	}
 
 	public void onButtonClick(View view) {

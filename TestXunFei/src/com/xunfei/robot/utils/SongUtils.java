@@ -16,6 +16,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 
 import com.xunfei.robot.TalkService;
+import com.xunfei.robot.TextToVoicesService;
 
 /**
  * @author houen.bao
@@ -73,7 +74,7 @@ public class SongUtils {
 				Log.v("tt", "play song not find music");
 				BackgroundCache.getInstance().setResult(
 						BackgroundCache.Mode.ROBOT, "没有找到音乐");
-				context.startService(new Intent(context, TalkService.class));
+				context.startService(new Intent(context, TextToVoicesService.class));
 			}
 		} catch (Exception e) {
 			Log.v("tt", "playing song Exception: " + e);

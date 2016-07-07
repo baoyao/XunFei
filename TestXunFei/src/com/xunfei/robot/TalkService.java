@@ -99,22 +99,30 @@ public class TalkService extends Service {
 		}
 	}
 	
-	private void setResult(String result){
-		mResult=analyzeResult(result);
-		BackgroundCache.getInstance().setResult(BackgroundCache.Mode.ROBOT,mResult);
-		if("".equals(mResult)){
-			mResult = "很抱歉，没有识别出来";
+	private void setResult(String result) {
+		mResult = analyzeResult(result);
+		if (!interceptResult()) {
+			forward(mResult);
 		}
-		startService(new Intent(this,TextToVoicesService.class));
+	}
+	
+	private boolean interceptResult(){
+		if ("".equals(mResult)) {
+			mResult = "很抱歉，没有识别出来";
+			forward(mResult);
+			return true;
+		}else if(mResult.startsWith("无法识别")){
+			doErrorMessage();
+			return true;
+		}
+		return false;
 	}
 	
 	String[] errorMess=new String[]{"知之为知之,不知为不知,是不知也","这种问题我怎么可能知道呢",
-			"很抱歉，不能回答您的这个问题","我以为我什么问题都知道了，除了你这个"};
+			"很抱歉，不能回答您的这个问题","我以为我什么问题都知道了，除了您这个"};
 	private void doErrorMessage(){
 		int index = new Random().nextInt(errorMess.length);
-		mResult = errorMess[index];
-		BackgroundCache.getInstance().setResult(BackgroundCache.Mode.ROBOT,mResult);
-		startService(new Intent(this,TextToVoicesService.class));
+		forward(errorMess[index]);
 	}
 	
 	private String analyzeResult(String result){
@@ -127,6 +135,12 @@ public class TalkService extends Service {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	
+	private void forward(String text){
+		mResult=text;
+		BackgroundCache.getInstance().setResult(BackgroundCache.Mode.ROBOT,mResult);
+		startService(new Intent(this,TextToVoicesService.class));
 	}
 
 	
@@ -158,6 +172,7 @@ public class TalkService extends Service {
 		public void onError(SpeechError error) {
 			// 文本语义不能使用回调错误码14002，请确认您下载sdk时是否勾选语义场景和私有语义的发布
 			showTip("onError Code："	+ error.getErrorCode());
+			setResult("您的网络好像出现了一点点小问题");
 		}
 	};
 
