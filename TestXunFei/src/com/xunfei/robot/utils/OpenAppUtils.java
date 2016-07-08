@@ -40,7 +40,7 @@ public class OpenAppUtils {
 		return mOpenAppUtils;
 	}
 	
-	public static void openApp(String appName){
+	public void openApp(String appName){
 		for(ApplicationInfo app : mAppInfoList){
 			String label=app.loadLabel(mPm).toString();
 			Log.v(TAG,"app label: "+label);
