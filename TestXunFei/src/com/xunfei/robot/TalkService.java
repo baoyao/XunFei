@@ -27,6 +27,7 @@ import com.iflytek.cloud.UnderstanderResult;
 import com.xunfei.robot.tools.UnderstanderSettings;
 import com.xunfei.robot.utils.BackgroundCache;
 import com.xunfei.robot.utils.BackgroundCache.Mode;
+import com.xunfei.robot.utils.AnalyzeTalkResultUtils;
 import com.xunfei.robot.utils.Config;
 import com.xunfei.robot.utils.ForwardControl;
 
@@ -102,7 +103,7 @@ public class TalkService extends Service {
 	}
 	
 	private void setResult(String result) {
-		mResult = analyzeResult(result);
+		mResult = AnalyzeTalkResultUtils.getInstance().analyzeResult(result);
 		if (!interceptResult()) {
 			forward(mResult);
 		}
@@ -125,18 +126,6 @@ public class TalkService extends Service {
 	private void doErrorMessage(){
 		int index = new Random().nextInt(errorMess.length);
 		forward(errorMess[index]);
-	}
-	
-	private String analyzeResult(String result){
-		try{
-			JSONObject root=new JSONObject(result);
-			JSONObject answer=root.getJSONObject("answer");
-			String text=answer.getString("text");
-			return text;
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return "";
 	}
 	
 	private void forward(String text){
