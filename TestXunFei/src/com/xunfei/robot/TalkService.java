@@ -24,6 +24,7 @@ import com.iflytek.cloud.SpeechUnderstander;
 import com.iflytek.cloud.TextUnderstander;
 import com.iflytek.cloud.TextUnderstanderListener;
 import com.iflytek.cloud.UnderstanderResult;
+import com.xunfei.robot.entity.ResultAction;
 import com.xunfei.robot.tools.UnderstanderSettings;
 import com.xunfei.robot.utils.BackgroundCache;
 import com.xunfei.robot.utils.BackgroundCache.Mode;
@@ -103,22 +104,12 @@ public class TalkService extends Service {
 	}
 	
 	private void setResult(String result) {
-		mResult = AnalyzeTalkResultUtils.getInstance().analyzeResult(result);
-		if (!interceptResult()) {
-			forward(mResult);
-		}
-	}
-	
-	private boolean interceptResult(){
-		if ("".equals(mResult)) {
-			mResult = "很抱歉，没有识别出来";
-			forward(mResult);
-			return true;
-		}else if(mResult.startsWith("无法识别")){
+		ResultAction ra = AnalyzeTalkResultUtils.getInstance(this).analyzeResult(result);
+		if (!ra.isIntercept()) {
+			forward(ra.getResult());
+		}else if(ra.isShowErrorMessage()){
 			doErrorMessage();
-			return true;
 		}
-		return false;
 	}
 	
 	String[] errorMess=new String[]{"知之为知之,不知为不知,是不知也","这种问题我怎么可能知道呢",

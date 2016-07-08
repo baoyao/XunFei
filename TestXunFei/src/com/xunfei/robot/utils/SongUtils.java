@@ -65,7 +65,7 @@ public class SongUtils {
 				}
 				Random random = new Random();
 				int index = random.nextInt(list.size());
-				Log.v("tt", "playing song " + index);
+				Log.v("tt", "playing song " + index+" list.size(): "+list.size());
 				Uri uri = Uri.parse("content://media/external/audio/media/"
 						+ list.get(index).id);
 				play(context, uri);
@@ -81,6 +81,8 @@ public class SongUtils {
 		} catch (Exception e) {
 			Log.v("tt", "playing song Exception: " + e);
 			e.printStackTrace();
+			ForwardControl.getInstance(context).startTextToVoicesService(
+					Mode.ROBOT, "很抱歉，没有找到音乐");
 		} finally {
 			if (dataExternal != null) {
 				dataExternal.close();

@@ -1,0 +1,454 @@
+--------- beginning of main
+--------- beginning of system
+07-09 00:47:25.495 21663 21663 V tt      : refreshNetworkState: cloud
+07-09 00:47:25.496 21663 21663 V tt      : onCreate
+07-09 00:47:25.497 21663 21663 D tt      : SpeechRecognizer init() code = 0
+07-09 00:47:25.499 21663 21663 V tt      : refreshNetworkState: cloud
+07-09 00:47:25.597 21663 21663 V tt      : startSpeek
+07-09 00:47:25.659 21663 21663 V tt      : showTip: 请开始说话…
+07-09 00:47:30.545 21663 21663 V tt      : startSpeek
+07-09 00:47:30.559 21663 21663 V tt      : showTip: 请开始说话…
+07-09 00:47:34.828 21663 21663 D tt      : recognizer result：{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0.00,"w":"啊"}]}]}
+07-09 00:47:34.829 21663 21663 V tt      : BackgroundCache setResult: 啊
+07-09 00:47:34.868 21663 21663 D tt      : speechUnderstanderListener init() code = 0
+07-09 00:47:34.869 21663 21663 D tt      : textUnderstanderListener init() code = 0
+07-09 00:47:34.985 21663 21663 V tt      : showTip: 啊
+07-09 00:47:35.146 21663 21663 D tt      : understander result：{"rc":0,"operation":"ANSWER","service":"chat","answer":{"text":"不要把嘴巴张得那么大，都快塞下一整个鸡蛋了！","type":"T"},"text":"啊"}
+07-09 00:47:35.162 21663 21663 V tt      : analyzeResult service: chat operation: ANSWER
+07-09 00:47:35.162 21663 21663 V tt      : analyzeResult end: null
+07-09 00:47:35.162 21663 21663 V tt      : BackgroundCache setResult: 这种问题我怎么可能知道呢
+07-09 00:47:35.165 21663 21663 V tt      : showTip: result: {"rc":0,"operation":"ANSWER","service":"chat","answer":{"text":"不要把嘴巴张得那么大，都快塞下一整个鸡蛋了！","type":"T"},"text":"啊"}
+07-09 00:47:35.221 21663 21663 D tt      : InitListener init() code = 0
+07-09 00:47:35.355 21663 21663 V tt      : showTip: 这种问题我怎么可能知道呢
+07-09 00:47:35.382 21663 21663 D tt      : recognizer result：{"sn":2,"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0.00,"w":""}]}]}
+07-09 00:47:35.472 21663 21663 V tt      : showTip: 网络连接发生异常.(错误码:10108)
+07-09 00:47:39.389 21663 21663 V tt      : onDestroy
+07-09 00:47:42.003 21663 21663 V tt      : refreshNetworkState: cloud
+07-09 00:47:42.009 21663 21663 V tt      : onCreate
+07-09 00:47:42.016 21663 21663 D tt      : SpeechRecognizer init() code = 0
+07-09 00:47:42.018 21663 21663 V tt      : refreshNetworkState: cloud
+07-09 00:47:42.115 21663 21663 V tt      : startSpeek
+07-09 00:47:42.142 21663 21663 V tt      : showTip: 请开始说话…
+07-09 00:47:44.398 21663 21663 D tt      : recognizer result：{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0.00,"w":"唱"}]},{"bg":0,"cw":[{"sc":0.00,"w":"首"}]},{"bg":0,"cw":[{"sc":0.00,"w":"歌"}]}]}
+07-09 00:47:44.399 21663 21663 V tt      : BackgroundCache setResult: 唱首歌
+07-09 00:47:44.451 21663 21663 D tt      : recognizer result：{"sn":2,"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0.00,"w":""}]}]}
+07-09 00:47:44.451 21663 21663 D tt      : speechUnderstanderListener init() code = 0
+07-09 00:47:44.451 21663 21663 D tt      : textUnderstanderListener init() code = 0
+07-09 00:47:44.537 21663 21663 V tt      : showTip: 唱首歌
+07-09 00:47:44.707 21663 21663 D tt      : understander result：{"moreResults":[{"rc":0,"answer":{"type":"T","text":"言情小说,“18岁以前被同一个女人抢走不同的男人;18岁以后被不同的女人抢走不同的男人;20岁以后被不同的男人抢走不同的男人。” 这是霏儿形容向阳22岁以前乱七八糟人生的话,向阳想今天可以加上一句了。。。 “22岁以后和初恋男朋友重修旧好,但是在25岁生日那天被甩。” 向阳,一个性格恬淡的女子,失恋之后仍旧乐观生活。 曲淡宁,一个一夜成名的少年,早熟却又晚熟。"},"service":"baike","text":"唱首歌","operation":"ANSWER"}],"webPage":{"header":"","url":"http:\/\/kcgz.openspeech.cn\/service\/iss?wuuid=869b2a07f17896b34fe40074aabf632c&ver=2.0&method=webPage&uuid=a3bc8e10f3b5190d762f44bcf0594a18query"},"semantic":{},"rc":0,"operation":"PLAY","service":"music","data":{"result":[{"singer":"郑天宇","sourceName":"自产音乐","name":"成了一个故事","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyCAJp65ABd1ROGRo2g081.mp3"},{"singer":"未登录","sourceName":"自产音乐","name":"从开始到现在《冬季恋歌》","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSpgqAN3WqABePViYYL8w729.mp3"},{"singer":"佚名","sourceName":"自产音乐","name":"赋格 4","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/0B\/rBBGdVPSmyGAKUg0ABeCaBvMDpU241.mp3"},{"singer":"洲圣君","sourceName":"自产音乐","name":"草原行","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/29\/rBBGdVPSpg2AWNFoABePViWp6-s569.mp3"},{"singer":"黄大炜","sourceName":"自产音乐","name":"乘着风","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyKAEshIABd74KQap4M176.mp3"},{"singer":"佚名","sourceName":"自产音乐","name":"歌剧《狄托的仁慈》中的序曲","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/29\/rBBGdVPSphOAaVIpABd74B4Ek1I634.mp3"},{"singer":"惠子","sourceName":"自产音乐","name":"不愿再等你来","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyaAEL_1ABePVllD7Jg497.mp3"},{"singer":"壹唱天下","sourceName":"自产音乐","name":"草原歌曲","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSphSAKKV_ABd_JOdFsNY762.mp3"},{"singer":"远方","sourceName":"自产音乐","name":"干杯兄弟","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C8\/rBBGdFPSmyeAWxn7ABd1NlMLdmg106.mp3"},{"singer":"牟茗","sourceName":"自产音乐","name":"从来不怀疑","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSphWAYmXZABd7zKdWSbA146.mp3"}]},"text":"唱首歌"}
+07-09 00:47:44.708 21663 21663 V tt      : analyzeResult service: music operation: PLAY
+07-09 00:47:44.708 21663 21663 V tt      : play song
+07-09 00:47:44.753 21663 21663 V tt      : playSong title: wan139.com name: iphone默认铃声_&_e87e689d-527b-46b1-a8f6-339bac32b835.mp3 mimeType: audio/mpeg
+07-09 00:47:44.753 21663 21663 V tt      : playSong title: 我可以 name: 蔡旻佑 - 我可以.mp3 mimeType: audio/mpeg
+07-09 00:47:44.753 21663 21663 V tt      : playSong title: 寻觅-钟洁 name: 君夜潼、钟洁 - 寻觅.mp3 mimeType: audio/mpeg
+07-09 00:47:44.753 21663 21663 V tt      : playSong title: 可泽、夏婉安 - 离开我,你是否才会好过 name: 可泽、夏婉安 - 离开我,你是否才会好过.mp3 mimeType: audio/mpeg
+07-09 00:47:44.753 21663 21663 V tt      : playSong title: 01.表白 name: 萧亚轩 - 表白.mp3 mimeType: audio/mpeg
+07-09 00:47:44.753 21663 21663 V tt      : playSong title: 一人我饮酒醉(粤语版) name: 亿泡泡 - 一人我饮酒醉(粤语版).mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: 网络歌手 - 吉拉拉 name: 网络歌手 - 吉拉拉.mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: 恋人心 name: 魏新雨 - 恋人心.mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: 光辉岁月 name: Beyond - 光辉岁月.mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: 真的爱你 name: Beyond - 真的爱你.mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: 海阔天空 name: Beyond - 海阔天空.mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: 陈楚生 - 有没有人告诉你 name: 陈楚生 - 有没有人告诉你.mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: 新歌推荐QQ757295568 name: 庄心妍 - 爱囚.mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: 李荣浩 - 李白 name: 李荣浩 - 李白.mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: See You Again name: 速度与激情 - 主题曲 - 7片尾曲.mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: 暗恋过，结局呢 name: 新街口组合 - 暗恋过 结局呢.mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: 下一站天后 name: Twins - 下一站天后.mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: 青花瓷 name: 周杰伦 - 青花瓷.mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: 霍元甲 name: 周杰伦 - 霍元甲.mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: 彩虹 name: 周杰伦 - 彩虹.mp3 mimeType: audio/mpeg
+07-09 00:47:44.754 21663 21663 V tt      : playSong title: 珊瑚海 name: 周杰伦、梁心颐 - 珊瑚海.mp3 mimeType: audio/mpeg
+07-09 00:47:44.755 21663 21663 V tt      : playSong title: 撕夜 name: 阿杜 - 撕夜.mp3 mimeType: audio/mpeg
+07-09 00:47:44.755 21663 21663 V tt      : playSong title: 天黑 name: 阿杜 - 天黑.mp3 mimeType: audio/mpeg
+07-09 00:47:44.755 21663 21663 V tt      : playSong title: 我们的歌 name: 王力宏 - 我们的歌.mp3 mimeType: audio/mpeg
+07-09 00:47:44.755 21663 21663 V tt      : playSong title: 分手就分手 name: 小山 - 分手就分手.mp3 mimeType: audio/mpeg
+07-09 00:47:44.755 21663 21663 V tt      : playSong title: 她说 name: 林俊杰 - 她说.mp3 mimeType: audio/mpeg
+07-09 00:47:44.755 21663 21663 V tt      : playSong title: 美丽女人 name: 刘嘉亮 - 美丽女人.mp3 mimeType: audio/mpeg
+07-09 00:47:44.755 21663 21663 V tt      : playSong title: 給我一個理由忘記 name: A-Lin - 给我一个理由忘记.mp3 mimeType: audio/mpeg
+07-09 00:47:44.755 21663 21663 V tt      : playSong title: 上心 name: 郑欣宜 - 上心.mp3 mimeType: audio/mpeg
+07-09 00:47:44.755 21663 21663 V tt      : playSong title: Fade name: Alan Walker - Fade.mp3 mimeType: audio/mpeg
+07-09 00:47:44.755 21663 21663 V tt      : playSong title: 吴亦凡 - 时间煮雨 name: 吴亦凡 - 时间煮雨.mp3 mimeType: audio/mpeg
+07-09 00:47:44.755 21663 21663 V tt      : playSong title: 月光(《秦时明月》电视剧主题曲) name: 胡彦斌 - 月光.mp3 mimeType: audio/mpeg
+07-09 00:47:44.755 21663 21663 V tt      : playSong title: 红颜 name: 秦时明月主题曲 - 红颜.mp3 mimeType: audio/mpeg
+07-09 00:47:44.755 21663 21663 V tt      : playSong title: 独活 name: 炎亚纶 - 独活.mp3 mimeType: audio/mpeg
+07-09 00:47:44.755 21663 21663 V tt      : playSong title: 台北之旅 name: 黄明志 - 台北之旅.mp3 mimeType: audio/mpeg
+07-09 00:47:44.756 21663 21663 V tt      : playSong title: 狄易达 - 半死 name: 狄易达 - 半死.mp3 mimeType: audio/mpeg
+07-09 00:47:44.756 21663 21663 V tt      : playSong title: 心之火(花千骨片头曲)[12530.com] name: 彭佳慧、f.I.R. - 心之火.mp3 mimeType: audio/mpeg
+07-09 00:47:44.756 21663 21663 V tt      : playSong title: 当归 name: 周蕙 - 当归.mp3 mimeType: audio/mpeg
+07-09 00:47:44.756 21663 21663 V tt      : playSong title: 85758a3c8099e7ca762af2d5df87bc6f name: 85758a3c8099e7ca762af2d5df87bc6f.m4a mimeType: audio/mp4
+07-09 00:47:44.756 21663 21663 V tt      : playSong title: 谁明浪子心 name: 王杰、赵学而 - 谁明浪子心.mp3 mimeType: audio/mpeg
+07-09 00:47:44.756 21663 21663 V tt      : playSong title: 一双人 name: 林恺伦 - 一双人.mp3 mimeType: audio/mpeg
+07-09 00:47:44.756 21663 21663 V tt      : playSong title: 通天大道宽又阔 name: 三叶草演唱组、崔京浩 - 通天大道宽又阔.mp3 mimeType: audio/mpeg
+07-09 00:47:44.756 21663 21663 V tt      : playSong title: 张恒远、赵晗 - 蓝莲花 name: 张恒远、赵晗 - 蓝莲花.mp3 mimeType: audio/mpeg
+07-09 00:47:44.756 21663 21663 V tt      : playSong title: 许嵩 - 千古 name: 许嵩 - 千古.m4a mimeType: audio/mp4
+07-09 00:47:44.756 21663 21663 V tt      : playSong title: 夜色 name: 艺涛、梁剑东 - 夜色.mp3 mimeType: audio/mpeg
+07-09 00:47:44.756 21663 21663 V tt      : playSong title: 十年 name: 陈奕迅 - 十年.mp3 mimeType: audio/mpeg
+07-09 00:47:44.756 21663 21663 V tt      : playSong title: 不分手的恋爱-汪苏泷(silence) name: 汪苏泷 - 不分手的恋爱.mp3 mimeType: audio/mpeg
+07-09 00:47:44.756 21663 21663 V tt      : playSong title: 庄心妍 - 以后的以后 name: 庄心妍 - 以后的以后.mp3 mimeType: audio/mpeg
+07-09 00:47:44.756 21663 21663 V tt      : playSong title: 曹操 name: 林俊杰 - 曹操.mp3 mimeType: audio/mpeg
+07-09 00:47:44.757 21663 21663 V tt      : playSong title: 再回首 name: 姜育恒 - 再回首.mp3 mimeType: audio/mpeg
+07-09 00:47:44.757 21663 21663 V tt      : playSong title: 乱世殇 name: 格子兮、牙牙乐 - 乱世殇.mp3 mimeType: audio/mpeg
+07-09 00:47:44.757 21663 21663 V tt      : playSong title: 男人歌 (feat. 高进) name: 小沈阳、高进 - 男人歌.mp3 mimeType: audio/mpeg
+07-09 00:47:44.757 21663 21663 V tt      : playSong title: 心的构造 name: 曾咏欣 - 心的构造.mp3 mimeType: audio/mpeg
+07-09 00:47:44.757 21663 21663 V tt      : playSong title: 01 擦肩而过（宇桐非 王冰洋） name: 宇桐非、胡雯 - 擦肩而过.mp3 mimeType: audio/mpeg
+07-09 00:47:44.757 21663 21663 V tt      : playSong title: Extreme Challenge 挑战极限 name: Gabry Ponte - Time To Rock.mp3 mimeType: audio/mpeg
+07-09 00:47:44.757 21663 21663 V tt      : playSong title: 更多好听DJ音乐请访问bbdj.com name: Dj Carpi - The Garden.mp3 mimeType: audio/mpeg
+07-09 00:47:44.757 21663 21663 V tt      : playSong title: 一生中最爱 name: 谭咏麟 - 一生中最爱.mp3 mimeType: audio/mpeg
+07-09 00:47:44.757 21663 21663 V tt      : playSong title: Miracle name: Cascada - Miracle.mp3 mimeType: audio/mpeg
+07-09 00:47:44.757 21663 21663 V tt      : playSong title: 我想更懂你 name: 潘玮柏、苏芮 - 我想更懂你.mp3 mimeType: audio/mpeg
+07-09 00:47:44.757 21663 21663 V tt      : playSong title: 魏志鹏 - 父亲 name: 魏志鹏 - 父亲.mp3 mimeType: audio/mpeg
+07-09 00:47:44.757 21663 21663 V tt      : playSong title: 黄龄 - 侗情 name: 黄龄 - 侗情.mp3 mimeType: audio/mpeg
+07-09 00:47:44.757 21663 21663 V tt      : playSong title: 曲终人散 name: 张宇 - 曲终人散.mp3 mimeType: audio/mpeg
+07-09 00:47:44.757 21663 21663 V tt      : playSong title: 张韶涵 - 为爱而活 name: 张韶涵 - 为爱而活.ape mimeType: audio/x-ape
+07-09 00:47:44.759 21663 21663 V tt      : playSong title: 李宇春 - 下个,路口,见 name: 李宇春 - 下个,路口,见.ape mimeType: audio/x-ape
+07-09 00:47:44.759 21663 21663 V tt      : playSong title: b5162886e68f0233ea2f2837975d4b52 name: b5162886e68f0233ea2f2837975d4b52.mp3 mimeType: audio/mpeg
+07-09 00:47:44.759 21663 21663 V tt      : playSong title: 大嘴巴 - 永远在身边 name: 大嘴巴 - 永远在身边.ape mimeType: audio/x-ape
+07-09 00:47:44.759 21663 21663 V tt      : playSong title: 情毒 name: 欢子 - 情毒.mp3 mimeType: audio/mpeg
+07-09 00:47:44.759 21663 21663 V tt      : playSong title: 男才女貌 - 外滩十八号 name: 男才女貌 - 外滩十八号.flac mimeType: audio/flac
+07-09 00:47:44.759 21663 21663 V tt      : playSong title: 不够成熟 name: By2 - 不够成熟.flac mimeType: audio/flac
+07-09 00:47:44.759 21663 21663 V tt      : playSong title: 如果这都不算爱 name: 张学友 - 如果这都不算爱.flac mimeType: audio/flac
+07-09 00:47:44.759 21663 21663 V tt      : playSong title: 愚爱 - 欢子' name: 愚爱 - 欢子'.mp3 mimeType: audio/mpeg
+07-09 00:47:44.759 21663 21663 V tt      : playSong title: 邓紫棋 - 新的心跳 name: 邓紫棋 - 新的心跳.flac mimeType: audio/flac
+07-09 00:47:44.759 21663 21663 V tt      : playSong title: 夜空中最亮的星 name: 逃跑计划 - 夜空中最亮的星.mp3 mimeType: audio/mpeg
+07-09 00:47:44.759 21663 21663 V tt      : playSong title: 张韶涵 - 淋雨一直走 name: 张韶涵 - 淋雨一直走.mp3 mimeType: audio/mpeg
+07-09 00:47:44.760 21663 21663 V tt      : playSong title: 金志文 - 勇敢的我 name: 金志文 - 勇敢的我.flac mimeType: audio/flac
+07-09 00:47:44.760 21663 21663 V tt      : playSong title: 小贱、星弟 - 当我唱起这首歌 name: 小贱、星弟 - 当我唱起这首歌.ape mimeType: audio/x-ape
+07-09 00:47:44.760 21663 21663 V tt      : playSong title: 雨花石 name: 李玉刚、石头 - 雨花石.mp3 mimeType: audio/mpeg
+07-09 00:47:44.760 21663 21663 V tt      : playSong title: 邓福如、小宇 - 前面路口停 name: 邓福如、小宇 - 前面路口停.mp3 mimeType: audio/mpeg
+07-09 00:47:44.760 21663 21663 V tt      : playSong title: 可歆 - 失去你没什么大不了 name: 可歆 - 失去你没什么大不了.mp3 mimeType: audio/mpeg
+07-09 00:47:44.760 21663 21663 V tt      : playSong title: 武艺 - 仙侠传·雪字 name: 武艺 - 仙侠传·雪字.ape mimeType: audio/x-ape
+07-09 00:47:44.760 21663 21663 V tt      : playSong title: 带我到山顶 name: 赵艺涵 - 带我到山顶.mp3 mimeType: audio/mpeg
+07-09 00:47:44.760 21663 21663 V tt      : playSong title: 庄心妍 - 再见只是陌生人 name: 庄心妍 - 再见只是陌生人.ape mimeType: audio/x-ape
+07-09 00:47:44.760 21663 21663 V tt      : playSong title: 小永远 name: 何洁 - 小永远.flac mimeType: audio/flac
+07-09 00:47:44.760 21663 21663 V tt      : playSong title: 网络歌手 - 游子梦 - 纯音乐版 name: 网络歌手 - 游子梦 - 纯音乐版.mp3 mimeType: audio/mpeg
+07-09 00:47:44.760 21663 21663 V tt      : playSong title: DJ - River Flows In You(唯美越鼓 极品钢琴) name: DJ - River Flows In You(唯美越鼓 极品钢琴).mp3 mimeType: audio/mpeg
+07-09 00:47:44.760 21663 21663 V tt      : playSong title: DJ - Fuck What U Heard name: DJ - Fuck What U Heard.mp3 mimeType: audio/mpeg
+07-09 00:47:44.760 21663 21663 V tt      : playSong title: 动力火车 - 当 - 2014我是歌手第二季第九期现场 name: 动力火车 - 当 - 2014我是歌手第二季第九期现场.ape mimeType: audio/x-ape
+07-09 00:47:44.760 21663 21663 V tt      : playSong title: MC牟天任 - 心魔 name: MC牟天任 - 心魔.mp3 mimeType: audio/mpeg
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: 一个人哭 name: 郑源 - 一个人哭.mp3 mimeType: audio/mpeg
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: 郑潇 - Brighter Than The Sun name: 郑潇 - Brighter Than The Sun.mp3 mimeType: audio/mpeg
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: 雨蝶 name: 李翊君 - 雨蝶.mp3 mimeType: audio/mpeg
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: 黄勇 - 男人花 name: 黄勇 - 男人花.mp3 mimeType: audio/mpeg
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: 罗京民 - 光明 name: 罗京民 - 光明.mp3 mimeType: audio/mpeg
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: Troublemaker name: akon - trouble maker.mp3 mimeType: audio/mpeg
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: 庄心妍 - 走着走着就散了 name: 庄心妍 - 走着走着就散了.mp3 mimeType: audio/mpeg
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: 陈奕迅 - 阴天快乐 name: 陈奕迅 - 阴天快乐.flac mimeType: audio/flac
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: 可爱颂 (1加1等于小可爱) name: Hari - 可爱颂.mp3 mimeType: audio/mpeg
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: 初音ミク - 可爱颂 name: 初音ミク - 可爱颂.mp3 mimeType: audio/mpeg
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: KeyKi - 可爱颂 name: KeyKi - 可爱颂.mp3 mimeType: audio/mpeg
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: Bye Bye Bye(《火影忍者》动漫最新片尾曲) name: Lovestoned - Bye Bye Bye.mp3 mimeType: audio/mpeg
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: 伤爱的理由 name: 上官晓懿、常闻迪 - 伤爱的理由.mp3 mimeType: audio/mpeg
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: 你是我的男朋友 name: 姜明路 - 你是我的男朋友 - 单曲版.mp3 mimeType: audio/mpeg
+07-09 00:47:44.761 21663 21663 V tt      : playSong title: 우있녕격 name: 张韶涵、潘玮柏 - 快乐崇拜.mp3 mimeType: audio/mpeg
+07-09 00:47:44.764 21663 21663 V tt      : playSong title: 独自唱情歌 name: 庄心妍 - 独自唱情歌.mp3 mimeType: audio/mpeg
+07-09 00:47:44.764 21663 21663 V tt      : playSong title: 庄心妍 - 人前人后 name: 庄心妍 - 人前人后.mp3 mimeType: audio/mpeg
+07-09 00:47:44.764 21663 21663 V tt      : playSong title: 庄心妍 - 好可惜 name: 庄心妍 - 好可惜.mp3 mimeType: audio/mpeg
+07-09 00:47:44.764 21663 21663 V tt      : playSong title: What Are Words name: Chris Medina - What Are Words.flac mimeType: audio/flac
+07-09 00:47:44.764 21663 21663 V tt      : playSong title: 伤心城市 name: 冷漠、云菲菲 - 伤心城市.flac mimeType: audio/flac
+07-09 00:47:44.764 21663 21663 V tt      : playSong title: 静静的看着你装逼 name: 花粥 - 静静的看着你装逼.mp3 mimeType: audio/mpeg
+07-09 00:47:44.765 21663 21663 V tt      : playing song 108 list.size(): 109
+07-09 00:47:44.793 21663 21663 V tt      : analyzeResult end: null
+07-09 00:47:44.793 21663 21663 V tt      : BackgroundCache setResult: 这种问题我怎么可能知道呢
+07-09 00:47:44.798 21663 21663 V tt      : showTip: result: {"moreResults":[{"rc":0,"answer":{"type":"T","text":"言情小说,“18岁以前被同一个女人抢走不同的男人;18岁以后被不同的女人抢走不同的男人;20岁以后被不同的男人抢走不同的男人。” 这是霏儿形容向阳22岁以前乱七八糟人生的话,向阳想今天可以加上一句了。。。 “22岁以后和初恋男朋友重修旧好,但是在25岁生日那天被甩。” 向阳,一个性格恬淡的女子,失恋之后仍旧乐观生活。 曲淡宁,一个一夜成名的少年,早熟却又晚熟。"},"service":"baike","text":"唱首歌","operation":"ANSWER"}],"webPage":{"header":"","url":"http:\/\/kcgz.openspeech.cn\/service\/iss?wuuid=869b2a07f17896b34fe40074aabf632c&ver=2.0&method=webPage&uuid=a3bc8e10f3b5190d762f44bcf0594a18query"},"semantic":{},"rc":0,"operation":"PLAY","service":"music","data":{"result":[{"singer":"郑天宇","sourceName":"自产音乐","name":"成了一个故事","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyCAJp65ABd1ROGRo2g081.mp3"},{"singer":"未登录","sourceName":"自产音乐","name":"从开始到现在《冬季恋歌》","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSpgqAN3WqABePViYYL8w729.mp3"},{"singer":"佚名","sourceName":"自产音乐","name":"赋格 4","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/0B\/rBBGdVPSmyGAKUg0ABeCaBvMDpU241.mp3"},{"singer":"洲圣君","sourceName":"自产音乐","name":"草原行","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/29\/rBBGdVPSpg2AWNFoABePViWp6-s569.mp3"},{"singer":"黄大炜","sourceName":"自产音乐","name":"乘着风","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyKAEshIABd74KQap4M176.mp3"},{"singer":"佚名","sourceName":"自产音乐","name":"歌剧《狄托的仁慈》中的序曲","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/29\/rBBGdVPSphOAaVIpABd74B4Ek1I634.mp3"},{"singer":"惠子","sourceName":"自产音乐","name":"不愿再等你来","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyaAEL_1ABePVllD7Jg497.mp3"},{"singer":"壹唱天下","sourceName":"自产音乐","name":"草原歌曲","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSphSAKKV_ABd_JOdFsNY762.mp3"},{"singer":"远方","sourceName":"自产音乐","name":"干杯兄弟","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C8\/rBBGdFPSmyeAWxn7ABd1NlMLdmg106.mp3"},{"singer":"牟茗","sourceName":"自产音乐","name":"从来不怀疑","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSphWAYmXZABd7zKdWSbA146.mp3"}]},"text":"唱首歌"}
+07-09 00:47:44.816 21663 21663 D tt      : InitListener init() code = 0
+07-09 00:47:44.981 21663 21663 V tt      : showTip: 这种问题我怎么可能知道呢
+07-09 00:47:45.211 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为0%
+07-09 00:47:45.215 21663 21663 V tt      : showTip: 开始播放
+07-09 00:47:45.244 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为0%
+07-09 00:47:45.250 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为3%
+07-09 00:47:45.251 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为6%
+07-09 00:47:45.334 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为10%
+07-09 00:47:45.614 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为13%
+07-09 00:47:45.614 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为17%
+07-09 00:47:45.614 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为20%
+07-09 00:47:45.647 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为24%
+07-09 00:47:45.649 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为27%
+07-09 00:47:45.729 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为30%
+07-09 00:47:45.830 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为34%
+07-09 00:47:45.936 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为37%
+07-09 00:47:46.036 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为41%
+07-09 00:47:46.037 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为44%
+07-09 00:47:46.130 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为48%
+07-09 00:47:46.229 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为51%
+07-09 00:47:46.329 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为54%
+07-09 00:47:46.427 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为58%
+07-09 00:47:46.428 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为61%
+07-09 00:47:46.529 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为65%
+07-09 00:47:46.629 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为68%
+07-09 00:47:46.729 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为72%
+07-09 00:47:46.896 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为75%
+07-09 00:47:46.946 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为78%
+07-09 00:47:46.946 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为82%
+07-09 00:47:47.032 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为85%
+07-09 00:47:47.135 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为89%
+07-09 00:47:47.227 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为92%
+07-09 00:47:47.329 21663 21663 V tt      : showTip: 缓冲进度为100%，播放进度为96%
+07-09 00:47:47.629 21663 21663 V tt      : showTip: 播放完成
+07-09 00:47:47.739 21663 21663 V tt      : startSpeek
+07-09 00:47:47.757 21663 21663 V tt      : showTip: 请开始说话…
+07-09 00:47:49.852 21663 21663 D tt      : recognizer result：{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0.00,"w":""}]}]}
+07-09 00:47:50.050 21663 21663 D tt      : recognizer result：{"sn":2,"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0.00,"w":"。"}]}]}
+07-09 00:47:50.052 21663 21663 V tt      : BackgroundCache setResult: 。
+07-09 00:47:50.158 21663 21663 V tt      : showTip: 。
+07-09 00:47:50.275 21663 21663 D tt      : understander result：{"text":"。","rc":4}
+07-09 00:47:50.281 21663 21663 V tt      : analyzeResult Exception: org.json.JSONException: No value for service
+07-09 00:47:50.281 21663 21663 V tt      : analyzeResult end: 您的这个问题可把我难倒了
+07-09 00:47:50.281 21663 21663 V tt      : showTip: result: {"text":"。","rc":4}
+07-09 00:47:57.556 21663 21663 V tt      : onDestroy
+07-09 00:51:41.118 23293 23293 V tt      : refreshNetworkState: cloud
+07-09 00:51:41.120 23293 23293 V tt      : onCreate
+07-09 00:51:41.126 23293 23293 D tt      : SpeechRecognizer init() code = 0
+07-09 00:51:41.129 23293 23293 V tt      : refreshNetworkState: cloud
+07-09 00:51:41.222 23293 23293 V tt      : startSpeek
+07-09 00:51:41.340 23293 23293 V tt      : showTip: 请开始说话…
+07-09 00:51:43.567 23293 23293 D tt      : recognizer result：{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0.00,"w":"唱"}]},{"bg":0,"cw":[{"sc":0.00,"w":"首"}]},{"bg":0,"cw":[{"sc":0.00,"w":"歌"}]}]}
+07-09 00:51:43.568 23293 23293 V tt      : BackgroundCache setResult: 唱首歌
+07-09 00:51:43.583 23293 23293 D tt      : speechUnderstanderListener init() code = 0
+07-09 00:51:43.583 23293 23293 D tt      : textUnderstanderListener init() code = 0
+07-09 00:51:43.706 23293 23293 V tt      : showTip: 唱首歌
+07-09 00:51:43.767 23293 23293 D tt      : recognizer result：{"sn":2,"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0.00,"w":""}]}]}
+07-09 00:51:43.889 23293 23293 D tt      : understander result：{"moreResults":[{"rc":0,"answer":{"type":"T","text":"言情小说,“18岁以前被同一个女人抢走不同的男人;18岁以后被不同的女人抢走不同的男人;20岁以后被不同的男人抢走不同的男人。” 这是霏儿形容向阳22岁以前乱七八糟人生的话,向阳想今天可以加上一句了。。。 “22岁以后和初恋男朋友重修旧好,但是在25岁生日那天被甩。” 向阳,一个性格恬淡的女子,失恋之后仍旧乐观生活。 曲淡宁,一个一夜成名的少年,早熟却又晚熟。"},"service":"baike","text":"唱首歌","operation":"ANSWER"}],"webPage":{"header":"","url":"http:\/\/kcgz.openspeech.cn\/service\/iss?wuuid=d9da38984db9ab6bc07d3f49c648a4b0&ver=2.0&method=webPage&uuid=c99fbd82c557c8b7816a74519c600ca4query"},"semantic":{},"rc":0,"operation":"PLAY","service":"music","data":{"result":[{"singer":"郑天宇","sourceName":"自产音乐","name":"成了一个故事","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyCAJp65ABd1ROGRo2g081.mp3"},{"singer":"未登录","sourceName":"自产音乐","name":"从开始到现在《冬季恋歌》","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSpgqAN3WqABePViYYL8w729.mp3"},{"singer":"佚名","sourceName":"自产音乐","name":"赋格 4","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/0B\/rBBGdVPSmyGAKUg0ABeCaBvMDpU241.mp3"},{"singer":"洲圣君","sourceName":"自产音乐","name":"草原行","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/29\/rBBGdVPSpg2AWNFoABePViWp6-s569.mp3"},{"singer":"黄大炜","sourceName":"自产音乐","name":"乘着风","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyKAEshIABd74KQap4M176.mp3"},{"singer":"佚名","sourceName":"自产音乐","name":"歌剧《狄托的仁慈》中的序曲","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/29\/rBBGdVPSphOAaVIpABd74B4Ek1I634.mp3"},{"singer":"惠子","sourceName":"自产音乐","name":"不愿再等你来","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyaAEL_1ABePVllD7Jg497.mp3"},{"singer":"壹唱天下","sourceName":"自产音乐","name":"草原歌曲","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSphSAKKV_ABd_JOdFsNY762.mp3"},{"singer":"远方","sourceName":"自产音乐","name":"干杯兄弟","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C8\/rBBGdFPSmyeAWxn7ABd1NlMLdmg106.mp3"},{"singer":"牟茗","sourceName":"自产音乐","name":"从来不怀疑","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSphWAYmXZABd7zKdWSbA146.mp3"}]},"text":"唱首歌"}
+07-09 00:51:43.900 23293 23293 V tt      : analyzeResult service: music operation: PLAY
+07-09 00:51:43.900 23293 23293 V tt      : play song
+07-09 00:51:43.939 23293 23293 V tt      : playSong title: wan139.com name: iphone默认铃声_&_e87e689d-527b-46b1-a8f6-339bac32b835.mp3 mimeType: audio/mpeg
+07-09 00:51:43.939 23293 23293 V tt      : playSong title: 我可以 name: 蔡旻佑 - 我可以.mp3 mimeType: audio/mpeg
+07-09 00:51:43.939 23293 23293 V tt      : playSong title: 寻觅-钟洁 name: 君夜潼、钟洁 - 寻觅.mp3 mimeType: audio/mpeg
+07-09 00:51:43.939 23293 23293 V tt      : playSong title: 可泽、夏婉安 - 离开我,你是否才会好过 name: 可泽、夏婉安 - 离开我,你是否才会好过.mp3 mimeType: audio/mpeg
+07-09 00:51:43.939 23293 23293 V tt      : playSong title: 01.表白 name: 萧亚轩 - 表白.mp3 mimeType: audio/mpeg
+07-09 00:51:43.940 23293 23293 V tt      : playSong title: 一人我饮酒醉(粤语版) name: 亿泡泡 - 一人我饮酒醉(粤语版).mp3 mimeType: audio/mpeg
+07-09 00:51:43.940 23293 23293 V tt      : playSong title: 网络歌手 - 吉拉拉 name: 网络歌手 - 吉拉拉.mp3 mimeType: audio/mpeg
+07-09 00:51:43.940 23293 23293 V tt      : playSong title: 恋人心 name: 魏新雨 - 恋人心.mp3 mimeType: audio/mpeg
+07-09 00:51:43.940 23293 23293 V tt      : playSong title: 光辉岁月 name: Beyond - 光辉岁月.mp3 mimeType: audio/mpeg
+07-09 00:51:43.940 23293 23293 V tt      : playSong title: 真的爱你 name: Beyond - 真的爱你.mp3 mimeType: audio/mpeg
+07-09 00:51:43.941 23293 23293 V tt      : playSong title: 海阔天空 name: Beyond - 海阔天空.mp3 mimeType: audio/mpeg
+07-09 00:51:43.941 23293 23293 V tt      : playSong title: 陈楚生 - 有没有人告诉你 name: 陈楚生 - 有没有人告诉你.mp3 mimeType: audio/mpeg
+07-09 00:51:43.941 23293 23293 V tt      : playSong title: 新歌推荐QQ757295568 name: 庄心妍 - 爱囚.mp3 mimeType: audio/mpeg
+07-09 00:51:43.941 23293 23293 V tt      : playSong title: 李荣浩 - 李白 name: 李荣浩 - 李白.mp3 mimeType: audio/mpeg
+07-09 00:51:43.941 23293 23293 V tt      : playSong title: See You Again name: 速度与激情 - 主题曲 - 7片尾曲.mp3 mimeType: audio/mpeg
+07-09 00:51:43.941 23293 23293 V tt      : playSong title: 暗恋过，结局呢 name: 新街口组合 - 暗恋过 结局呢.mp3 mimeType: audio/mpeg
+07-09 00:51:43.941 23293 23293 V tt      : playSong title: 下一站天后 name: Twins - 下一站天后.mp3 mimeType: audio/mpeg
+07-09 00:51:43.941 23293 23293 V tt      : playSong title: 青花瓷 name: 周杰伦 - 青花瓷.mp3 mimeType: audio/mpeg
+07-09 00:51:43.941 23293 23293 V tt      : playSong title: 霍元甲 name: 周杰伦 - 霍元甲.mp3 mimeType: audio/mpeg
+07-09 00:51:43.941 23293 23293 V tt      : playSong title: 彩虹 name: 周杰伦 - 彩虹.mp3 mimeType: audio/mpeg
+07-09 00:51:43.941 23293 23293 V tt      : playSong title: 珊瑚海 name: 周杰伦、梁心颐 - 珊瑚海.mp3 mimeType: audio/mpeg
+07-09 00:51:43.942 23293 23293 V tt      : playSong title: 撕夜 name: 阿杜 - 撕夜.mp3 mimeType: audio/mpeg
+07-09 00:51:43.942 23293 23293 V tt      : playSong title: 天黑 name: 阿杜 - 天黑.mp3 mimeType: audio/mpeg
+07-09 00:51:43.942 23293 23293 V tt      : playSong title: 我们的歌 name: 王力宏 - 我们的歌.mp3 mimeType: audio/mpeg
+07-09 00:51:43.942 23293 23293 V tt      : playSong title: 分手就分手 name: 小山 - 分手就分手.mp3 mimeType: audio/mpeg
+07-09 00:51:43.942 23293 23293 V tt      : playSong title: 她说 name: 林俊杰 - 她说.mp3 mimeType: audio/mpeg
+07-09 00:51:43.942 23293 23293 V tt      : playSong title: 美丽女人 name: 刘嘉亮 - 美丽女人.mp3 mimeType: audio/mpeg
+07-09 00:51:43.942 23293 23293 V tt      : playSong title: 給我一個理由忘記 name: A-Lin - 给我一个理由忘记.mp3 mimeType: audio/mpeg
+07-09 00:51:43.942 23293 23293 V tt      : playSong title: 上心 name: 郑欣宜 - 上心.mp3 mimeType: audio/mpeg
+07-09 00:51:43.942 23293 23293 V tt      : playSong title: Fade name: Alan Walker - Fade.mp3 mimeType: audio/mpeg
+07-09 00:51:43.942 23293 23293 V tt      : playSong title: 吴亦凡 - 时间煮雨 name: 吴亦凡 - 时间煮雨.mp3 mimeType: audio/mpeg
+07-09 00:51:43.943 23293 23293 V tt      : playSong title: 月光(《秦时明月》电视剧主题曲) name: 胡彦斌 - 月光.mp3 mimeType: audio/mpeg
+07-09 00:51:43.943 23293 23293 V tt      : playSong title: 红颜 name: 秦时明月主题曲 - 红颜.mp3 mimeType: audio/mpeg
+07-09 00:51:43.943 23293 23293 V tt      : playSong title: 独活 name: 炎亚纶 - 独活.mp3 mimeType: audio/mpeg
+07-09 00:51:43.943 23293 23293 V tt      : playSong title: 台北之旅 name: 黄明志 - 台北之旅.mp3 mimeType: audio/mpeg
+07-09 00:51:43.943 23293 23293 V tt      : playSong title: 狄易达 - 半死 name: 狄易达 - 半死.mp3 mimeType: audio/mpeg
+07-09 00:51:43.943 23293 23293 V tt      : playSong title: 心之火(花千骨片头曲)[12530.com] name: 彭佳慧、f.I.R. - 心之火.mp3 mimeType: audio/mpeg
+07-09 00:51:43.943 23293 23293 V tt      : playSong title: 当归 name: 周蕙 - 当归.mp3 mimeType: audio/mpeg
+07-09 00:51:43.943 23293 23293 V tt      : playSong title: 85758a3c8099e7ca762af2d5df87bc6f name: 85758a3c8099e7ca762af2d5df87bc6f.m4a mimeType: audio/mp4
+07-09 00:51:43.943 23293 23293 V tt      : playSong title: 谁明浪子心 name: 王杰、赵学而 - 谁明浪子心.mp3 mimeType: audio/mpeg
+07-09 00:51:43.943 23293 23293 V tt      : playSong title: 一双人 name: 林恺伦 - 一双人.mp3 mimeType: audio/mpeg
+07-09 00:51:43.943 23293 23293 V tt      : playSong title: 通天大道宽又阔 name: 三叶草演唱组、崔京浩 - 通天大道宽又阔.mp3 mimeType: audio/mpeg
+07-09 00:51:43.944 23293 23293 V tt      : playSong title: 张恒远、赵晗 - 蓝莲花 name: 张恒远、赵晗 - 蓝莲花.mp3 mimeType: audio/mpeg
+07-09 00:51:43.944 23293 23293 V tt      : playSong title: 许嵩 - 千古 name: 许嵩 - 千古.m4a mimeType: audio/mp4
+07-09 00:51:43.944 23293 23293 V tt      : playSong title: 夜色 name: 艺涛、梁剑东 - 夜色.mp3 mimeType: audio/mpeg
+07-09 00:51:43.944 23293 23293 V tt      : playSong title: 十年 name: 陈奕迅 - 十年.mp3 mimeType: audio/mpeg
+07-09 00:51:43.944 23293 23293 V tt      : playSong title: 不分手的恋爱-汪苏泷(silence) name: 汪苏泷 - 不分手的恋爱.mp3 mimeType: audio/mpeg
+07-09 00:51:43.944 23293 23293 V tt      : playSong title: 庄心妍 - 以后的以后 name: 庄心妍 - 以后的以后.mp3 mimeType: audio/mpeg
+07-09 00:51:43.944 23293 23293 V tt      : playSong title: 曹操 name: 林俊杰 - 曹操.mp3 mimeType: audio/mpeg
+07-09 00:51:43.944 23293 23293 V tt      : playSong title: 再回首 name: 姜育恒 - 再回首.mp3 mimeType: audio/mpeg
+07-09 00:51:43.944 23293 23293 V tt      : playSong title: 乱世殇 name: 格子兮、牙牙乐 - 乱世殇.mp3 mimeType: audio/mpeg
+07-09 00:51:43.944 23293 23293 V tt      : playSong title: 男人歌 (feat. 高进) name: 小沈阳、高进 - 男人歌.mp3 mimeType: audio/mpeg
+07-09 00:51:43.944 23293 23293 V tt      : playSong title: 心的构造 name: 曾咏欣 - 心的构造.mp3 mimeType: audio/mpeg
+07-09 00:51:43.945 23293 23293 V tt      : playSong title: 01 擦肩而过（宇桐非 王冰洋） name: 宇桐非、胡雯 - 擦肩而过.mp3 mimeType: audio/mpeg
+07-09 00:51:43.945 23293 23293 V tt      : playSong title: Extreme Challenge 挑战极限 name: Gabry Ponte - Time To Rock.mp3 mimeType: audio/mpeg
+07-09 00:51:43.945 23293 23293 V tt      : playSong title: 更多好听DJ音乐请访问bbdj.com name: Dj Carpi - The Garden.mp3 mimeType: audio/mpeg
+07-09 00:51:43.945 23293 23293 V tt      : playSong title: 一生中最爱 name: 谭咏麟 - 一生中最爱.mp3 mimeType: audio/mpeg
+07-09 00:51:43.945 23293 23293 V tt      : playSong title: Miracle name: Cascada - Miracle.mp3 mimeType: audio/mpeg
+07-09 00:51:43.945 23293 23293 V tt      : playSong title: 我想更懂你 name: 潘玮柏、苏芮 - 我想更懂你.mp3 mimeType: audio/mpeg
+07-09 00:51:43.945 23293 23293 V tt      : playSong title: 魏志鹏 - 父亲 name: 魏志鹏 - 父亲.mp3 mimeType: audio/mpeg
+07-09 00:51:43.945 23293 23293 V tt      : playSong title: 黄龄 - 侗情 name: 黄龄 - 侗情.mp3 mimeType: audio/mpeg
+07-09 00:51:43.945 23293 23293 V tt      : playSong title: 曲终人散 name: 张宇 - 曲终人散.mp3 mimeType: audio/mpeg
+07-09 00:51:43.945 23293 23293 V tt      : playSong title: 张韶涵 - 为爱而活 name: 张韶涵 - 为爱而活.ape mimeType: audio/x-ape
+07-09 00:51:43.946 23293 23293 V tt      : playSong title: 李宇春 - 下个,路口,见 name: 李宇春 - 下个,路口,见.ape mimeType: audio/x-ape
+07-09 00:51:43.946 23293 23293 V tt      : playSong title: b5162886e68f0233ea2f2837975d4b52 name: b5162886e68f0233ea2f2837975d4b52.mp3 mimeType: audio/mpeg
+07-09 00:51:43.946 23293 23293 V tt      : playSong title: 大嘴巴 - 永远在身边 name: 大嘴巴 - 永远在身边.ape mimeType: audio/x-ape
+07-09 00:51:43.946 23293 23293 V tt      : playSong title: 情毒 name: 欢子 - 情毒.mp3 mimeType: audio/mpeg
+07-09 00:51:43.946 23293 23293 V tt      : playSong title: 男才女貌 - 外滩十八号 name: 男才女貌 - 外滩十八号.flac mimeType: audio/flac
+07-09 00:51:43.946 23293 23293 V tt      : playSong title: 不够成熟 name: By2 - 不够成熟.flac mimeType: audio/flac
+07-09 00:51:43.946 23293 23293 V tt      : playSong title: 如果这都不算爱 name: 张学友 - 如果这都不算爱.flac mimeType: audio/flac
+07-09 00:51:43.946 23293 23293 V tt      : playSong title: 愚爱 - 欢子' name: 愚爱 - 欢子'.mp3 mimeType: audio/mpeg
+07-09 00:51:43.946 23293 23293 V tt      : playSong title: 邓紫棋 - 新的心跳 name: 邓紫棋 - 新的心跳.flac mimeType: audio/flac
+07-09 00:51:43.946 23293 23293 V tt      : playSong title: 夜空中最亮的星 name: 逃跑计划 - 夜空中最亮的星.mp3 mimeType: audio/mpeg
+07-09 00:51:43.946 23293 23293 V tt      : playSong title: 张韶涵 - 淋雨一直走 name: 张韶涵 - 淋雨一直走.mp3 mimeType: audio/mpeg
+07-09 00:51:43.947 23293 23293 V tt      : playSong title: 金志文 - 勇敢的我 name: 金志文 - 勇敢的我.flac mimeType: audio/flac
+07-09 00:51:43.947 23293 23293 V tt      : playSong title: 小贱、星弟 - 当我唱起这首歌 name: 小贱、星弟 - 当我唱起这首歌.ape mimeType: audio/x-ape
+07-09 00:51:43.947 23293 23293 V tt      : playSong title: 雨花石 name: 李玉刚、石头 - 雨花石.mp3 mimeType: audio/mpeg
+07-09 00:51:43.947 23293 23293 V tt      : playSong title: 邓福如、小宇 - 前面路口停 name: 邓福如、小宇 - 前面路口停.mp3 mimeType: audio/mpeg
+07-09 00:51:43.947 23293 23293 V tt      : playSong title: 可歆 - 失去你没什么大不了 name: 可歆 - 失去你没什么大不了.mp3 mimeType: audio/mpeg
+07-09 00:51:43.947 23293 23293 V tt      : playSong title: 武艺 - 仙侠传·雪字 name: 武艺 - 仙侠传·雪字.ape mimeType: audio/x-ape
+07-09 00:51:43.947 23293 23293 V tt      : playSong title: 带我到山顶 name: 赵艺涵 - 带我到山顶.mp3 mimeType: audio/mpeg
+07-09 00:51:43.947 23293 23293 V tt      : playSong title: 庄心妍 - 再见只是陌生人 name: 庄心妍 - 再见只是陌生人.ape mimeType: audio/x-ape
+07-09 00:51:43.947 23293 23293 V tt      : playSong title: 小永远 name: 何洁 - 小永远.flac mimeType: audio/flac
+07-09 00:51:43.947 23293 23293 V tt      : playSong title: 网络歌手 - 游子梦 - 纯音乐版 name: 网络歌手 - 游子梦 - 纯音乐版.mp3 mimeType: audio/mpeg
+07-09 00:51:43.948 23293 23293 V tt      : playSong title: DJ - River Flows In You(唯美越鼓 极品钢琴) name: DJ - River Flows In You(唯美越鼓 极品钢琴).mp3 mimeType: audio/mpeg
+07-09 00:51:43.948 23293 23293 V tt      : playSong title: DJ - Fuck What U Heard name: DJ - Fuck What U Heard.mp3 mimeType: audio/mpeg
+07-09 00:51:43.948 23293 23293 V tt      : playSong title: 动力火车 - 当 - 2014我是歌手第二季第九期现场 name: 动力火车 - 当 - 2014我是歌手第二季第九期现场.ape mimeType: audio/x-ape
+07-09 00:51:43.948 23293 23293 V tt      : playSong title: MC牟天任 - 心魔 name: MC牟天任 - 心魔.mp3 mimeType: audio/mpeg
+07-09 00:51:43.948 23293 23293 V tt      : playSong title: 一个人哭 name: 郑源 - 一个人哭.mp3 mimeType: audio/mpeg
+07-09 00:51:43.948 23293 23293 V tt      : playSong title: 郑潇 - Brighter Than The Sun name: 郑潇 - Brighter Than The Sun.mp3 mimeType: audio/mpeg
+07-09 00:51:43.948 23293 23293 V tt      : playSong title: 雨蝶 name: 李翊君 - 雨蝶.mp3 mimeType: audio/mpeg
+07-09 00:51:43.948 23293 23293 V tt      : playSong title: 黄勇 - 男人花 name: 黄勇 - 男人花.mp3 mimeType: audio/mpeg
+07-09 00:51:43.948 23293 23293 V tt      : playSong title: 罗京民 - 光明 name: 罗京民 - 光明.mp3 mimeType: audio/mpeg
+07-09 00:51:43.948 23293 23293 V tt      : playSong title: Troublemaker name: akon - trouble maker.mp3 mimeType: audio/mpeg
+07-09 00:51:43.948 23293 23293 V tt      : playSong title: 庄心妍 - 走着走着就散了 name: 庄心妍 - 走着走着就散了.mp3 mimeType: audio/mpeg
+07-09 00:51:43.949 23293 23293 V tt      : playSong title: 陈奕迅 - 阴天快乐 name: 陈奕迅 - 阴天快乐.flac mimeType: audio/flac
+07-09 00:51:43.949 23293 23293 V tt      : playSong title: 可爱颂 (1加1等于小可爱) name: Hari - 可爱颂.mp3 mimeType: audio/mpeg
+07-09 00:51:43.949 23293 23293 V tt      : playSong title: 初音ミク - 可爱颂 name: 初音ミク - 可爱颂.mp3 mimeType: audio/mpeg
+07-09 00:51:43.949 23293 23293 V tt      : playSong title: KeyKi - 可爱颂 name: KeyKi - 可爱颂.mp3 mimeType: audio/mpeg
+07-09 00:51:43.949 23293 23293 V tt      : playSong title: Bye Bye Bye(《火影忍者》动漫最新片尾曲) name: Lovestoned - Bye Bye Bye.mp3 mimeType: audio/mpeg
+07-09 00:51:43.949 23293 23293 V tt      : playSong title: 伤爱的理由 name: 上官晓懿、常闻迪 - 伤爱的理由.mp3 mimeType: audio/mpeg
+07-09 00:51:43.949 23293 23293 V tt      : playSong title: 你是我的男朋友 name: 姜明路 - 你是我的男朋友 - 单曲版.mp3 mimeType: audio/mpeg
+07-09 00:51:43.949 23293 23293 V tt      : playSong title: 우있녕격 name: 张韶涵、潘玮柏 - 快乐崇拜.mp3 mimeType: audio/mpeg
+07-09 00:51:43.949 23293 23293 V tt      : playSong title: 独自唱情歌 name: 庄心妍 - 独自唱情歌.mp3 mimeType: audio/mpeg
+07-09 00:51:43.949 23293 23293 V tt      : playSong title: 庄心妍 - 人前人后 name: 庄心妍 - 人前人后.mp3 mimeType: audio/mpeg
+07-09 00:51:43.950 23293 23293 V tt      : playSong title: 庄心妍 - 好可惜 name: 庄心妍 - 好可惜.mp3 mimeType: audio/mpeg
+07-09 00:51:43.950 23293 23293 V tt      : playSong title: What Are Words name: Chris Medina - What Are Words.flac mimeType: audio/flac
+07-09 00:51:43.950 23293 23293 V tt      : playSong title: 伤心城市 name: 冷漠、云菲菲 - 伤心城市.flac mimeType: audio/flac
+07-09 00:51:43.950 23293 23293 V tt      : playSong title: 静静的看着你装逼 name: 花粥 - 静静的看着你装逼.mp3 mimeType: audio/mpeg
+07-09 00:51:43.951 23293 23293 V tt      : playing song 22 list.size(): 109
+07-09 00:51:43.969 23293 23293 V tt      : analyzeResult end: null
+07-09 00:51:43.969 23293 23293 V tt      : showTip: result: {"moreResults":[{"rc":0,"answer":{"type":"T","text":"言情小说,“18岁以前被同一个女人抢走不同的男人;18岁以后被不同的女人抢走不同的男人;20岁以后被不同的男人抢走不同的男人。” 这是霏儿形容向阳22岁以前乱七八糟人生的话,向阳想今天可以加上一句了。。。 “22岁以后和初恋男朋友重修旧好,但是在25岁生日那天被甩。” 向阳,一个性格恬淡的女子,失恋之后仍旧乐观生活。 曲淡宁,一个一夜成名的少年,早熟却又晚熟。"},"service":"baike","text":"唱首歌","operation":"ANSWER"}],"webPage":{"header":"","url":"http:\/\/kcgz.openspeech.cn\/service\/iss?wuuid=d9da38984db9ab6bc07d3f49c648a4b0&ver=2.0&method=webPage&uuid=c99fbd82c557c8b7816a74519c600ca4query"},"semantic":{},"rc":0,"operation":"PLAY","service":"music","data":{"result":[{"singer":"郑天宇","sourceName":"自产音乐","name":"成了一个故事","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyCAJp65ABd1ROGRo2g081.mp3"},{"singer":"未登录","sourceName":"自产音乐","name":"从开始到现在《冬季恋歌》","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSpgqAN3WqABePViYYL8w729.mp3"},{"singer":"佚名","sourceName":"自产音乐","name":"赋格 4","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/0B\/rBBGdVPSmyGAKUg0ABeCaBvMDpU241.mp3"},{"singer":"洲圣君","sourceName":"自产音乐","name":"草原行","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/29\/rBBGdVPSpg2AWNFoABePViWp6-s569.mp3"},{"singer":"黄大炜","sourceName":"自产音乐","name":"乘着风","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyKAEshIABd74KQap4M176.mp3"},{"singer":"佚名","sourceName":"自产音乐","name":"歌剧《狄托的仁慈》中的序曲","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/29\/rBBGdVPSphOAaVIpABd74B4Ek1I634.mp3"},{"singer":"惠子","sourceName":"自产音乐","name":"不愿再等你来","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyaAEL_1ABePVllD7Jg497.mp3"},{"singer":"壹唱天下","sourceName":"自产音乐","name":"草原歌曲","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSphSAKKV_ABd_JOdFsNY762.mp3"},{"singer":"远方","sourceName":"自产音乐","name":"干杯兄弟","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C8\/rBBGdFPSmyeAWxn7ABd1NlMLdmg106.mp3"},{"singer":"牟茗","sourceName":"自产音乐","name":"从来不怀疑","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSphWAYmXZABd7zKdWSbA146.mp3"}]},"text":"唱首歌"}
+07-09 00:51:49.363 23293 23293 V tt      : onDestroy
+07-09 00:51:50.503 23293 23293 V tt      : refreshNetworkState: cloud
+07-09 00:51:50.506 23293 23293 V tt      : onCreate
+07-09 00:51:50.508 23293 23293 D tt      : SpeechRecognizer init() code = 0
+07-09 00:51:50.510 23293 23293 V tt      : refreshNetworkState: cloud
+07-09 00:51:50.606 23293 23293 V tt      : startSpeek
+07-09 00:51:50.638 23293 23293 V tt      : showTip: 请开始说话…
+07-09 00:51:53.081 23293 23293 D tt      : recognizer result：{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0.00,"w":"唱"}]},{"bg":0,"cw":[{"sc":0.00,"w":"首"}]},{"bg":0,"cw":[{"sc":0.00,"w":"歌"}]}]}
+07-09 00:51:53.082 23293 23293 V tt      : BackgroundCache setResult: 唱首歌
+07-09 00:51:53.105 23293 23293 D tt      : speechUnderstanderListener init() code = 0
+07-09 00:51:53.105 23293 23293 D tt      : textUnderstanderListener init() code = 0
+07-09 00:51:53.205 23293 23293 V tt      : showTip: 唱首歌
+07-09 00:51:53.453 23293 23293 D tt      : recognizer result：{"sn":2,"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0.00,"w":""}]}]}
+07-09 00:51:53.454 23293 23293 D tt      : understander result：{"moreResults":[{"rc":0,"answer":{"type":"T","text":"言情小说,“18岁以前被同一个女人抢走不同的男人;18岁以后被不同的女人抢走不同的男人;20岁以后被不同的男人抢走不同的男人。” 这是霏儿形容向阳22岁以前乱七八糟人生的话,向阳想今天可以加上一句了。。。 “22岁以后和初恋男朋友重修旧好,但是在25岁生日那天被甩。” 向阳,一个性格恬淡的女子,失恋之后仍旧乐观生活。 曲淡宁,一个一夜成名的少年,早熟却又晚熟。"},"service":"baike","text":"唱首歌","operation":"ANSWER"}],"webPage":{"header":"","url":"http:\/\/kcgz.openspeech.cn\/service\/iss?wuuid=6aa720e7c82ae1adfc632a3dc31d47fc&ver=2.0&method=webPage&uuid=2f14fbff8bd3d710248d46f909521ef5query"},"semantic":{},"rc":0,"operation":"PLAY","service":"music","data":{"result":[{"singer":"郑天宇","sourceName":"自产音乐","name":"成了一个故事","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyCAJp65ABd1ROGRo2g081.mp3"},{"singer":"未登录","sourceName":"自产音乐","name":"从开始到现在《冬季恋歌》","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSpgqAN3WqABePViYYL8w729.mp3"},{"singer":"佚名","sourceName":"自产音乐","name":"赋格 4","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/0B\/rBBGdVPSmyGAKUg0ABeCaBvMDpU241.mp3"},{"singer":"洲圣君","sourceName":"自产音乐","name":"草原行","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/29\/rBBGdVPSpg2AWNFoABePViWp6-s569.mp3"},{"singer":"黄大炜","sourceName":"自产音乐","name":"乘着风","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyKAEshIABd74KQap4M176.mp3"},{"singer":"佚名","sourceName":"自产音乐","name":"歌剧《狄托的仁慈》中的序曲","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/29\/rBBGdVPSphOAaVIpABd74B4Ek1I634.mp3"},{"singer":"惠子","sourceName":"自产音乐","name":"不愿再等你来","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyaAEL_1ABePVllD7Jg497.mp3"},{"singer":"壹唱天下","sourceName":"自产音乐","name":"草原歌曲","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSphSAKKV_ABd_JOdFsNY762.mp3"},{"singer":"远方","sourceName":"自产音乐","name":"干杯兄弟","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C8\/rBBGdFPSmyeAWxn7ABd1NlMLdmg106.mp3"},{"singer":"牟茗","sourceName":"自产音乐","name":"从来不怀疑","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSphWAYmXZABd7zKdWSbA146.mp3"}]},"text":"唱首歌"}
+07-09 00:51:53.455 23293 23293 V tt      : analyzeResult service: music operation: PLAY
+07-09 00:51:53.455 23293 23293 V tt      : play song
+07-09 00:51:53.467 23293 23293 V tt      : playSong title: wan139.com name: iphone默认铃声_&_e87e689d-527b-46b1-a8f6-339bac32b835.mp3 mimeType: audio/mpeg
+07-09 00:51:53.467 23293 23293 V tt      : playSong title: 我可以 name: 蔡旻佑 - 我可以.mp3 mimeType: audio/mpeg
+07-09 00:51:53.467 23293 23293 V tt      : playSong title: 寻觅-钟洁 name: 君夜潼、钟洁 - 寻觅.mp3 mimeType: audio/mpeg
+07-09 00:51:53.467 23293 23293 V tt      : playSong title: 可泽、夏婉安 - 离开我,你是否才会好过 name: 可泽、夏婉安 - 离开我,你是否才会好过.mp3 mimeType: audio/mpeg
+07-09 00:51:53.467 23293 23293 V tt      : playSong title: 01.表白 name: 萧亚轩 - 表白.mp3 mimeType: audio/mpeg
+07-09 00:51:53.468 23293 23293 V tt      : playSong title: 一人我饮酒醉(粤语版) name: 亿泡泡 - 一人我饮酒醉(粤语版).mp3 mimeType: audio/mpeg
+07-09 00:51:53.468 23293 23293 V tt      : playSong title: 网络歌手 - 吉拉拉 name: 网络歌手 - 吉拉拉.mp3 mimeType: audio/mpeg
+07-09 00:51:53.468 23293 23293 V tt      : playSong title: 恋人心 name: 魏新雨 - 恋人心.mp3 mimeType: audio/mpeg
+07-09 00:51:53.468 23293 23293 V tt      : playSong title: 光辉岁月 name: Beyond - 光辉岁月.mp3 mimeType: audio/mpeg
+07-09 00:51:53.468 23293 23293 V tt      : playSong title: 真的爱你 name: Beyond - 真的爱你.mp3 mimeType: audio/mpeg
+07-09 00:51:53.468 23293 23293 V tt      : playSong title: 海阔天空 name: Beyond - 海阔天空.mp3 mimeType: audio/mpeg
+07-09 00:51:53.468 23293 23293 V tt      : playSong title: 陈楚生 - 有没有人告诉你 name: 陈楚生 - 有没有人告诉你.mp3 mimeType: audio/mpeg
+07-09 00:51:53.468 23293 23293 V tt      : playSong title: 新歌推荐QQ757295568 name: 庄心妍 - 爱囚.mp3 mimeType: audio/mpeg
+07-09 00:51:53.468 23293 23293 V tt      : playSong title: 李荣浩 - 李白 name: 李荣浩 - 李白.mp3 mimeType: audio/mpeg
+07-09 00:51:53.468 23293 23293 V tt      : playSong title: See You Again name: 速度与激情 - 主题曲 - 7片尾曲.mp3 mimeType: audio/mpeg
+07-09 00:51:53.468 23293 23293 V tt      : playSong title: 暗恋过，结局呢 name: 新街口组合 - 暗恋过 结局呢.mp3 mimeType: audio/mpeg
+07-09 00:51:53.468 23293 23293 V tt      : playSong title: 下一站天后 name: Twins - 下一站天后.mp3 mimeType: audio/mpeg
+07-09 00:51:53.468 23293 23293 V tt      : playSong title: 青花瓷 name: 周杰伦 - 青花瓷.mp3 mimeType: audio/mpeg
+07-09 00:51:53.469 23293 23293 V tt      : playSong title: 霍元甲 name: 周杰伦 - 霍元甲.mp3 mimeType: audio/mpeg
+07-09 00:51:53.469 23293 23293 V tt      : playSong title: 彩虹 name: 周杰伦 - 彩虹.mp3 mimeType: audio/mpeg
+07-09 00:51:53.469 23293 23293 V tt      : playSong title: 珊瑚海 name: 周杰伦、梁心颐 - 珊瑚海.mp3 mimeType: audio/mpeg
+07-09 00:51:53.469 23293 23293 V tt      : playSong title: 撕夜 name: 阿杜 - 撕夜.mp3 mimeType: audio/mpeg
+07-09 00:51:53.469 23293 23293 V tt      : playSong title: 天黑 name: 阿杜 - 天黑.mp3 mimeType: audio/mpeg
+07-09 00:51:53.469 23293 23293 V tt      : playSong title: 我们的歌 name: 王力宏 - 我们的歌.mp3 mimeType: audio/mpeg
+07-09 00:51:53.469 23293 23293 V tt      : playSong title: 分手就分手 name: 小山 - 分手就分手.mp3 mimeType: audio/mpeg
+07-09 00:51:53.469 23293 23293 V tt      : playSong title: 她说 name: 林俊杰 - 她说.mp3 mimeType: audio/mpeg
+07-09 00:51:53.469 23293 23293 V tt      : playSong title: 美丽女人 name: 刘嘉亮 - 美丽女人.mp3 mimeType: audio/mpeg
+07-09 00:51:53.469 23293 23293 V tt      : playSong title: 給我一個理由忘記 name: A-Lin - 给我一个理由忘记.mp3 mimeType: audio/mpeg
+07-09 00:51:53.469 23293 23293 V tt      : playSong title: 上心 name: 郑欣宜 - 上心.mp3 mimeType: audio/mpeg
+07-09 00:51:53.469 23293 23293 V tt      : playSong title: Fade name: Alan Walker - Fade.mp3 mimeType: audio/mpeg
+07-09 00:51:53.469 23293 23293 V tt      : playSong title: 吴亦凡 - 时间煮雨 name: 吴亦凡 - 时间煮雨.mp3 mimeType: audio/mpeg
+07-09 00:51:53.470 23293 23293 V tt      : playSong title: 月光(《秦时明月》电视剧主题曲) name: 胡彦斌 - 月光.mp3 mimeType: audio/mpeg
+07-09 00:51:53.470 23293 23293 V tt      : playSong title: 红颜 name: 秦时明月主题曲 - 红颜.mp3 mimeType: audio/mpeg
+07-09 00:51:53.470 23293 23293 V tt      : playSong title: 独活 name: 炎亚纶 - 独活.mp3 mimeType: audio/mpeg
+07-09 00:51:53.470 23293 23293 V tt      : playSong title: 台北之旅 name: 黄明志 - 台北之旅.mp3 mimeType: audio/mpeg
+07-09 00:51:53.470 23293 23293 V tt      : playSong title: 狄易达 - 半死 name: 狄易达 - 半死.mp3 mimeType: audio/mpeg
+07-09 00:51:53.470 23293 23293 V tt      : playSong title: 心之火(花千骨片头曲)[12530.com] name: 彭佳慧、f.I.R. - 心之火.mp3 mimeType: audio/mpeg
+07-09 00:51:53.470 23293 23293 V tt      : playSong title: 当归 name: 周蕙 - 当归.mp3 mimeType: audio/mpeg
+07-09 00:51:53.470 23293 23293 V tt      : playSong title: 85758a3c8099e7ca762af2d5df87bc6f name: 85758a3c8099e7ca762af2d5df87bc6f.m4a mimeType: audio/mp4
+07-09 00:51:53.470 23293 23293 V tt      : playSong title: 谁明浪子心 name: 王杰、赵学而 - 谁明浪子心.mp3 mimeType: audio/mpeg
+07-09 00:51:53.470 23293 23293 V tt      : playSong title: 一双人 name: 林恺伦 - 一双人.mp3 mimeType: audio/mpeg
+07-09 00:51:53.475 23293 23293 V tt      : playSong title: 通天大道宽又阔 name: 三叶草演唱组、崔京浩 - 通天大道宽又阔.mp3 mimeType: audio/mpeg
+07-09 00:51:53.475 23293 23293 V tt      : playSong title: 张恒远、赵晗 - 蓝莲花 name: 张恒远、赵晗 - 蓝莲花.mp3 mimeType: audio/mpeg
+07-09 00:51:53.475 23293 23293 V tt      : playSong title: 许嵩 - 千古 name: 许嵩 - 千古.m4a mimeType: audio/mp4
+07-09 00:51:53.475 23293 23293 V tt      : playSong title: 夜色 name: 艺涛、梁剑东 - 夜色.mp3 mimeType: audio/mpeg
+07-09 00:51:53.475 23293 23293 V tt      : playSong title: 十年 name: 陈奕迅 - 十年.mp3 mimeType: audio/mpeg
+07-09 00:51:53.475 23293 23293 V tt      : playSong title: 不分手的恋爱-汪苏泷(silence) name: 汪苏泷 - 不分手的恋爱.mp3 mimeType: audio/mpeg
+07-09 00:51:53.475 23293 23293 V tt      : playSong title: 庄心妍 - 以后的以后 name: 庄心妍 - 以后的以后.mp3 mimeType: audio/mpeg
+07-09 00:51:53.475 23293 23293 V tt      : playSong title: 曹操 name: 林俊杰 - 曹操.mp3 mimeType: audio/mpeg
+07-09 00:51:53.475 23293 23293 V tt      : playSong title: 再回首 name: 姜育恒 - 再回首.mp3 mimeType: audio/mpeg
+07-09 00:51:53.476 23293 23293 V tt      : playSong title: 乱世殇 name: 格子兮、牙牙乐 - 乱世殇.mp3 mimeType: audio/mpeg
+07-09 00:51:53.476 23293 23293 V tt      : playSong title: 男人歌 (feat. 高进) name: 小沈阳、高进 - 男人歌.mp3 mimeType: audio/mpeg
+07-09 00:51:53.476 23293 23293 V tt      : playSong title: 心的构造 name: 曾咏欣 - 心的构造.mp3 mimeType: audio/mpeg
+07-09 00:51:53.476 23293 23293 V tt      : playSong title: 01 擦肩而过（宇桐非 王冰洋） name: 宇桐非、胡雯 - 擦肩而过.mp3 mimeType: audio/mpeg
+07-09 00:51:53.476 23293 23293 V tt      : playSong title: Extreme Challenge 挑战极限 name: Gabry Ponte - Time To Rock.mp3 mimeType: audio/mpeg
+07-09 00:51:53.476 23293 23293 V tt      : playSong title: 更多好听DJ音乐请访问bbdj.com name: Dj Carpi - The Garden.mp3 mimeType: audio/mpeg
+07-09 00:51:53.476 23293 23293 V tt      : playSong title: 一生中最爱 name: 谭咏麟 - 一生中最爱.mp3 mimeType: audio/mpeg
+07-09 00:51:53.476 23293 23293 V tt      : playSong title: Miracle name: Cascada - Miracle.mp3 mimeType: audio/mpeg
+07-09 00:51:53.476 23293 23293 V tt      : playSong title: 我想更懂你 name: 潘玮柏、苏芮 - 我想更懂你.mp3 mimeType: audio/mpeg
+07-09 00:51:53.476 23293 23293 V tt      : playSong title: 魏志鹏 - 父亲 name: 魏志鹏 - 父亲.mp3 mimeType: audio/mpeg
+07-09 00:51:53.476 23293 23293 V tt      : playSong title: 黄龄 - 侗情 name: 黄龄 - 侗情.mp3 mimeType: audio/mpeg
+07-09 00:51:53.476 23293 23293 V tt      : playSong title: 曲终人散 name: 张宇 - 曲终人散.mp3 mimeType: audio/mpeg
+07-09 00:51:53.477 23293 23293 V tt      : playSong title: 张韶涵 - 为爱而活 name: 张韶涵 - 为爱而活.ape mimeType: audio/x-ape
+07-09 00:51:53.477 23293 23293 V tt      : playSong title: 李宇春 - 下个,路口,见 name: 李宇春 - 下个,路口,见.ape mimeType: audio/x-ape
+07-09 00:51:53.477 23293 23293 V tt      : playSong title: b5162886e68f0233ea2f2837975d4b52 name: b5162886e68f0233ea2f2837975d4b52.mp3 mimeType: audio/mpeg
+07-09 00:51:53.477 23293 23293 V tt      : playSong title: 大嘴巴 - 永远在身边 name: 大嘴巴 - 永远在身边.ape mimeType: audio/x-ape
+07-09 00:51:53.477 23293 23293 V tt      : playSong title: 情毒 name: 欢子 - 情毒.mp3 mimeType: audio/mpeg
+07-09 00:51:53.477 23293 23293 V tt      : playSong title: 男才女貌 - 外滩十八号 name: 男才女貌 - 外滩十八号.flac mimeType: audio/flac
+07-09 00:51:53.477 23293 23293 V tt      : playSong title: 不够成熟 name: By2 - 不够成熟.flac mimeType: audio/flac
+07-09 00:51:53.477 23293 23293 V tt      : playSong title: 如果这都不算爱 name: 张学友 - 如果这都不算爱.flac mimeType: audio/flac
+07-09 00:51:53.477 23293 23293 V tt      : playSong title: 愚爱 - 欢子' name: 愚爱 - 欢子'.mp3 mimeType: audio/mpeg
+07-09 00:51:53.477 23293 23293 V tt      : playSong title: 邓紫棋 - 新的心跳 name: 邓紫棋 - 新的心跳.flac mimeType: audio/flac
+07-09 00:51:53.477 23293 23293 V tt      : playSong title: 夜空中最亮的星 name: 逃跑计划 - 夜空中最亮的星.mp3 mimeType: audio/mpeg
+07-09 00:51:53.477 23293 23293 V tt      : playSong title: 张韶涵 - 淋雨一直走 name: 张韶涵 - 淋雨一直走.mp3 mimeType: audio/mpeg
+07-09 00:51:53.478 23293 23293 V tt      : playSong title: 金志文 - 勇敢的我 name: 金志文 - 勇敢的我.flac mimeType: audio/flac
+07-09 00:51:53.478 23293 23293 V tt      : playSong title: 小贱、星弟 - 当我唱起这首歌 name: 小贱、星弟 - 当我唱起这首歌.ape mimeType: audio/x-ape
+07-09 00:51:53.478 23293 23293 V tt      : playSong title: 雨花石 name: 李玉刚、石头 - 雨花石.mp3 mimeType: audio/mpeg
+07-09 00:51:53.478 23293 23293 V tt      : playSong title: 邓福如、小宇 - 前面路口停 name: 邓福如、小宇 - 前面路口停.mp3 mimeType: audio/mpeg
+07-09 00:51:53.478 23293 23293 V tt      : playSong title: 可歆 - 失去你没什么大不了 name: 可歆 - 失去你没什么大不了.mp3 mimeType: audio/mpeg
+07-09 00:51:53.478 23293 23293 V tt      : playSong title: 武艺 - 仙侠传·雪字 name: 武艺 - 仙侠传·雪字.ape mimeType: audio/x-ape
+07-09 00:51:53.478 23293 23293 V tt      : playSong title: 带我到山顶 name: 赵艺涵 - 带我到山顶.mp3 mimeType: audio/mpeg
+07-09 00:51:53.478 23293 23293 V tt      : playSong title: 庄心妍 - 再见只是陌生人 name: 庄心妍 - 再见只是陌生人.ape mimeType: audio/x-ape
+07-09 00:51:53.478 23293 23293 V tt      : playSong title: 小永远 name: 何洁 - 小永远.flac mimeType: audio/flac
+07-09 00:51:53.478 23293 23293 V tt      : playSong title: 网络歌手 - 游子梦 - 纯音乐版 name: 网络歌手 - 游子梦 - 纯音乐版.mp3 mimeType: audio/mpeg
+07-09 00:51:53.478 23293 23293 V tt      : playSong title: DJ - River Flows In You(唯美越鼓 极品钢琴) name: DJ - River Flows In You(唯美越鼓 极品钢琴).mp3 mimeType: audio/mpeg
+07-09 00:51:53.478 23293 23293 V tt      : playSong title: DJ - Fuck What U Heard name: DJ - Fuck What U Heard.mp3 mimeType: audio/mpeg
+07-09 00:51:53.479 23293 23293 V tt      : playSong title: 动力火车 - 当 - 2014我是歌手第二季第九期现场 name: 动力火车 - 当 - 2014我是歌手第二季第九期现场.ape mimeType: audio/x-ape
+07-09 00:51:53.479 23293 23293 V tt      : playSong title: MC牟天任 - 心魔 name: MC牟天任 - 心魔.mp3 mimeType: audio/mpeg
+07-09 00:51:53.479 23293 23293 V tt      : playSong title: 一个人哭 name: 郑源 - 一个人哭.mp3 mimeType: audio/mpeg
+07-09 00:51:53.479 23293 23293 V tt      : playSong title: 郑潇 - Brighter Than The Sun name: 郑潇 - Brighter Than The Sun.mp3 mimeType: audio/mpeg
+07-09 00:51:53.479 23293 23293 V tt      : playSong title: 雨蝶 name: 李翊君 - 雨蝶.mp3 mimeType: audio/mpeg
+07-09 00:51:53.479 23293 23293 V tt      : playSong title: 黄勇 - 男人花 name: 黄勇 - 男人花.mp3 mimeType: audio/mpeg
+07-09 00:51:53.479 23293 23293 V tt      : playSong title: 罗京民 - 光明 name: 罗京民 - 光明.mp3 mimeType: audio/mpeg
+07-09 00:51:53.479 23293 23293 V tt      : playSong title: Troublemaker name: akon - trouble maker.mp3 mimeType: audio/mpeg
+07-09 00:51:53.479 23293 23293 V tt      : playSong title: 庄心妍 - 走着走着就散了 name: 庄心妍 - 走着走着就散了.mp3 mimeType: audio/mpeg
+07-09 00:51:53.479 23293 23293 V tt      : playSong title: 陈奕迅 - 阴天快乐 name: 陈奕迅 - 阴天快乐.flac mimeType: audio/flac
+07-09 00:51:53.479 23293 23293 V tt      : playSong title: 可爱颂 (1加1等于小可爱) name: Hari - 可爱颂.mp3 mimeType: audio/mpeg
+07-09 00:51:53.479 23293 23293 V tt      : playSong title: 初音ミク - 可爱颂 name: 初音ミク - 可爱颂.mp3 mimeType: audio/mpeg
+07-09 00:51:53.480 23293 23293 V tt      : playSong title: KeyKi - 可爱颂 name: KeyKi - 可爱颂.mp3 mimeType: audio/mpeg
+07-09 00:51:53.480 23293 23293 V tt      : playSong title: Bye Bye Bye(《火影忍者》动漫最新片尾曲) name: Lovestoned - Bye Bye Bye.mp3 mimeType: audio/mpeg
+07-09 00:51:53.480 23293 23293 V tt      : playSong title: 伤爱的理由 name: 上官晓懿、常闻迪 - 伤爱的理由.mp3 mimeType: audio/mpeg
+07-09 00:51:53.480 23293 23293 V tt      : playSong title: 你是我的男朋友 name: 姜明路 - 你是我的男朋友 - 单曲版.mp3 mimeType: audio/mpeg
+07-09 00:51:53.480 23293 23293 V tt      : playSong title: 우있녕격 name: 张韶涵、潘玮柏 - 快乐崇拜.mp3 mimeType: audio/mpeg
+07-09 00:51:53.481 23293 23293 V tt      : playSong title: 独自唱情歌 name: 庄心妍 - 独自唱情歌.mp3 mimeType: audio/mpeg
+07-09 00:51:53.481 23293 23293 V tt      : playSong title: 庄心妍 - 人前人后 name: 庄心妍 - 人前人后.mp3 mimeType: audio/mpeg
+07-09 00:51:53.482 23293 23293 V tt      : playSong title: 庄心妍 - 好可惜 name: 庄心妍 - 好可惜.mp3 mimeType: audio/mpeg
+07-09 00:51:53.482 23293 23293 V tt      : playSong title: What Are Words name: Chris Medina - What Are Words.flac mimeType: audio/flac
+07-09 00:51:53.482 23293 23293 V tt      : playSong title: 伤心城市 name: 冷漠、云菲菲 - 伤心城市.flac mimeType: audio/flac
+07-09 00:51:53.482 23293 23293 V tt      : playSong title: 静静的看着你装逼 name: 花粥 - 静静的看着你装逼.mp3 mimeType: audio/mpeg
+07-09 00:51:53.482 23293 23293 V tt      : playing song 20 list.size(): 109
+07-09 00:51:53.502 23293 23293 V tt      : analyzeResult end: null
+07-09 00:51:53.502 23293 23293 V tt      : showTip: result: {"moreResults":[{"rc":0,"answer":{"type":"T","text":"言情小说,“18岁以前被同一个女人抢走不同的男人;18岁以后被不同的女人抢走不同的男人;20岁以后被不同的男人抢走不同的男人。” 这是霏儿形容向阳22岁以前乱七八糟人生的话,向阳想今天可以加上一句了。。。 “22岁以后和初恋男朋友重修旧好,但是在25岁生日那天被甩。” 向阳,一个性格恬淡的女子,失恋之后仍旧乐观生活。 曲淡宁,一个一夜成名的少年,早熟却又晚熟。"},"service":"baike","text":"唱首歌","operation":"ANSWER"}],"webPage":{"header":"","url":"http:\/\/kcgz.openspeech.cn\/service\/iss?wuuid=6aa720e7c82ae1adfc632a3dc31d47fc&ver=2.0&method=webPage&uuid=2f14fbff8bd3d710248d46f909521ef5query"},"semantic":{},"rc":0,"operation":"PLAY","service":"music","data":{"result":[{"singer":"郑天宇","sourceName":"自产音乐","name":"成了一个故事","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyCAJp65ABd1ROGRo2g081.mp3"},{"singer":"未登录","sourceName":"自产音乐","name":"从开始到现在《冬季恋歌》","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSpgqAN3WqABePViYYL8w729.mp3"},{"singer":"佚名","sourceName":"自产音乐","name":"赋格 4","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/0B\/rBBGdVPSmyGAKUg0ABeCaBvMDpU241.mp3"},{"singer":"洲圣君","sourceName":"自产音乐","name":"草原行","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/29\/rBBGdVPSpg2AWNFoABePViWp6-s569.mp3"},{"singer":"黄大炜","sourceName":"自产音乐","name":"乘着风","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyKAEshIABd74KQap4M176.mp3"},{"singer":"佚名","sourceName":"自产音乐","name":"歌剧《狄托的仁慈》中的序曲","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/34\/29\/rBBGdVPSphOAaVIpABd74B4Ek1I634.mp3"},{"singer":"惠子","sourceName":"自产音乐","name":"不愿再等你来","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C7\/rBBGdFPSmyaAEL_1ABePVllD7Jg497.mp3"},{"singer":"壹唱天下","sourceName":"自产音乐","name":"草原歌曲","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSphSAKKV_ABd_JOdFsNY762.mp3"},{"singer":"远方","sourceName":"自产音乐","name":"干杯兄弟","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/C8\/rBBGdFPSmyeAWxn7ABd1NlMLdmg106.mp3"},{"singer":"牟茗","sourceName":"自产音乐","name":"从来不怀疑","downloadUrl":"http:\/\/file.kuyinyun.com\/group1\/M00\/80\/E6\/rBBGdFPSphWAYmXZABd7zKdWSbA146.mp3"}]},"text":"唱首歌"}
+07-09 00:52:00.145 23293 23293 V tt      : onDestroy

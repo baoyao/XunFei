@@ -241,7 +241,7 @@ public class VoicesToTextService extends Service {
 			mResult.add(text);
 			BackgroundCache.getInstance().setResult(
 					BackgroundCache.Mode.PEOPLE, text);
-			if (!interceptResult(text))
+//			if (!interceptResult(text))
 				startService(new Intent(this, TalkService.class));
 		}
 	}
