@@ -17,6 +17,7 @@ import android.util.Log;
 
 import com.xunfei.robot.TalkService;
 import com.xunfei.robot.TextToVoicesService;
+import com.xunfei.robot.utils.BackgroundCache.Mode;
 
 /**
  * @author houen.bao
@@ -52,7 +53,9 @@ public class SongUtils {
 							.getColumnIndex(MediaStore.Audio.Media.MIME_TYPE));
 					music.data = dataExternal.getString(dataExternal
 							.getColumnIndex(MediaStore.Audio.Media.DATA));
-					list.add(music);
+					if(!music.data.endsWith(".ogg")){
+						list.add(music);
+					}
 
 					Log.v("tt", "playSong title: " + music.title + " name: "
 							+ music.name + " mimeType: " + music.mimeType);
@@ -72,9 +75,8 @@ public class SongUtils {
 				// context.startActivity(intent);
 			} else {
 				Log.v("tt", "play song not find music");
-				BackgroundCache.getInstance().setResult(
-						BackgroundCache.Mode.ROBOT, "没有找到音乐");
-				context.startService(new Intent(context, TextToVoicesService.class));
+				ForwardControl.getInstance(context).startTextToVoicesService(
+						Mode.ROBOT, "没有找到音乐");
 			}
 		} catch (Exception e) {
 			Log.v("tt", "playing song Exception: " + e);

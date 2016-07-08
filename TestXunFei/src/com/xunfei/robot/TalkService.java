@@ -26,7 +26,9 @@ import com.iflytek.cloud.TextUnderstanderListener;
 import com.iflytek.cloud.UnderstanderResult;
 import com.xunfei.robot.tools.UnderstanderSettings;
 import com.xunfei.robot.utils.BackgroundCache;
+import com.xunfei.robot.utils.BackgroundCache.Mode;
 import com.xunfei.robot.utils.Config;
+import com.xunfei.robot.utils.ForwardControl;
 
 /**
  * @author houen.bao
@@ -139,8 +141,7 @@ public class TalkService extends Service {
 	
 	private void forward(String text){
 		mResult=text;
-		BackgroundCache.getInstance().setResult(BackgroundCache.Mode.ROBOT,mResult);
-		startService(new Intent(this,TextToVoicesService.class));
+		ForwardControl.getInstance(this).startTextToVoicesService(Mode.ROBOT, mResult);
 	}
 
 	
@@ -258,7 +259,7 @@ public class TalkService extends Service {
     	if(mTextUnderstander.isUnderstanding())
     		mTextUnderstander.cancel();
     	mTextUnderstander.destroy();
-    	stopService(new Intent(this,TextToVoicesService.class));
+    	ForwardControl.getInstance(this).stopTextToVoicesService();
 	}
 
 }

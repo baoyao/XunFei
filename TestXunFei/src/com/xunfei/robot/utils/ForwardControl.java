@@ -22,27 +22,31 @@ public class ForwardControl {
 	
 	private ForwardControl() {}
 
-	public static void startVoicesToTextService(){
+	/**入口*/
+	public void startVoicesToTextService(){
 		mContext.startService(new Intent(mContext, VoicesToTextService.class));
 	}
-	public static void stopVoicesToTextService(){
+	
+	public void stopVoicesToTextService(){
 		mContext.stopService(new Intent(mContext, VoicesToTextService.class));
 	}
 
 
-	public static void startTalkService(BackgroundCache.Mode mode,String text){
+	public void startTalkService(BackgroundCache.Mode mode,String text){
+		BackgroundCache.getInstance().setResult(mode, text);
 		mContext.startService(new Intent(mContext, TalkService.class));
 	}
-	public static void stopTalkService(BackgroundCache.Mode mode,String text){
+	
+	public void stopTalkService(){
 		mContext.stopService(new Intent(mContext, TalkService.class));
 	}
 
-	public static void startTextToVoicesService(BackgroundCache.Mode mode,String text){
+	public void startTextToVoicesService(BackgroundCache.Mode mode,String text){
 		BackgroundCache.getInstance().setResult(mode,text);
 		mContext.startService(new Intent(mContext, TextToVoicesService.class));
 	}
 
-	public static void stopTextToVoicesService(BackgroundCache.Mode mode,String text){
+	public void stopTextToVoicesService(){
 		mContext.stopService(new Intent(mContext, TextToVoicesService.class));
 	}
 	
