@@ -1,23 +1,16 @@
 package com.xunfei.robot;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.xunfei.robot.utils.BackgroundCache;
-import com.xunfei.robot.utils.SongUtils;
 import com.xunfei.robot.utils.BackgroundCache.Callback;
+import com.xunfei.robot.utils.BackgroundCache.Mode;
+import com.xunfei.robot.utils.Config;
+import com.xunfei.robot.utils.ForwardControl;
 
 public class MainActivity extends Activity {
 
@@ -40,19 +33,19 @@ public class MainActivity extends Activity {
 
 		});
 		// this.startActivity(new Intent(this, IatDemo.class));
+		
+		if(Config.DEBUG){
+			ForwardControl.getInstance(this).startTalkService(Mode.PEOPLE, Config.TEST_MESSAGE);
+		}
 	}
 
 	public void onButtonClick(View view) {
 		switch (view.getId()) {
 		case R.id.button1:
-			this.startService(new Intent(this, VoicesToTextService.class));
-			// this.startService(new Intent(this, TalkService.class));
-			// this.startService(new Intent(this,TextToVoicesService.class));
+			ForwardControl.getInstance(this).startVoicesToTextService();
 			break;
 		case R.id.button2:
-			this.stopService(new Intent(this, VoicesToTextService.class));
-			// this.stopService(new Intent(this, TalkService.class));
-			// this.stopService(new Intent(this,TextToVoicesService.class));
+			ForwardControl.getInstance(this).stopVoicesToTextService();
 			break;
 		default:
 			break;
@@ -63,6 +56,9 @@ public class MainActivity extends Activity {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		this.stopService(new Intent(this, VoicesToTextService.class));
+		ForwardControl.getInstance(this).stopVoicesToTextService();
+		if(Config.DEBUG){
+			ForwardControl.getInstance(this).stopTalkService();
+		}
 	}
 }

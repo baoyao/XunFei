@@ -1,21 +1,15 @@
 package com.xunfei.robot.entity;
 /**
  * @author houen.bao
- * @date Jul 11, 2016 1:40:45 PM
- * 
+ * @date Jul 11, 2016 10:31:42 AM
  * "type": "DT_BASIC",
- * "date": "2013-11-11",
- * "dateOrig": "明天",
- * "time": "06:00:00",
- * "timeOrig": "6 点"
- * 
+ * "date":"2012-02-20",
+ * "dateOrig":"明天"
  */
-public class Datetime {
+public class StartDate {
 	private String type;
 	private String date;
 	private String dateOrig;
-	private String time;
-	private String timeOrig;
 
 	public String getType() {
 		return type;
@@ -39,22 +33,6 @@ public class Datetime {
 
 	public void setDateOrig(String dateOrig) {
 		this.dateOrig = dateOrig;
-	}
-
-	public String getTime() {
-		return time;
-	}
-
-	public void setTime(String time) {
-		this.time = time;
-	}
-
-	public String getTimeOrig() {
-		return timeOrig;
-	}
-
-	public void setTimeOrig(String timeOrig) {
-		this.timeOrig = timeOrig;
 	}
 
 }

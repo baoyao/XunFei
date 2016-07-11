@@ -43,6 +43,9 @@ public class ForwardControl {
 
 	public void startTextToVoicesService(BackgroundCache.Mode mode,String text){
 		BackgroundCache.getInstance().setResult(mode,text);
+		if(Config.DEBUG){
+			return;
+		}
 		mContext.startService(new Intent(mContext, TextToVoicesService.class));
 	}
 

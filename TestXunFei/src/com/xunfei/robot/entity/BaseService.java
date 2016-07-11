@@ -5,10 +5,18 @@ package com.xunfei.robot.entity;
  */
 public class BaseService {
 
-	String rc;
-	String text;
-	String service;
-	String operation;
+	private String rc;
+	private String text;
+	private String service;
+	private String operation;
+
+	private Semantic semantic;
+
+	private Answer answer;
+	
+	private Data data;
+
+	private com.xunfei.robot.entity.Error error;
 
 	public String getRc() {
 		return rc;
@@ -40,6 +48,39 @@ public class BaseService {
 
 	public void setOperation(String operation) {
 		this.operation = operation;
+	}
+
+	public Semantic getSemantic() {
+		return semantic;
+	}
+
+	public void setSemantic(Semantic semantic) {
+		this.semantic = semantic;
+	}
+
+	public Answer getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(Answer answer) {
+		this.answer = answer;
+	}
+
+	
+	public Data getData() {
+		return data;
+	}
+	
+	public void setData(Data data) {
+		this.data = data;
+	}
+
+	public com.xunfei.robot.entity.Error getError() {
+		return error;
+	}
+
+	public void setError(com.xunfei.robot.entity.Error error) {
+		this.error = error;
 	}
 
 }

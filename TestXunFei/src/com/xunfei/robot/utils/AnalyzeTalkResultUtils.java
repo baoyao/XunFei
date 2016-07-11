@@ -1,5 +1,7 @@
 package com.xunfei.robot.utils;
 
+import java.util.List;
+
 import org.json.JSONObject;
 
 import android.content.Context;
@@ -25,7 +27,7 @@ public class AnalyzeTalkResultUtils {
 			"calc", "cookbook", "datetime", "faq", "flight", "hotel", "map",
 			"music", "radio", "restaurant", "schedule", "stock", "train",
 			"translation", "tv", "video", "weather", "websearch", "website",
-			"weibo","openQA" };
+			"weibo", "openQA" };
 
 	private int mService = -1;
 
@@ -65,9 +67,6 @@ public class AnalyzeTalkResultUtils {
 	private final int WEIBO = 21;
 	private final int OPENQA = 22;
 
-	private final String[] operation = new String[] { "LAUNCH", "UNINSTALL",
-			"INSTALL", "EXIT" };
-
 	// app operation
 	private final String LAUNCH = "LAUNCH";
 	private final String SEARCH = "SEARCH";
@@ -75,127 +74,298 @@ public class AnalyzeTalkResultUtils {
 	private final String INSTALL = "INSTALL";
 	private final String EXIT = "EXIT";
 
+	// map
+	private final String ROUTE = "ROUTE";
+	private final String POSITION = "POSITION";
+	
+	// video
+	private final String PLAY = "PLAY";
+	private final String QUERY = "QUERY";
+	
+	//website
+	private final String OPEN="OPEN";
+
+
+	private final String DEFAULT_RESULT = "该功能等待后续开放";
+	private final String ERROR_RESULT = "您的这个问题可把我难倒了";
+
 	public ResultAction analyzeResult(String result) {
-		ResultAction ra=new ResultAction();
+		ResultAction ra = new ResultAction();
 		ra.setIntercept(false);
 		ra.setShowErrorMessage(false);
 		try {
-			JSONObject root = new JSONObject(result);
-			if (root != null) {
+			BaseService service = mGson.fromJson(result, BaseService.class);
+			if (service != null) {
 				mService = -1;
-				String service = root.getString("service");
-				String operation = root.getString("operation");
-				Log.v(TAG, "analyzeResult service: " + service
-						+" operation: "+operation);
+				String serviceName = service.getService();
+				String operation = service.getOperation();
+				Log.v(TAG, "analyzeResult service: " + serviceName
+						+ " operation: " + operation);
 				for (int i = 0; i < SERVICE_LIST.length; i++) {
-					if (SERVICE_LIST[i].equals(service)) {
+					if (SERVICE_LIST[i].equals(serviceName)) {
 						mService = i;
 						break;
 					}
 				}
 				switch (mService) {
 				case APP:
-					App app = mGson.fromJson(result, App.class);
-					Log.v(TAG, "app: " + app);
-					if (LAUNCH.equals(app.getOperation())) {
+					if (LAUNCH.equals(service.getOperation())) {
 						ra.setIntercept(true);
-						String appName = app.getSemantic().getSlots().getName();
+						String appName = service.getSemantic().getSlots()
+								.getName();
 						OpenAppUtils.getInstance(mContext).openApp(appName);
-					} else if (SEARCH.equals(app.getOperation())) {
-						ra.setIntercept(true);
-						String searchAppCategory = app.getSemantic().getSlots()
-								.getCategory();
+					} else if (SEARCH.equals(service.getOperation())) {
+						String searchAppCategory = service.getSemantic()
+								.getSlots().getCategory();
 						// 打开网页搜索
-						Uri myBlogUri = Uri
-								.parse("https://www.baidu.com/s?wd="
-										+ searchAppCategory);
-						Intent intent = new Intent(Intent.ACTION_VIEW,
-								myBlogUri);
-						mContext.startActivity(intent);
-					}else{
+						search(ra, searchAppCategory);
+					} else {
 						ra.setShowErrorMessage(true);
 					}
 					break;
 				case BAIKE:
 				case CALC:
-					doQuestion(result,ra);
+					questionAnswerText(service, ra);
 					break;
 				case COOKBOOK:
-					Cookbook cb=mGson.fromJson(result, Cookbook.class);
-					ra.setResult(cb.getData().getHeader()+cb.getData().getResult().getAccessory());
-					//预留扩展 询问是否打开网页cb.getData().getResult().getUrl()
-					
+					List<Result> cookBookResult = service.getData().getResult();
+					String cookBookStr = "\n";
+					if (cookBookResult != null) {
+						for (int i=0;i<cookBookResult.size();i++) {
+							if(cookBookResult.size()>1){
+								cookBookStr+="第"+(i+1)+"条\n";
+							}
+							cookBookStr += cookBookResult.get(i).getAccessory() + "\n";
+						}
+					}
+					ra.setResult(service.getData().getHeader() + cookBookStr);
+					// 预留扩展 询问是否打开网页cb.getData().getResult().getUrl()
+
 					break;
 				case DATETIME:
 				case FAQ:
-					doQuestion(result,ra);
+					questionAnswerText(service, ra);
 					break;
-				case FLIGHT:
+				case FLIGHT:// 航班查询
+					if (isError(service)) {
+						ra.setResult("缺少必要的查询条件。您可以这么说:我想查一下明天海航的从合肥骆岗到北京首都机场的航班");
+					} else {
+						Slots flightSlots = service.getSemantic().getSlots();
+						String flightStr = "查询"
+								+ ac(flightSlots.getStartLoc().getCity())
+								+ ac(flightSlots.getStartLoc().getPoi())
+								+ "到"
+								+ ac(flightSlots.getEndLoc().getCity()
+										+ ac(flightSlots.getEndLoc().getPoi()))
+								+ ac(flightSlots.getStartDate().getDate())
+								+ "的" + ac(flightSlots.getAirline());
+						search(ra, flightStr);
+					}
 					break;
 				case HOTEL:
+					search(ra, service.getText());
 					break;
 				case MAP:
+					if (POSITION.equals(service.getOperation())) {
+						Location mapL = service.getSemantic().getSlots()
+								.getLocation();
+						ra.setResult(mapL.getCity() + mapL.getPoi());
+					} else if (ROUTE.equals(service.getOperation())) {// 导航
+						search(ra,service.getText());
+					}
 					break;
 				case MUSIC:
-//					Music music=mGson.fromJson(result, Music.class);
-//					ra.setResult(music.getSemantic().getSlots().getSong());
-					SongUtils.playSong(mContext);
-					ra.setIntercept(true);
+					// Music music=mGson.fromJson(result, Music.class);
+					// ra.setResult(music.getSemantic().getSlots().getSong());
+					if(isError(service)){
+						ra.setResult("缺少必要的查询条件。您可以这么说:随便播放一首歌，或者说帮我查找刘德华的忘情水");
+					}else{
+						if(SEARCH.equals(service.getOperation())){
+							search(ra,ac(service.getSemantic().getSlots().getArtist())
+									+ac(service.getSemantic().getSlots().getSong()));
+						}else{
+							ra.setIntercept(true);
+							SongUtils.playSong(mContext);
+						}
+					}
 					break;
 				case RADIO:
+					String radioStr = "";
+					radioStr += ac(service.getSemantic().getSlots().getName());
+					radioStr += ac(service.getSemantic().getSlots().getWaveband());
+					radioStr += ac(service.getSemantic().getSlots().getCode());
+					search(ra, radioStr);
 					break;
 				case RESTAURANT:
+					String restaurantStr="";
+					Location restaurantLocation=service.getSemantic().getSlots().getLocation();
+					if(checkEmpty(restaurantLocation.getPoi())){
+						restaurantStr=restaurantLocation.getPoi()
+								+ac(service.getSemantic().getSlots().getPrice())
+								+ac(service.getSemantic().getSlots().getCategory());
+					}else{
+						restaurantStr=ac(restaurantLocation.getCity())
+								+ac(restaurantLocation.getArea())
+								+ac(service.getSemantic().getSlots().getPrice())
+								+ac(service.getSemantic().getSlots().getCategory());
+					}
+					if(!"".equals(restaurantStr)){
+						search(ra,restaurantStr);
+					}else{
+						ra.setResult("缺少必要的查询条件。您可以这么说:合肥包河区女人街有什么实惠的川菜馆");
+					}
 					break;
 				case SCHEDULE:
+					// 等待后续开放
+					ra.setResult(DEFAULT_RESULT);
 					break;
 				case STOCK:
+					if(isError(service)){
+						ra.setResult("缺少必要的查询条件。您可以这么说:查询小米科技的股票价格");
+					}else{
+						ra.setResult(ac(service.getSemantic().getSlots().getName())
+								+ ac(service.getSemantic().getSlots().getCode()));
+					}
 					break;
 				case TRAIN:
+					search(ra,service.getText());
 					break;
 				case TRANSLATION:
+					String translationStr="";
+					if("en".equals(service.getSemantic().getSlots().getTarget())){
+						translationStr=service.getSemantic().getSlots().getContent()+"英文怎么说";
+					}
+					search(ra,translationStr);
 					break;
 				case TV:
+					List<Result> tvResult = service.getData().getResult();
+					String tvStr = "\n";
+					if (tvResult != null) {
+						for (int i=0;i<tvResult.size();i++) {
+							if(tvResult.size()>1){
+								tvStr+="第"+(i+1)+"条\n";
+							}
+							Result r=tvResult.get(i);
+							tvStr += r.getTvName() + r.getStartTime()
+									+ r.getProgramType() + r.getProgramName()
+									+ "\n";
+						}
+					}
+					ra.setResult(service.getData().getHeader() + tvStr);
 					break;
 				case VIDEO:
+					String videoStr="";
+					if(PLAY.equals(service.getOperation())){
+						videoStr=service.getSemantic().getSlots().getKeywords();
+					}else{
+						videoStr=ac(service.getSemantic().getSlots().getActor())
+								+ac(service.getSemantic().getSlots().getPopularity())
+								+ac(service.getSemantic().getSlots().getVideoTag())
+								+ac(service.getSemantic().getSlots().getVideoCategory());
+					}
+					search(ra,videoStr);
 					break;
 				case WEATHER:
+					Result weatherResult=service.getData().getResult().get(0);
+					String weatherStr=ac(weatherResult.getProvince())
+							+ac(weatherResult.getCity())
+							+ac(service.getSemantic().getSlots().getDatetime()==null
+							?"":service.getSemantic().getSlots().getDatetime().getDateOrig())
+							+ac(weatherResult.getWeather())
+							+ac(weatherResult.getTempRange())
+							+ac(weatherResult.getWind())+"，"
+							+"等级"+weatherResult.getWindLevel();
+					ra.setResult(weatherStr);
 					break;
 				case WEBSEARCH:
+					String websearchStr=ac(service.getSemantic().getSlots().getKeywords());
+					if("".equals(websearchStr)){
+						websearchStr = service.getText();
+					}
+					ra.setResult(websearchStr);
 					break;
 				case WEBSITE:
+					if(OPEN.equals(service.getOperation())){
+						if(checkEmpty(service.getSemantic().getSlots().getUrl())){
+							open(ra,service.getSemantic().getSlots().getUrl());
+							break;
+						}
+						search(ra,ac(service.getSemantic().getSlots().getName()));
+					}else{
+						search(ra,service.getText());
+					}
 					break;
 				case WEIBO:
+					if(checkEmpty(service.getSemantic().getSlots().getChannel())){
+						search(ra,service.getSemantic().getSlots().getChannel());
+					}else if(checkEmpty(service.getSemantic().getSlots().getContent())){
+						search(ra,service.getSemantic().getSlots().getContent());
+					}else{
+						search(ra,service.getText());
+					}
 					break;
 				case OPENQA:
-					doQuestion(result,ra);
+					questionAnswerText(service, ra);
 					break;
 				default:
 					break;
 				}
-			}
 
-			// JSONObject root=new JSONObject(result);
-			// JSONObject answer=root.getJSONObject("answer");
-			// String text=answer.getString("text");
-			// return text;
+				if (!ra.isIntercept()
+						&& !ra.isShowErrorMessage()
+						&& (ra.getResult() == null || "".equals(ra.getResult()))) {
+					if (isError(service)) {
+						ra.setResult(service.getError().getMessage());
+					} else {
+						ra.setShowErrorMessage(true);
+					}
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			Log.v(TAG, "analyzeResult Exception: " + e);
 			ra.setIntercept(false);
 			ra.setShowErrorMessage(false);
-			ra.setResult("您的这个问题可把我难倒了");
-		}
-		if(!ra.isIntercept()&&!ra.isShowErrorMessage()
-				&&(ra.getResult()==null||"".equals(ra.getResult()))){
-			ra.setShowErrorMessage(true);
+			ra.setResult(ERROR_RESULT);
 		}
 		Log.v(TAG, "analyzeResult end: " + ra.getResult());
 		return ra;
 	}
-	
-	private void doQuestion(String result,ResultAction ra){
-		Question question=mGson.fromJson(result, Question.class);
-		ra.setResult(question.getAnswer().getText());
+
+	private boolean isError(BaseService service) {
+		return service.getError() != null;
 	}
+
+	private boolean needShowErrorMessage(BaseService service) {
+		// return service.getError() != null && mService != MUSIC;
+		return false;
+	}
+
+	private void questionAnswerText(BaseService service, ResultAction ra) {
+		ra.setResult(service.getAnswer().getText());
+	}
+	
+	private boolean checkEmpty(String str){
+		return str!=null&&!"".equals(str.trim());
+	}
+
+	private String ac(String str) {
+		return str == null ? "" : str.trim();
+	}
+
+	private void search(ResultAction ra, String info) {
+		ra.setIntercept(true);
+		// 打开网页搜索
+		Uri uri = Uri.parse("https://www.baidu.com/s?wd=" + info);
+		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+		mContext.startActivity(intent);
+	}
+	
+	private void open(ResultAction ra, String info) {
+		ra.setIntercept(true);
+		Uri uri = Uri.parse(info);
+		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+		mContext.startActivity(intent);
+	} 
 
 }

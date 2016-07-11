@@ -1,5 +1,7 @@
 package com.xunfei.robot.entity;
 
+import java.util.List;
+
 /**
  * @author houen.bao
  * @date Jul 8, 2016 5:49:27 PM
@@ -7,7 +9,7 @@ package com.xunfei.robot.entity;
 public class Data {
 
 	private String header;
-	private Result result;
+	private List<Result> result;
 
 	public String getHeader() {
 		return header;
@@ -17,11 +19,11 @@ public class Data {
 		this.header = header;
 	}
 
-	public Result getResult() {
+	public List<Result> getResult() {
 		return result;
 	}
 
-	public void setResult(Result result) {
+	public void setResult(List<Result> result) {
 		this.result = result;
 	}
 

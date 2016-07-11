@@ -1,21 +1,25 @@
 package com.xunfei.robot.entity;
 /**
  * @author houen.bao
- * @date Jul 11, 2016 1:40:45 PM
+ * @date Jul 11, 2016 2:04:44 PM
  * 
- * "type": "DT_BASIC",
- * "date": "2013-11-11",
+ * "type": "DT_INTERVAL",
+ * "date": "2013-11-21",
  * "dateOrig": "明天",
- * "time": "06:00:00",
- * "timeOrig": "6 点"
+ * "time": "18:00:00",
+ * "timeOrig": "晚上",
+ * "endDate": "2013-11-21",
+ * "endTime": "22:00:00"
  * 
  */
-public class Datetime {
+public class StartTime {
 	private String type;
 	private String date;
 	private String dateOrig;
 	private String time;
 	private String timeOrig;
+	private String endDate;
+	private String endTime;
 
 	public String getType() {
 		return type;
@@ -55,6 +59,22 @@ public class Datetime {
 
 	public void setTimeOrig(String timeOrig) {
 		this.timeOrig = timeOrig;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 
 }
