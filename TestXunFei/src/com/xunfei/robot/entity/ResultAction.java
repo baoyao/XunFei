@@ -31,7 +31,9 @@ public class ResultAction {
 	}
 
 	public void setShowErrorMessage(boolean isShowErrorMessage) {
-		this.isIntercept = true;
+		if(isShowErrorMessage){
+			this.isIntercept = true;
+		}
 		this.isShowErrorMessage = isShowErrorMessage;
 	}
 

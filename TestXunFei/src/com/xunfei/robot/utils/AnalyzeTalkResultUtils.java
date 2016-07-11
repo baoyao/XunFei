@@ -1,5 +1,7 @@
 package com.xunfei.robot.utils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.json.JSONObject;
@@ -114,13 +116,11 @@ public class AnalyzeTalkResultUtils {
 						String appName = service.getSemantic().getSlots()
 								.getName();
 						OpenAppUtils.getInstance(mContext).openApp(appName);
-					} else if (SEARCH.equals(service.getOperation())) {
+					} else{
 						String searchAppCategory = service.getSemantic()
 								.getSlots().getCategory();
 						// 打开网页搜索
 						search(ra, searchAppCategory);
-					} else {
-						ra.setShowErrorMessage(true);
 					}
 					break;
 				case BAIKE:
@@ -138,7 +138,7 @@ public class AnalyzeTalkResultUtils {
 							cookBookStr += cookBookResult.get(i).getAccessory() + "\n";
 						}
 					}
-					ra.setResult(service.getData().getHeader() + cookBookStr);
+					ra.setResult(ac(service.getData().getHeader()) + cookBookStr);
 					// 预留扩展 询问是否打开网页cb.getData().getResult().getUrl()
 
 					break;
@@ -251,7 +251,7 @@ public class AnalyzeTalkResultUtils {
 									+ "\n";
 						}
 					}
-					ra.setResult(service.getData().getHeader() + tvStr);
+					ra.setResult(ac(service.getData().getHeader()) + tvStr);
 					break;
 				case VIDEO:
 					String videoStr="";
@@ -267,14 +267,13 @@ public class AnalyzeTalkResultUtils {
 					break;
 				case WEATHER:
 					Result weatherResult=service.getData().getResult().get(0);
-					String weatherStr=ac(weatherResult.getProvince())
-							+ac(weatherResult.getCity())
+					String weatherStr=ac(weatherResult.getCity())
 							+ac(service.getSemantic().getSlots().getDatetime()==null
 							?"":service.getSemantic().getSlots().getDatetime().getDateOrig())
 							+ac(weatherResult.getWeather())
 							+ac(weatherResult.getTempRange())
-							+ac(weatherResult.getWind())+"，"
-							+"等级"+weatherResult.getWindLevel();
+							+"，"
+							+ac(weatherResult.getWind());
 					ra.setResult(weatherStr);
 					break;
 				case WEBSEARCH:
@@ -313,7 +312,8 @@ public class AnalyzeTalkResultUtils {
 
 				if (!ra.isIntercept()
 						&& !ra.isShowErrorMessage()
-						&& (ra.getResult() == null || "".equals(ra.getResult()))) {
+						&& (ra.getResult() == null || "".equals(ra.getResult())||
+						"null".equals(ra.getResult().trim()))) {
 					if (isError(service)) {
 						ra.setResult(service.getError().getMessage());
 					} else {
@@ -328,7 +328,7 @@ public class AnalyzeTalkResultUtils {
 			ra.setShowErrorMessage(false);
 			ra.setResult(ERROR_RESULT);
 		}
-		Log.v(TAG, "analyzeResult end: " + ra.getResult());
+		Log.v(TAG, "analyzeResult end: " + ra.isIntercept() + " " + ra.isShowErrorMessage() + " " + ra.getResult());
 		return ra;
 	}
 
@@ -356,15 +356,22 @@ public class AnalyzeTalkResultUtils {
 	private void search(ResultAction ra, String info) {
 		ra.setIntercept(true);
 		// 打开网页搜索
-		Uri uri = Uri.parse("https://www.baidu.com/s?wd=" + info);
-		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-		mContext.startActivity(intent);
+		try {
+			Uri uri = Uri.parse("https://www.baidu.com/s?wd=" + URLEncoder.encode(info, "utf-8"));
+			Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			mContext.startActivity(intent);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void open(ResultAction ra, String info) {
 		ra.setIntercept(true);
 		Uri uri = Uri.parse(info);
 		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		mContext.startActivity(intent);
 	} 
 

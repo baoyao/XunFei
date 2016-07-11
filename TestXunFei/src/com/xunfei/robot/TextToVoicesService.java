@@ -24,6 +24,7 @@ import com.iflytek.cloud.util.ResourceUtil.RESOURCE_TYPE;
 import com.xunfei.robot.tools.TtsSettings;
 import com.xunfei.robot.utils.BackgroundCache;
 import com.xunfei.robot.utils.Config;
+import com.xunfei.robot.utils.ForwardControl;
 
 /**
  * @author houen.bao
@@ -237,7 +238,7 @@ public class TextToVoicesService extends Service {
 		public void onCompleted(SpeechError error) {
 			if (error == null) {
 				showTip("播放完成");
-				TextToVoicesService.this.startService(new Intent(TextToVoicesService.this, VoicesToTextService.class));
+//				ForwardControl.getInstance(TextToVoicesService.this).startVoicesToTextService();
 			} else if (error != null) {
 				showTip(error.getPlainDescription(true));
 			}

@@ -112,7 +112,7 @@ public class TalkService extends Service {
 		}
 	}
 	
-	String[] errorMess=new String[]{"知之为知之,不知为不知,是不知也","这种问题我怎么可能知道呢",
+	private String[] errorMess=new String[]{"知之为知之,不知为不知,是不知也","这种问题我怎么可能知道呢",
 			"很抱歉，不能回答您的这个问题","我以为我什么问题都知道了，除了您这个"};
 	private void doErrorMessage(){
 		int index = new Random().nextInt(errorMess.length);
