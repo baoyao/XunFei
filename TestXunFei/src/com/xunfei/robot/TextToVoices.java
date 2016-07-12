@@ -2,6 +2,7 @@ package com.xunfei.robot;
 
 import android.app.Activity;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,15 +23,14 @@ import com.iflytek.cloud.SynthesizerListener;
 import com.iflytek.cloud.util.ResourceUtil;
 import com.iflytek.cloud.util.ResourceUtil.RESOURCE_TYPE;
 import com.xunfei.robot.tools.TtsSettings;
-import com.xunfei.robot.utils.BackgroundCache;
+import com.xunfei.robot.utils.RecordUtils;
 import com.xunfei.robot.utils.Config;
-import com.xunfei.robot.utils.ForwardControl;
 
 /**
  * @author houen.bao
  * @date Jul 6, 2016 11:05:19 AM
  */
-public class TextToVoicesService extends Service {
+public class TextToVoices{
 
 	private static String TAG = "tt";
 	// 语音合成对象
@@ -61,56 +61,38 @@ public class TextToVoicesService extends Service {
 
 	private Toast mToast;
 	private SharedPreferences mSharedPreferences;
-
-	@Override
-	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void onCreate() {
-		// TODO Auto-generated method stub
-		super.onCreate();
+	
+	private Context mContext;
+	
+	public TextToVoices(Context context){
+		mContext = context;
 
 		// 初始化合成对象
-		mTts = SpeechSynthesizer.createSynthesizer(this, mTtsInitListener);
+		mTts = SpeechSynthesizer.createSynthesizer(mContext, mTtsInitListener);
 
 		// 云端发音人名称列表
-		cloudVoicersEntries = getResources().getStringArray(
+		cloudVoicersEntries = mContext.getResources().getStringArray(
 				R.array.voicer_cloud_entries);
-		cloudVoicersValue = getResources().getStringArray(
+		cloudVoicersValue = mContext.getResources().getStringArray(
 				R.array.voicer_cloud_values);
 
 		// 本地发音人名称列表
-		localVoicersEntries = getResources().getStringArray(
+		localVoicersEntries = mContext.getResources().getStringArray(
 				R.array.voicer_local_entries);
-		localVoicersValue = getResources().getStringArray(
+		localVoicersValue = mContext.getResources().getStringArray(
 				R.array.voicer_local_values);
 
-		mSharedPreferences = getSharedPreferences(TtsSettings.PREFER_NAME,
+		mSharedPreferences = mContext.getSharedPreferences(TtsSettings.PREFER_NAME,
 				Activity.MODE_PRIVATE);
-		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
+		mToast = Toast.makeText(mContext, "", Toast.LENGTH_SHORT);
 	}
 
-	@Override
-	public int onStartCommand(Intent intent, int flags, int startId) {
-		// TODO Auto-generated method stub
-		mHandler.sendEmptyMessageDelayed(1, Config.WAITING_TIME);
-		return super.onStartCommand(intent, flags, startId);
-	}
-	
-	private Handler mHandler = new Handler() {
-		@Override
-		public void handleMessage(Message msg) {
-			start();
-		}
-	};
+	private Handler mHandler = new Handler();
 	
 	private String text = "您好";
 	
-	private void start(){
-		text = BackgroundCache.getInstance().getResult();
+	public void start(){
+		text = RecordUtils.getInstance().getResult();
 		showTip(text);
 		// 设置参数
 		setParam();
@@ -172,10 +154,10 @@ public class TextToVoicesService extends Service {
 	private String getResourcePath(){
 		StringBuffer tempBuffer = new StringBuffer();
 		//合成通用资源
-		tempBuffer.append(ResourceUtil.generateResourcePath(this, RESOURCE_TYPE.assets, "tts/common.jet"));
+		tempBuffer.append(ResourceUtil.generateResourcePath(mContext, RESOURCE_TYPE.assets, "tts/common.jet"));
 		tempBuffer.append(";");
 		//发音人资源
-		tempBuffer.append(ResourceUtil.generateResourcePath(this, RESOURCE_TYPE.assets, "tts/"+voicerLocal+".jet"));
+		tempBuffer.append(ResourceUtil.generateResourcePath(mContext, RESOURCE_TYPE.assets, "tts/"+voicerLocal+".jet"));
 		return tempBuffer.toString();
 	}
 	
@@ -222,7 +204,7 @@ public class TextToVoicesService extends Service {
 				String info) {
 			// 合成进度
 			mPercentForBuffering = percent;
-			showTip(String.format(getString(R.string.tts_toast_format),
+			showTip(String.format(mContext.getString(R.string.tts_toast_format),
 					mPercentForBuffering, mPercentForPlaying));
 		}
 
@@ -230,7 +212,7 @@ public class TextToVoicesService extends Service {
 		public void onSpeakProgress(int percent, int beginPos, int endPos) {
 			// 播放进度
 			mPercentForPlaying = percent;
-			showTip(String.format(getString(R.string.tts_toast_format),
+			showTip(String.format(mContext.getString(R.string.tts_toast_format),
 					mPercentForBuffering, mPercentForPlaying));
 		}
 
@@ -267,11 +249,7 @@ public class TextToVoicesService extends Service {
 		});
 	}
 
-	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-
 		mTts.stopSpeaking();
 		// 退出时释放连接
 		mTts.destroy();

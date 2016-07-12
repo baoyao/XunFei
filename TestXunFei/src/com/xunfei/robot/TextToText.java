@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Environment;
@@ -26,17 +27,16 @@ import com.iflytek.cloud.TextUnderstanderListener;
 import com.iflytek.cloud.UnderstanderResult;
 import com.xunfei.robot.entity.ResultAction;
 import com.xunfei.robot.tools.UnderstanderSettings;
-import com.xunfei.robot.utils.BackgroundCache;
-import com.xunfei.robot.utils.BackgroundCache.Mode;
-import com.xunfei.robot.utils.AnalyzeTalkResultUtils;
+import com.xunfei.robot.utils.RecordUtils;
+import com.xunfei.robot.utils.RecordUtils.Mode;
+import com.xunfei.robot.utils.AnalyzeResultUtils;
 import com.xunfei.robot.utils.Config;
-import com.xunfei.robot.utils.ForwardControl;
 
 /**
  * @author houen.bao
  * @date Jul 6, 2016 10:07:56 AM
  */
-public class TalkService extends Service {
+public class TextToText{
 
 	private static String TAG = "tt";
 
@@ -48,48 +48,29 @@ public class TalkService extends Service {
 
 	private SharedPreferences mSharedPreferences;
 
-	@Override
-	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void onCreate() {
-		// TODO Auto-generated method stub
-		super.onCreate();
-
+	private Context mContext;
+	
+	public TextToText(Context context){
+		mContext = context;
 		// 初始化对象
-		mSpeechUnderstander = SpeechUnderstander.createUnderstander(this,
+		mSpeechUnderstander = SpeechUnderstander.createUnderstander(mContext,
 				speechUnderstanderListener);
-		mTextUnderstander = TextUnderstander.createTextUnderstander(this,
+		mTextUnderstander = TextUnderstander.createTextUnderstander(mContext,
 				textUnderstanderListener);
 
-		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
-		mSharedPreferences = getSharedPreferences(UnderstanderSettings.PREFER_NAME, Activity.MODE_PRIVATE);
+		mToast = Toast.makeText(mContext, "", Toast.LENGTH_SHORT);
+		mSharedPreferences = mContext.getSharedPreferences(UnderstanderSettings.PREFER_NAME, Activity.MODE_PRIVATE);
 	}
 
-	@Override
-	public int onStartCommand(Intent intent, int flags, int startId) {
-		// TODO Auto-generated method stub
-		mHandler.sendEmptyMessageDelayed(1, Config.WAITING_TIME);
-		return super.onStartCommand(intent, flags, startId);
-	}
-
-	private Handler mHandler = new Handler(){
-		@Override
-		public void handleMessage(Message msg) {
-			startUnderstander();
-		}
-	};
+	private Handler mHandler = new Handler();
 	
 	int ret = 0;// 函数调用返回值
 	private String text="唱首歌";//深圳明天天气怎么样？
 	private String mResult="";
 	
 	/**文字理解*/
-	private void startUnderstander(){
-		text = BackgroundCache.getInstance().getResult();
+	public void start(){
+		text = RecordUtils.getInstance().getResult();
 		showTip(text);
 		if(mTextUnderstander.isUnderstanding()){
 			mTextUnderstander.cancel();
@@ -104,7 +85,7 @@ public class TalkService extends Service {
 	}
 	
 	private void setResult(String result) {
-		ResultAction ra = AnalyzeTalkResultUtils.getInstance(this).analyzeResult(result);
+		ResultAction ra = AnalyzeResultUtils.getInstance(mContext).analyzeResult(result);
 		if (!ra.isIntercept()) {
 			forward(ra.getResult());
 		}else if(ra.isShowErrorMessage()){
@@ -121,7 +102,7 @@ public class TalkService extends Service {
 	
 	private void forward(String text){
 		mResult=text;
-		ForwardControl.getInstance(this).startTextToVoicesService(Mode.ROBOT, mResult);
+		VoicesManager.getInstance(mContext).startTextToVoices(Mode.ROBOT, mResult);
 	}
 
 	
@@ -153,7 +134,7 @@ public class TalkService extends Service {
 		public void onError(SpeechError error) {
 			// 文本语义不能使用回调错误码14002，请确认您下载sdk时是否勾选语义场景和私有语义的发布
 			showTip("onError Code："	+ error.getErrorCode());
-			setResult("您的网络好像出现了一点点小问题");
+			forward("额～～您的网络好像出现了一点点小问题");
 		}
 	};
 
@@ -229,17 +210,13 @@ public class TalkService extends Service {
 		});
 	}
 	
-	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
         // 退出时释放连接
     	mSpeechUnderstander.cancel();
     	mSpeechUnderstander.destroy();
     	if(mTextUnderstander.isUnderstanding())
     		mTextUnderstander.cancel();
     	mTextUnderstander.destroy();
-    	ForwardControl.getInstance(this).stopTextToVoicesService();
 	}
 
 }

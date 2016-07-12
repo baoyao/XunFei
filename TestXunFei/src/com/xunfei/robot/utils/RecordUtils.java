@@ -6,20 +6,20 @@ import android.util.Log;
  * @author houen.bao
  * @date Jul 6, 2016 1:44:44 PM
  */
-public class BackgroundCache {
+public class RecordUtils {
 
 	private static final String TAG="tt";
-	private static BackgroundCache mBackgroundCache;
+	private static RecordUtils mBackgroundCache;
 	private Callback mCallback;
 	private String mResult;
 	private static String requestResult="";
 
-	private BackgroundCache() {
+	private RecordUtils() {
 	}
 
-	public static BackgroundCache getInstance() {
+	public static RecordUtils getInstance() {
 		if (mBackgroundCache == null) {
-			mBackgroundCache = new BackgroundCache();
+			mBackgroundCache = new RecordUtils();
 			requestResult="";
 		}
 		return mBackgroundCache;

@@ -30,7 +30,8 @@ import com.iflytek.cloud.ui.RecognizerDialog;
 import com.iflytek.cloud.ui.RecognizerDialogListener;
 import com.xunfei.robot.tools.IatSettings;
 import com.xunfei.robot.tools.JsonParser;
-import com.xunfei.robot.utils.BackgroundCache;
+import com.xunfei.robot.utils.RecordUtils;
+import com.xunfei.robot.utils.RecordUtils.Mode;
 import com.xunfei.robot.utils.OpenAppUtils;
 import com.xunfei.robot.utils.SongUtils;
 import com.xunfei.robot.utils.Config;
@@ -40,7 +41,7 @@ import com.xunfei.robot.utils.NetWorkUtil;
  * @author houen.bao
  * @date Jul 5, 2016 3:52:50 PM
  */
-public class VoicesToTextService extends Service {
+public class VoicesToText{
 
 	private static String TAG = "tt";
 
@@ -55,69 +56,49 @@ public class VoicesToTextService extends Service {
 
 	// 用HashMap存储听写结果
 	private List<String> mResult = new ArrayList<String>();
-
-	@Override
-	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void onCreate() {
-		// TODO Auto-generated method stub
-		mContext = this;
+	
+	private Handler mHandler = new Handler();
+	
+	public VoicesToText(Context context){
+		mContext = context;
 		// 使用SpeechRecognizer对象，可根据回调消息自定义界面；
 		mIat = SpeechRecognizer.createRecognizer(mContext, mInitListener);
-		mIatDialog = new RecognizerDialog(this, mInitListener);
+		mIatDialog = new RecognizerDialog(mContext, mInitListener);
 		mIatDialog.getWindow().setType(
 				WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
 		mToast = Toast.makeText(mContext, "", Toast.LENGTH_SHORT);
-		mSharedPreferences = getSharedPreferences(IatSettings.PREFER_NAME,
+		mSharedPreferences = mContext.getSharedPreferences(IatSettings.PREFER_NAME,
 				Activity.MODE_PRIVATE);
 
 		refreshNetworkState();
 
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-		registerReceiver(mNetWorkBroadcastReceiver, filter);
+		mContext.registerReceiver(mNetWorkBroadcastReceiver, filter);
 		Log.v(TAG, "onCreate");
 	}
 
-	@Override
-	public int onStartCommand(Intent intent, int flags, int startId) {
-		// TODO Auto-generated method stub
-		mHandler.sendEmptyMessageDelayed(1, Config.WAITING_TIME);
-		return super.onStartCommand(intent, flags, startId);
-	}
-
-	private Handler mHandler = new Handler() {
-		@Override
-		public void handleMessage(Message msg) {
-			startSpeek();
-		}
-	};
-
 	int ret = 0;// 函数调用返回值
 
-	private void startSpeek() {
+	public void start() {
 		Log.v(TAG, "startSpeek");
 		clearResult();
 		// 设置参数
 		setParam();
 		boolean isShowDialog = mSharedPreferences.getBoolean(
-				getString(R.string.pref_key_iat_show), true);
+				mContext.getString(R.string.pref_key_iat_show), true);
 		if (isShowDialog) {
 			// 显示听写对话框
 			mIatDialog.setListener(mRecognizerDialogListener);
 			mIatDialog.show();
-			showTip(getString(R.string.text_begin));
+			showTip(mContext.getString(R.string.text_begin));
 		} else {
 			// 不显示听写对话框
 			ret = mIat.startListening(mRecognizerListener);
 			if (ret != ErrorCode.SUCCESS) {
 				showTip("听写失败,错误码：" + ret);
 			} else {
-				showTip(getString(R.string.text_begin));
+				showTip(mContext.getString(R.string.text_begin));
 			}
 		}
 	}
@@ -239,33 +220,33 @@ public class VoicesToTextService extends Service {
 	private synchronized void setResult(String text) {
 		if (text != null && !text.trim().equals("")) {
 			mResult.add(text);
-			BackgroundCache.getInstance().setResult(
-					BackgroundCache.Mode.PEOPLE, text);
-//			if (!interceptResult(text))
-				startService(new Intent(this, TalkService.class));
+			RecordUtils.getInstance().setResult(
+					RecordUtils.Mode.PEOPLE, text);
+			if (!interceptResult(text))
+			VoicesManager.getInstance(mContext).startTextToText(Mode.PEOPLE,text);
 		}
 	}
 	
-	private List<String[]> tags = initTag();
+	private List<String[]> mInterceptTags = initTag();
 	private final int PLAY_SONG = 0;
 	private final int OPEN_APP = 1;
 
 	private List<String[]> initTag() {
 		List<String[]> tagets = new ArrayList<String[]>();
 
-		String[] tag1 = new String[] { "唱", "首歌" };
-		tagets.add(tag1);
+//		String[] tag1 = new String[] { "唱", "首歌" };
+//		tagets.add(tag1);
 
-		String[] tag2 = new String[] { "打开" };
-		tagets.add(tag2);
+		String[] tag1 = new String[] { "唱首歌" };
+		tagets.add(tag1);
 
 		return tagets;
 	}
 
 	private boolean interceptResult(String text) {
 		Log.v("tt", "interceptResult000");
-		for (int i = 0; i < tags.size(); i++) {
-			String[] tag = tags.get(i);
+		for (int i = 0; i < mInterceptTags.size(); i++) {
+			String[] tag = mInterceptTags.get(i);
 			boolean bool = true;
 			for (String t : tag) {
 				if (!text.contains(t)) {
@@ -286,12 +267,12 @@ public class VoicesToTextService extends Service {
 	private void doIntercept(int index,String text) {
 		switch (index) {
 		case PLAY_SONG: {
-			SongUtils.playSong(this);
+			SongUtils.playSong(mContext);
 		}
 			break;
 		case OPEN_APP: {
 			String tagText="打开";
-			OpenAppUtils.getInstance(this).openApp(text.substring(text.indexOf(tagText)+tagText.length()));
+			OpenAppUtils.getInstance(mContext).openApp(text.substring(text.indexOf(tagText)+tagText.length()));
 		}
 			break;
 		default:
@@ -305,7 +286,7 @@ public class VoicesToTextService extends Service {
 	}
 
 	private void refreshNetworkState() {
-		if (NetWorkUtil.isNetworkConnected(this)) {
+		if (NetWorkUtil.isNetworkConnected(mContext)) {
 			mEngineType = SpeechConstant.TYPE_CLOUD;
 		} else {
 			mEngineType = SpeechConstant.TYPE_LOCAL;
@@ -347,15 +328,14 @@ public class VoicesToTextService extends Service {
 		}
 	};
 
-	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
 		Log.v(TAG, "onDestroy");
-		this.unregisterReceiver(mNetWorkBroadcastReceiver);
+		mContext.unregisterReceiver(mNetWorkBroadcastReceiver);
 		// 退出时释放连接
 		mIat.cancel();
 		mIat.destroy();
 		SongUtils.onDestroy();
-		stopService(new Intent(this, TalkService.class));
+		mContext.stopService(new Intent(mContext, TextToText.class));
 	}
 }

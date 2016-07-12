@@ -15,6 +15,8 @@ public class BaseService {
 	private Answer answer;
 	
 	private Data data;
+	
+	private WebPage webPage;
 
 	private com.xunfei.robot.entity.Error error;
 
@@ -73,6 +75,14 @@ public class BaseService {
 	
 	public void setData(Data data) {
 		this.data = data;
+	}
+
+	public WebPage getWebPage() {
+		return webPage;
+	}
+
+	public void setWebPage(WebPage webPage) {
+		this.webPage = webPage;
 	}
 
 	public com.xunfei.robot.entity.Error getError() {

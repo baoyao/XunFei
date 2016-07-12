@@ -1,37 +1,45 @@
 package com.xunfei.robot;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.xunfei.robot.utils.BackgroundCache;
-import com.xunfei.robot.utils.BackgroundCache.Callback;
-import com.xunfei.robot.utils.BackgroundCache.Mode;
+import com.xunfei.robot.utils.RecordUtils;
+import com.xunfei.robot.utils.RecordUtils.Callback;
+import com.xunfei.robot.utils.RecordUtils.Mode;
 import com.xunfei.robot.utils.Config;
-import com.xunfei.robot.utils.ForwardControl;
 
 public class MainActivity extends Activity {
 
+	private Handler mHandler;
 	private TextView txt;
+	private ScrollView mScrollView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+		
+		mHandler = new Handler();
 		txt = (TextView) findViewById(R.id.txt);
-		BackgroundCache.getInstance().setCallback(new Callback() {
+		mScrollView = (ScrollView) findViewById(R.id.scrollview);
+		RecordUtils.getInstance().setCallback(new Callback() {
 			@Override
 			public void onCallback(String result) {
 				// TODO Auto-generated method stub
-				String str = BackgroundCache.getInstance()
-						.getRequestResult();
+				String str = RecordUtils.getInstance().getRequestResult();
 				txt.setText(str);
+				mHandler.post(new Runnable() {
+					@Override
+					public void run() {
+						mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+					}
+				});
 			}
-
 		});
 		// this.startActivity(new Intent(this, IatDemo.class));
 		
@@ -40,7 +48,7 @@ public class MainActivity extends Activity {
 			findViewById(R.id.button22).setVisibility(View.VISIBLE);
 			((Button)findViewById(R.id.button1)).setText("next support service");
 			((Button)findViewById(R.id.button2)).setText("next unsupport service");
-			ForwardControl.getInstance(this).startTalkService(Mode.PEOPLE, Config.TEST_MESSAGE);
+			VoicesManager.getInstance(this).startTextToText(Mode.PEOPLE, Config.TEST_MESSAGE);
 		}
 	}
 
@@ -50,31 +58,31 @@ public class MainActivity extends Activity {
 	public void onButtonClick(View view) {
 		switch (view.getId()) {
 		case R.id.button11:
-			ForwardControl.getInstance(this).startTalkService(Mode.PEOPLE, Config.SUPPORT_SERVICE[testCount1==-1?0:testCount1]);
+			VoicesManager.getInstance(this).startTextToText(Mode.PEOPLE, Config.SUPPORT_SERVICE[testCount1==-1?0:testCount1]);
 			break;
 		case R.id.button22:
-			ForwardControl.getInstance(this).startTalkService(Mode.PEOPLE, Config.UNSUPPORT_SERVICE[testCount2==-1?0:testCount2]);
+			VoicesManager.getInstance(this).startTextToText(Mode.PEOPLE, Config.UNSUPPORT_SERVICE[testCount2==-1?0:testCount2]);
 			break;
 		case R.id.button1:
 			if(Config.DEBUG){
 				testCount1++;
-				ForwardControl.getInstance(this).startTalkService(Mode.PEOPLE, Config.SUPPORT_SERVICE[testCount1]);
+				VoicesManager.getInstance(this).startTextToText(Mode.PEOPLE, Config.SUPPORT_SERVICE[testCount1]);
 				if(testCount1>=(Config.SUPPORT_SERVICE.length-1)){
 					testCount1=-1;
 				}
 			}else{
-				ForwardControl.getInstance(this).startVoicesToTextService();
+				VoicesManager.getInstance(this).startVoicesToText();
 			}
 			break;
 		case R.id.button2:
 			if(Config.DEBUG){
 				testCount2++;
-				ForwardControl.getInstance(this).startTalkService(Mode.PEOPLE, Config.UNSUPPORT_SERVICE[testCount2]);
+				VoicesManager.getInstance(this).startTextToText(Mode.PEOPLE, Config.UNSUPPORT_SERVICE[testCount2]);
 				if(testCount2>=(Config.SUPPORT_SERVICE.length-1)){
 					testCount2=-1;
 				}
 			}else{
-				ForwardControl.getInstance(this).stopVoicesToTextService();
+				VoicesManager.getInstance(this).onDestroy();
 			}
 			break;
 		default:
@@ -86,9 +94,6 @@ public class MainActivity extends Activity {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		ForwardControl.getInstance(this).stopVoicesToTextService();
-		if(Config.DEBUG){
-			ForwardControl.getInstance(this).stopTalkService();
-		}
+		VoicesManager.getInstance(this).onDestroy();
 	}
 }

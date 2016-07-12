@@ -41,9 +41,7 @@
         </activity>
         <activity android:name=".tools.IatDemo"></activity>
         <activity android:name=".tools.IatSettings"></activity>
-        <service android:name=".VoicesToTextService"></service>
-        <service android:name=".TextToVoicesService"></service>
-        <service android:name=".TalkService"></service>
+        <service android:name=".MainService"></service>
     </application>
 
 </manifest>

@@ -12,16 +12,19 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.xunfei.robot.VoicesManager;
 import com.xunfei.robot.entity.*;
+import com.xunfei.robot.utils.LocationUtils.Callback;
+import com.xunfei.robot.utils.RecordUtils.Mode;
 
 /**
  * @author houen.bao
  * @date Jul 8, 2016 3:19:53 PM
  */
-public class AnalyzeTalkResultUtils {
+public class AnalyzeResultUtils {
 	private final String TAG = "tt";
 
-	private static AnalyzeTalkResultUtils mAnalyzeTalkResultUtils;
+	private static AnalyzeResultUtils mAnalyzeResultUtils;
 	private static Context mContext;
 	private static Gson mGson;
 
@@ -33,16 +36,16 @@ public class AnalyzeTalkResultUtils {
 
 	private int mService = -1;
 
-	private AnalyzeTalkResultUtils() {
+	private AnalyzeResultUtils() {
 	}
 
-	public static AnalyzeTalkResultUtils getInstance(Context context) {
-		if (mAnalyzeTalkResultUtils == null) {
-			mAnalyzeTalkResultUtils = new AnalyzeTalkResultUtils();
+	public static AnalyzeResultUtils getInstance(Context context) {
+		if (mAnalyzeResultUtils == null) {
+			mAnalyzeResultUtils = new AnalyzeResultUtils();
 			mContext = context;
 			mGson = new Gson();
 		}
-		return mAnalyzeTalkResultUtils;
+		return mAnalyzeResultUtils;
 	}
 
 	private final int APP = 0;
@@ -79,12 +82,14 @@ public class AnalyzeTalkResultUtils {
 	// map
 	private final String ROUTE = "ROUTE";
 	private final String POSITION = "POSITION";
+	private final String CURRENT_CITY = "CURRENT_CITY";
+	private final String CURRENT_POI = "CURRENT_POI";
 	
 	// video
 	private final String PLAY = "PLAY";
 	private final String QUERY = "QUERY";
 	
-	//website
+	// website
 	private final String OPEN="OPEN";
 
 
@@ -92,6 +97,7 @@ public class AnalyzeTalkResultUtils {
 	private final String ERROR_RESULT = "您的这个问题可把我难倒了";
 
 	public ResultAction analyzeResult(String result) {
+		Log.v(TAG, "analyzeResult string: " + result);
 		ResultAction ra = new ResultAction();
 		ra.setIntercept(false);
 		ra.setShowErrorMessage(false);
@@ -129,16 +135,17 @@ public class AnalyzeTalkResultUtils {
 					break;
 				case COOKBOOK:
 					List<Result> cookBookResult = service.getData().getResult();
-					String cookBookStr = "\n";
+					WebPage cookBookWebPage=service.getWebPage();
+					String cookBookStr = "";
 					if (cookBookResult != null) {
 						for (int i=0;i<cookBookResult.size();i++) {
-							if(cookBookResult.size()>1){
-								cookBookStr+="第"+(i+1)+"条\n";
-							}
 							cookBookStr += cookBookResult.get(i).getAccessory() + "\n";
 						}
 					}
-					ra.setResult(ac(service.getData().getHeader()) + cookBookStr);
+					if(checkEmpty(cookBookStr)&&cookBookWebPage != null){
+						cookBookStr = ac(cookBookWebPage.getHeader()) + "\n" + cookBookStr;
+					}
+					ra.setResult(cookBookStr);
 					// 预留扩展 询问是否打开网页cb.getData().getResult().getUrl()
 
 					break;
@@ -169,7 +176,18 @@ public class AnalyzeTalkResultUtils {
 					if (POSITION.equals(service.getOperation())) {
 						Location mapL = service.getSemantic().getSlots()
 								.getLocation();
-						ra.setResult(mapL.getCity() + mapL.getPoi());
+						if(CURRENT_CITY.equals(ac(mapL.getCity()))){
+							ra.setIntercept(true);
+							LocationUtils.getInstance().getLocation(new Callback(){
+								@Override
+								public void onCallback(String city) {
+									VoicesManager.getInstance(mContext).startTextToVoices(Mode.ROBOT, 
+											"您现在在"+city);
+								}
+							});
+						}else{
+							ra.setResult(mapL.getCity() + mapL.getPoi());
+						}
 					} else if (ROUTE.equals(service.getOperation())) {// 导航
 						search(ra,service.getText());
 					}
@@ -180,9 +198,19 @@ public class AnalyzeTalkResultUtils {
 					if(isError(service)){
 						ra.setResult("缺少必要的查询条件。您可以这么说:随便播放一首歌，或者说帮我查找刘德华的忘情水");
 					}else{
-						if(SEARCH.equals(service.getOperation())){
-							search(ra,ac(service.getSemantic().getSlots().getArtist())
-									+ac(service.getSemantic().getSlots().getSong()));
+						if(PLAY.equals(service.getOperation())){
+							WebPage musicWebPage=service.getWebPage();
+							if(musicWebPage!=null&&checkEmpty(musicWebPage.getUrl())){
+								open(ra,musicWebPage.getUrl());
+							}
+						}else if(SEARCH.equals(service.getOperation())){
+							WebPage musicWebPage=service.getWebPage();
+							if(musicWebPage!=null&&checkEmpty(musicWebPage.getUrl())){
+								open(ra,musicWebPage.getUrl());
+							}else{
+								search(ra,ac(service.getSemantic().getSlots().getArtist())
+										+ac(service.getSemantic().getSlots().getSong()));
+							}
 						}else{
 							ra.setIntercept(true);
 							SongUtils.playSong(mContext);
@@ -223,8 +251,13 @@ public class AnalyzeTalkResultUtils {
 					if(isError(service)){
 						ra.setResult("缺少必要的查询条件。您可以这么说:查询小米科技的股票价格");
 					}else{
-						ra.setResult(ac(service.getSemantic().getSlots().getName())
-								+ ac(service.getSemantic().getSlots().getCode()));
+						WebPage stockWebPage=service.getWebPage();
+						if(stockWebPage!=null&&checkEmpty(stockWebPage.getUrl())){
+							open(ra,stockWebPage.getUrl());
+						}else{
+							ra.setResult(ac(service.getSemantic().getSlots().getName())
+									+ ac(service.getSemantic().getSlots().getCode()));
+						}
 					}
 					break;
 				case TRAIN:
@@ -239,19 +272,26 @@ public class AnalyzeTalkResultUtils {
 					break;
 				case TV:
 					List<Result> tvResult = service.getData().getResult();
-					String tvStr = "\n";
+					WebPage tvWebPage=service.getWebPage();
+					String tvStr = "";
 					if (tvResult != null) {
 						for (int i=0;i<tvResult.size();i++) {
-							if(tvResult.size()>1){
-								tvStr+="第"+(i+1)+"条\n";
-							}
 							Result r=tvResult.get(i);
 							tvStr += r.getTvName() + r.getStartTime()
 									+ r.getProgramType() + r.getProgramName()
 									+ "\n";
+							if(i >= 5){
+								break;
+							}
 						}
 					}
+					if(checkEmpty(tvStr)&&tvWebPage != null){
+						tvStr = ac(tvWebPage.getHeader()) + "\n" + tvStr;
+					}
 					ra.setResult(ac(service.getData().getHeader()) + tvStr);
+					if(!checkEmpty(ra.getResult())&&checkEmpty(service.getText())){
+						search(ra,service.getText());
+					}
 					break;
 				case VIDEO:
 					String videoStr="";
@@ -261,7 +301,11 @@ public class AnalyzeTalkResultUtils {
 						videoStr=ac(service.getSemantic().getSlots().getActor())
 								+ac(service.getSemantic().getSlots().getPopularity())
 								+ac(service.getSemantic().getSlots().getVideoTag())
-								+ac(service.getSemantic().getSlots().getVideoCategory());
+								+ac(service.getSemantic().getSlots().getVideoCategory())
+								+"video";
+					}
+					if(!checkEmpty(videoStr)){
+						videoStr=ac(service.getText());
 					}
 					search(ra,videoStr);
 					break;
@@ -277,11 +321,12 @@ public class AnalyzeTalkResultUtils {
 					ra.setResult(weatherStr);
 					break;
 				case WEBSEARCH:
-					String websearchStr=ac(service.getSemantic().getSlots().getKeywords());
+					String websearchStr=ac(service.getSemantic().getSlots().getChannel())
+										+ac(service.getSemantic().getSlots().getKeywords());
 					if("".equals(websearchStr)){
 						websearchStr = service.getText();
 					}
-					ra.setResult(websearchStr);
+					search(ra,websearchStr);
 					break;
 				case WEBSITE:
 					if(OPEN.equals(service.getOperation())){
@@ -314,6 +359,7 @@ public class AnalyzeTalkResultUtils {
 						&& !ra.isShowErrorMessage()
 						&& (ra.getResult() == null || "".equals(ra.getResult())||
 						"null".equals(ra.getResult().trim()))) {
+					Log.v(TAG, "do error");
 					if (isError(service)) {
 						ra.setResult(service.getError().getMessage());
 					} else {
@@ -354,6 +400,7 @@ public class AnalyzeTalkResultUtils {
 	}
 
 	private void search(ResultAction ra, String info) {
+		Log.v(TAG, "analyzeResult search info: " + info);
 		ra.setIntercept(true);
 		// 打开网页搜索
 		try {
@@ -367,9 +414,10 @@ public class AnalyzeTalkResultUtils {
 		}
 	}
 	
-	private void open(ResultAction ra, String info) {
+	private void open(ResultAction ra, String url) {
+		Log.v(TAG, "analyzeResult open url: " + url);
 		ra.setIntercept(true);
-		Uri uri = Uri.parse(info);
+		Uri uri = Uri.parse(url);
 		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		mContext.startActivity(intent);

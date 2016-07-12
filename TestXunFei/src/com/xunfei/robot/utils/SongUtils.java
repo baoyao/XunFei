@@ -15,9 +15,10 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
-import com.xunfei.robot.TalkService;
-import com.xunfei.robot.TextToVoicesService;
-import com.xunfei.robot.utils.BackgroundCache.Mode;
+import com.xunfei.robot.TextToText;
+import com.xunfei.robot.TextToVoices;
+import com.xunfei.robot.VoicesManager;
+import com.xunfei.robot.utils.RecordUtils.Mode;
 
 /**
  * @author houen.bao
@@ -75,13 +76,13 @@ public class SongUtils {
 				// context.startActivity(intent);
 			} else {
 				Log.v("tt", "play song not find music");
-				ForwardControl.getInstance(context).startTextToVoicesService(
+				VoicesManager.getInstance(context).startTextToVoices(
 						Mode.ROBOT, "没有找到音乐");
 			}
 		} catch (Exception e) {
 			Log.v("tt", "playing song Exception: " + e);
 			e.printStackTrace();
-			ForwardControl.getInstance(context).startTextToVoicesService(
+			VoicesManager.getInstance(context).startTextToVoices(
 					Mode.ROBOT, "很抱歉，没有找到音乐");
 		} finally {
 			if (dataExternal != null) {

@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.xunfei.robot.TextToVoicesService;
-import com.xunfei.robot.utils.BackgroundCache.Mode;
+import com.xunfei.robot.TextToVoices;
+import com.xunfei.robot.VoicesManager;
+import com.xunfei.robot.utils.RecordUtils.Mode;
 
 import android.content.Context;
 import android.content.Intent;
@@ -51,7 +52,7 @@ public class OpenAppUtils {
 				return;
 			}
 		}
-		ForwardControl.getInstance(mContext).startTextToVoicesService(Mode.ROBOT, "很抱歉，没有找到您想打开的应用");
+		VoicesManager.getInstance(mContext).startTextToVoices(Mode.ROBOT, "很抱歉，没有找到您想打开的应用");
 	}
 	
 	private static List<ApplicationInfo> getInstallAppInfo() {
