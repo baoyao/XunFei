@@ -220,7 +220,7 @@ public class TextToVoices{
 		public void onCompleted(SpeechError error) {
 			if (error == null) {
 				showTip("播放完成");
-//				ForwardControl.getInstance(TextToVoicesService.this).startVoicesToTextService();
+				VoicesManager.getInstance(mContext).startVoicesToText();
 			} else if (error != null) {
 				showTip(error.getPlainDescription(true));
 			}
