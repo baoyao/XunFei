@@ -91,6 +91,10 @@ public class AnalyzeResultUtils {
 	
 	// website
 	private final String OPEN="OPEN";
+	
+	//schedule
+	private final String CREATE="CREATE";
+	private final String VIEW="VIEW";
 
 
 	private final String DEFAULT_RESULT = "该功能等待后续开放";
@@ -182,7 +186,7 @@ public class AnalyzeResultUtils {
 								@Override
 								public void onCallback(String city) {
 									VoicesManager.getInstance(mContext).startTextToVoices(Mode.ROBOT, 
-											"您现在在"+city);
+											"我们现在在"+city);
 								}
 							});
 						}else{
@@ -244,8 +248,13 @@ public class AnalyzeResultUtils {
 					}
 					break;
 				case SCHEDULE:
-					// 等待后续开放
-					ra.setResult(DEFAULT_RESULT);
+					if(CREATE.equals(service.getOperation())){
+						ra.setIntercept(true);
+						ScheduleUtils.getInstance(mContext).createSchedule(service);
+					}else if(VIEW.equals(service.getOperation())){
+						ra.setIntercept(true);
+						ScheduleUtils.getInstance(mContext).query(service);
+					}
 					break;
 				case STOCK:
 					if(isError(service)){
@@ -352,6 +361,9 @@ public class AnalyzeResultUtils {
 					questionAnswerText(service, ra);
 					break;
 				default:
+					if(checkEmpty(service.getAnswer().getText())){
+						questionAnswerText(service, ra);
+					}
 					break;
 				}
 

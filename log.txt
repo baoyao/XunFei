@@ -363,7 +363,7 @@
 07-11 22:19:29.121  1337  1423 D MscSpeechLog: clear all message
 07-11 22:19:29.122  1337  1337 D MscSpeechLog: SpeechListener onMsg = 1
 07-11 22:19:29.123  1337  1337 D MscSpeechLog: SpeechListener onMsg = 2
-07-11 22:19:29.124  1337  1337 D tt      : understander result：{"webPage":{"header":"为您找到下面的结果","url":"http:\/\/kcgz.openspeech.cn\/service\/iss?wuuid=04c464e6839d63b11fbd47c3a392b9a7&ver=2.0&method=webPage&uuid=b22e1750ecf0729a1854967812aa1f55query"},"semantic":{"slots":{"tvName":"浙江卫视","startTime":{"dateOrig":"明天","type":"DT_INTERVAL","time":"18:00:00","timeOrig":"晚上","date":"2016-07-13","endTime":"22:00:00","endDate":"2016-07-13"}}},"rc":0,"operation":"QUERY_TV","service":"tv","data":{"result":[{"programType":"气象","startTime":"01:22","programName":"天气预报","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"电视剧","startTime":"01:27","programName":"剧场","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=70&ChannelID=1818","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"新闻","startTime":"01:31","programName":"新闻深一度","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"科教","startTime":"01:55","programName":"专题片：西湖之香市","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"新闻","startTime":"02:10","programName":"新闻深一度","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=70&ChannelID=1818","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"科教","startTime":"02:35","programName":"专题片","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=70&ChannelID=1818","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"科教","startTime":"02:37","programName":"专题片：一本书一座城:上海繁花","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"综艺","startTime":"03:03","programName":"华少爱读书","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"科教","startTime":"03:21","programName":"专题片：文化中国的故事","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"科教","startTime":"04:04","programName":"人文深呼吸","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"综艺","startTime":"04:25","programName":"华少爱读书","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"科教","startTime":"04:45","programName":"专题片：百年潮 中国梦","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"科教","startTime":"05:26","programName":"人文深呼吸","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"新闻","startTime":"06:04","programName":"浙江新闻联播","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"生活","startTime":"06:26","programName":"爱心浙江","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"新闻","startTime":"06:30","programName":"�
+07-11 22:19:29.124  1337  1337 D tt      : understander result：{"webPage":{"header":"为您找到下面的结果","url":"http:\/\/kcgz.openspeech.cn\/service\/iss?wuuid=04c464e6839d63b11fbd47c3a392b9a7&ver=2.0&method=webPage&uuid=b22e1750ecf0729a1854967812aa1f55query"},"semantic":{"slots":{"tvName":"浙江卫视","startTime":{"dateOrig":"明天","type":"DT_INTERVAL","time":"18:00:00","timeOrig":"晚上","date":"2016-07-13","endTime":"22:00:00","endDate":"2016-07-13"}}},"rc":0,"operation":"QUERY_TV","service":"tv","data":{"result":[{"programType":"气象","startTime":"01:22","programName":"天气预报","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"电视剧","startTime":"01:27","programName":"剧场","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=70&ChannelID=1818","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"新闻","startTime":"01:31","programName":"新闻深一度","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"科教","startTime":"01:55","programName":"专题片：西湖之香市","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"新闻","startTime":"02:10","programName":"新闻深一度","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=70&ChannelID=1818","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"科教","startTime":"02:35","programName":"专题片","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=70&ChannelID=1818","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"科教","startTime":"02:37","programName":"专题片：一本书一座城:上海繁花","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"综艺","startTime":"03:03","programName":"华少爱读书","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"科教","startTime":"03:21","programName":"专题片：文化中国的故事","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"科教","startTime":"04:04","programName":"人文深呼吸","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"综艺","startTime":"04:25","programName":"华少爱读书","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"科教","startTime":"04:45","programName":"专题片：百年潮 中国梦","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"科教","startTime":"05:26","programName":"人文深呼吸","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"新闻","startTime":"06:04","programName":"浙江新闻联播","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"生活","startTime":"06:26","programName":"爱心浙江","date":"2015-05-24","tvName":"浙江卫视","url":"http:\/\/m.tvsou.com\/epg.asp?TVid=21&ChannelID=43","tvShortName":"浙江卫视","isSatellite":"true"},{"programType":"新闻","startTime":"06:30","programName":"\E6
 07-11 22:19:29.134  1337  1337 V tt      : analyzeResult service: tv operation: QUERY_TV
 07-11 22:19:29.135  1337  1337 V tt      : analyzeResult end: false false 为您找到下面的结果
 07-11 22:19:29.135  1337  1337 V tt      : 浙江卫视01:22气象天气预报
@@ -1460,3 +1460,71 @@
 07-11 22:22:03.668  2292  2292 D SignalController: getCurrentIconId mCurrentState.connected=true mCurrentState.enabled=true mCurrentState.inetCondition=1
 07-11 22:22:08.131  1138  7939 D PowerManagerService: acquireWakeLockInternal: lock=262939591, flags=0x1, tag="RILJ", ws=null, uid=1001, pid=2790, packageName=com.android.phone
 07-11 22:22:08.136  1138 23928 D PowerManagerService: releaseWakeLockInternal: lock=262939591 [RILJ], flags=0x0,packName=com.android.phone, total_time=5ms
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+07-12 23:08:10.762 30665 30665 V tt      : eventName: Autumn Equinox eventDescription:  startMillis: 1442966400000 endMillis: 1443052800000
+07-12 23:08:10.762 30665 30665 V tt      : eventName: Autumn Equinox eventDescription:  startMillis: 1474502400000 endMillis: 1474588800000
+07-12 23:08:10.762 30665 30665 V tt      : eventName: Coming of Age Day eventDescription:  startMillis: 1483920000000 endMillis: 1484006400000
+07-12 23:08:10.762 30665 30665 V tt      : eventName: Sea Day eventDescription:  startMillis: 1500249600000 endMillis: 1500336000000
+07-12 23:08:10.762 30665 30665 V tt      : eventName: Sea Day eventDescription:  startMillis: 1437350400000 endMillis: 1437436800000
+07-12 23:08:10.762 30665 30665 V tt      : eventName: Respect for the Aged Day eventDescription:  startMillis: 1442793600000 endMillis: 1442880000000
+07-12 23:08:10.762 30665 30665 V tt      : eventName: Bridge Public holiday eventDescription:  startMillis: 1442880000000 endMillis: 1442966400000
+07-12 23:08:10.763 30665 30665 V tt      : eventName: National Foundation Day eventDescription:  startMillis: 1455148800000 endMillis: 1455235200000
+07-12 23:08:10.763 30665 30665 V tt      : eventName: Spring Equinox eventDescription:  startMillis: 1458432000000 endMillis: 1458518400000
+07-12 23:08:10.763 30665 30665 V tt      : eventName: Sea Day eventDescription:  startMillis: 1468800000000 endMillis: 1468886400000
+07-12 23:08:10.763 30665 30665 V tt      : eventName: Labor Thanksgiving Day eventDescription:  startMillis: 1479859200000 endMillis: 1479945600000
+07-12 23:08:10.763 30665 30665 V tt      : eventName: Greenery Day eventDescription:  startMillis: 1493856000000 endMillis: 1493942400000
+07-12 23:08:10.763 30665 30665 V tt      : eventName: Sports Day eventDescription:  startMillis: 1444608000000 endMillis: 1444694400000
+07-12 23:08:10.763 30665 30665 V tt      : eventName: Culture Day eventDescription:  startMillis: 1446508800000 endMillis: 1446595200000
+07-12 23:08:10.763 30665 30665 V tt      : eventName: Emperor's Birthday eventDescription:  startMillis: 1450828800000 endMillis: 1450915200000
+07-12 23:08:10.763 30665 30665 V tt      : eventName: New Year's Day eventDescription:  startMillis: 1451606400000 endMillis: 1451692800000
+07-12 23:08:10.763 30665 30665 V tt      : eventName: Coming of Age Day eventDescription:  startMillis: 1452470400000 endMillis: 1452556800000
+07-12 23:08:10.763 30665 30665 V tt      : eventName: Spring Equinox observed eventDescription:  startMillis: 1458518400000 endMillis: 1458604800000
+07-12 23:08:10.764 30665 30665 V tt      : eventName: Shōwa Day eventDescription:  startMillis: 1461888000000 endMillis: 1461974400000
+07-12 23:08:10.764 30665 30665 V tt      : eventName: Constitution Memorial Day eventDescription:  startMillis: 1462233600000 endMillis: 1462320000000
+07-12 23:08:10.764 30665 30665 V tt      : eventName: Respect for the Aged Day eventDescription:  startMillis: 1474243200000 endMillis: 1474329600000
+07-12 23:08:10.764 30665 30665 V tt      : eventName: New Year's Day eventDescription:  startMillis: 1483228800000 endMillis: 1483315200000
+07-12 23:08:10.764 30665 30665 V tt      : eventName: Spring Equinox eventDescription:  startMillis: 1489968000000 endMillis: 1490054400000
+07-12 23:08:10.764 30665 30665 V tt      : eventName: Shōwa Day eventDescription:  startMillis: 1493424000000 endMillis: 1493510400000
+07-12 23:08:10.764 30665 30665 V tt      : eventName: Constitution Memorial Day eventDescription:  startMillis: 1493769600000 endMillis: 1493856000000
+07-12 23:08:10.764 30665 30665 V tt      : eventName: Greenery Day eventDescription:  startMillis: 1462320000000 endMillis: 1462406400000
+07-12 23:08:10.764 30665 30665 V tt      : eventName: Children's Day eventDescription:  startMillis: 1462406400000 endMillis: 1462492800000
+07-12 23:08:10.764 30665 30665 V tt      : eventName: Sports Day eventDescription:  startMillis: 1476057600000 endMillis: 1476144000000
+07-12 23:08:10.764 30665 30665 V tt      : eventName: Culture Day eventDescription:  startMillis: 1478131200000 endMillis: 1478217600000
+07-12 23:08:10.764 30665 30665 V tt      : eventName: Emperor's Birthday eventDescription:  startMillis: 1482451200000 endMillis: 1482537600000
+07-12 23:08:10.765 30665 30665 V tt      : eventName: New Year's Day observed eventDescription:  startMillis: 1483315200000 endMillis: 1483401600000
+07-12 23:08:10.765 30665 30665 V tt      : eventName: Labor Thanksgiving Day eventDescription:  startMillis: 1448236800000 endMillis: 1448323200000
+07-12 23:08:10.765 30665 30665 V tt      : eventName: National Foundation Day eventDescription:  startMillis: 1486771200000 endMillis: 1486857600000
+07-12 23:08:10.765 30665 30665 V tt      : eventName: Children's Day eventDescription:  startMillis: 1493942400000 endMillis: 1494028800000
+07-12 23:08:10.765 30665 30665 V tt      : eventName: Mountain Day eventDescription:  startMillis: 1470873600000 endMillis: 1470960000000
+07-12 23:08:10.766 30665 30665 V tt      : eventName: Test eventDescription:  startMillis: 1460172600000 endMillis: 1460176200000
+07-12 23:08:10.766 30665 30665 V tt      : eventName:  eventDescription:  startMillis: 1460529000000 endMillis: 1460532600000
+07-12 23:08:10.766 30665 30665 V tt      : eventName: event_name eventDescription: event_description startMillis: 1460772295000 endMillis: 1460772355000
+07-12 23:08:10.766 30665 30665 V tt      : eventName: event_name eventDescription: event_description startMillis: 1468375373000 endMillis: 1468375433000
+07-12 23:08:10.767 30665 30665 V tt      : eventName: 提醒 eventDescription: 打电话 startMillis: 1471179604764 endMillis: 1471179664765
+
+
+
+sMillis: 1471179654369
+
+1468501204431
+
+
+
+
+
+
+
+
