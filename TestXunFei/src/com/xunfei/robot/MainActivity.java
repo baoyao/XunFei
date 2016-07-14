@@ -48,7 +48,9 @@ public class MainActivity extends Activity {
 			findViewById(R.id.button22).setVisibility(View.VISIBLE);
 			((Button)findViewById(R.id.button1)).setText("next support service");
 			((Button)findViewById(R.id.button2)).setText("next unsupport service");
-			VoicesManager.getInstance(this).startTextToText(Mode.PEOPLE, Config.TEST_MESSAGE);
+			
+//			VoicesManager.getInstance(this).startTextToText(Mode.PEOPLE, Config.TEST_MESSAGE);
+			VoicesManager.getInstance(this).getmVoicesToText().setResult(Config.TEST_MESSAGE);
 		}
 	}
 

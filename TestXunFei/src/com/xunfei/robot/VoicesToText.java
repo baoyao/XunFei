@@ -36,6 +36,7 @@ import com.xunfei.robot.utils.OpenAppUtils;
 import com.xunfei.robot.utils.SongUtils;
 import com.xunfei.robot.utils.Config;
 import com.xunfei.robot.utils.NetWorkUtil;
+import com.xunfei.robot.utils.StoryUtils;
 
 /**
  * @author houen.bao
@@ -217,7 +218,7 @@ public class VoicesToText{
 		}
 	};
 
-	private synchronized void setResult(String text) {
+	public synchronized void setResult(String text) {
 		if (text != null && !text.trim().equals("")) {
 			mResult.add(text);
 			RecordUtils.getInstance().setResult(
@@ -229,16 +230,17 @@ public class VoicesToText{
 	
 	private List<String[]> mInterceptTags = initTag();
 	private final int PLAY_SONG = 0;
-	private final int OPEN_APP = 1;
+	private final int TELL_STORY = 1;
+	private final int OPEN_APP = -1;
 
 	private List<String[]> initTag() {
 		List<String[]> tagets = new ArrayList<String[]>();
-
-//		String[] tag1 = new String[] { "唱", "首歌" };
-//		tagets.add(tag1);
-
-		String[] tag1 = new String[] { "唱首歌" };
+		
+		String[] tag1 = new String[] { "唱", "首歌" };
 		tagets.add(tag1);
+
+		String[] tag2 = new String[] { "讲", "故事" };
+		tagets.add(tag2);
 
 		return tagets;
 	}
@@ -270,6 +272,31 @@ public class VoicesToText{
 			SongUtils.playSong(mContext);
 		}
 			break;
+		case TELL_STORY: {
+			String text1 = "讲";
+			String text2 = "故事";
+			String text3 = "讲个";
+			String text4 = "的故事";
+			int startPosition=0;
+			int endPosition=0;
+			if(text.contains(text3)){
+				startPosition=text.indexOf(text3)+text3.length();
+			}else{
+				startPosition=text.indexOf(text1)+text1.length();
+			}
+			
+			if(text.contains(text4)){
+				endPosition=text.indexOf(text4);
+			}else{
+				endPosition=text.indexOf(text2);
+			}
+			String storyName=text.substring(startPosition, endPosition);
+			if(startPosition==endPosition){
+				storyName=text.substring(text.indexOf(text2)+text2.length());
+			}
+			StoryUtils.getInstance(mContext).tellStory(storyName);
+		}
+		break;
 		case OPEN_APP: {
 			String tagText="打开";
 			OpenAppUtils.getInstance(mContext).openApp(text.substring(text.indexOf(tagText)+tagText.length()));

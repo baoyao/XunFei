@@ -203,6 +203,15 @@ public class AnalyzeResultUtils {
 						ra.setResult("缺少必要的查询条件。您可以这么说:随便播放一首歌，或者说帮我查找刘德华的忘情水");
 					}else{
 						if(PLAY.equals(service.getOperation())){
+							if(service.getSemantic().getSlots()!=null
+									&&checkEmpty(service.getSemantic().getSlots().getSong())){
+								boolean bool=SongUtils.playSong(mContext,
+										service.getSemantic().getSlots().getSong());
+								if(bool){
+									ra.setIntercept(true);
+									break;
+								}
+							}
 							WebPage musicWebPage=service.getWebPage();
 							if(musicWebPage!=null&&checkEmpty(musicWebPage.getUrl())){
 								open(ra,musicWebPage.getUrl());

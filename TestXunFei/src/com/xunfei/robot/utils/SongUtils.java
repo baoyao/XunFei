@@ -25,34 +25,38 @@ import com.xunfei.robot.utils.RecordUtils.Mode;
  * @date Jul 6, 2016 5:26:46 PM
  */
 public class SongUtils {
-
+	
 	public static void playSong(Context context) {
-		Log.v("tt", "play song");
-		Cursor dataExternal = null;
+		playSong(context,null);
+	}
+
+	public static boolean playSong(Context context,String songName) {
+		Log.v("tt", "play song "+songName);
+		Cursor cursorData = null;
 		try {
-			dataExternal = context.getContentResolver().query(
+			cursorData = context.getContentResolver().query(
 					MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null,
 					null, null);
-			if (dataExternal == null) {
-				dataExternal = context.getContentResolver().query(
+			if (cursorData == null) {
+				cursorData = context.getContentResolver().query(
 						MediaStore.Audio.Media.INTERNAL_CONTENT_URI, null,
 						null, null, null);
 			}
 
-			if (dataExternal != null) {
+			if (cursorData != null) {
 				List<Music> list = new ArrayList<Music>();
-				while (dataExternal.moveToNext()) {
+				while (cursorData.moveToNext()) {
 					Music music = new Music();
-					music.id = dataExternal.getInt(dataExternal
+					music.id = cursorData.getInt(cursorData
 							.getColumnIndex(MediaStore.Audio.Media._ID));
-					music.title = dataExternal.getString(dataExternal
+					music.title = cursorData.getString(cursorData
 							.getColumnIndex(MediaStore.Audio.Media.TITLE));
-					music.name = dataExternal
-							.getString(dataExternal
+					music.name = cursorData
+							.getString(cursorData
 									.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
-					music.mimeType = dataExternal.getString(dataExternal
+					music.mimeType = cursorData.getString(cursorData
 							.getColumnIndex(MediaStore.Audio.Media.MIME_TYPE));
-					music.data = dataExternal.getString(dataExternal
+					music.data = cursorData.getString(cursorData
 							.getColumnIndex(MediaStore.Audio.Media.DATA));
 					if(!music.data.endsWith(".ogg")){
 						list.add(music);
@@ -62,33 +66,64 @@ public class SongUtils {
 							+ music.name + " mimeType: " + music.mimeType);
 				}
 				if (list.size() == 0) {
-					return;
+					VoicesManager.getInstance(context).startTextToVoices(
+							Mode.ROBOT, "没有找到音乐");
+					return false;
+				}
+				List<Music> taglist = new ArrayList<Music>();
+				if(songName!=null){
+					for(int i=0;i<list.size();i++){
+						if(list.get(i).name==null){
+							if(list.get(i).title.contains(songName)){
+								taglist.add(list.get(i));
+							}
+						}else if(list.get(i).name.contains(songName)){
+							taglist.add(list.get(i));
+						}
+					}
+					if (taglist.size() == 0) {
+						return false;
+					}
 				}
 				Random random = new Random();
-				int index = random.nextInt(list.size());
-				Log.v("tt", "playing song " + index+" list.size(): "+list.size());
+				int index = random.nextInt(taglist.size());
+				Log.v("tt", "playing song " + index+" list.size(): "+taglist.size());
 				Uri uri = Uri.parse("content://media/external/audio/media/"
-						+ list.get(index).id);
-				play(context, uri);
+						+ taglist.get(index).id);
+				
+				if(uri!=null){
+					play(context, uri);
+				}
 				// Intent intent = new Intent(Intent.ACTION_VIEW);
 				// intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				// intent.setDataAndType(uri, list.get(index).mimeType);
 				// context.startActivity(intent);
+				
+				return true;
 			} else {
 				Log.v("tt", "play song not find music");
-				VoicesManager.getInstance(context).startTextToVoices(
-						Mode.ROBOT, "没有找到音乐");
+				if(songName==null){
+					VoicesManager.getInstance(context).startTextToVoices(
+							Mode.ROBOT, "没有找到音乐");
+				}else{
+					return false;
+				}
 			}
 		} catch (Exception e) {
 			Log.v("tt", "playing song Exception: " + e);
 			e.printStackTrace();
-			VoicesManager.getInstance(context).startTextToVoices(
-					Mode.ROBOT, "很抱歉，没有找到音乐");
+			if(songName==null){
+				VoicesManager.getInstance(context).startTextToVoices(
+						Mode.ROBOT, "很抱歉，没有找到音乐");
+			}else{
+				return false;
+			}
 		} finally {
-			if (dataExternal != null) {
-				dataExternal.close();
+			if (cursorData != null) {
+				cursorData.close();
 			}
 		}
+		return false;
 	}
 
 	private static MediaPlayer player;

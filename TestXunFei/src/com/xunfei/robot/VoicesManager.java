@@ -51,6 +51,11 @@ public class VoicesManager {
 		}
 		mTextToVoices.start();
 	}
+	
+	
+	public VoicesToText getmVoicesToText() {
+		return mVoicesToText;
+	}
 
 	public void onDestroy() {
 		mVoicesManager = null;
