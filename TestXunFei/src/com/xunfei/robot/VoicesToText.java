@@ -230,7 +230,9 @@ public class VoicesToText{
 	
 	private List<String[]> mInterceptTags = initTag();
 	private final int PLAY_SONG = 0;
-	private final int TELL_STORY = 1;
+	private final int PLAY_SONG2 = 1;
+	private final int PLAY_SONG3 = 2;
+	private final int TELL_STORY = 3;
 	private final int OPEN_APP = -1;
 
 	private List<String[]> initTag() {
@@ -239,8 +241,14 @@ public class VoicesToText{
 		String[] tag1 = new String[] { "唱", "首歌" };
 		tagets.add(tag1);
 
-		String[] tag2 = new String[] { "讲", "故事" };
+		String[] tag2 = new String[] { "唱首"};
 		tagets.add(tag2);
+
+		String[] tag3 = new String[] { "唱个"};
+		tagets.add(tag3);
+		
+		String[] tag4 = new String[] { "讲", "故事" };
+		tagets.add(tag4);
 
 		return tagets;
 	}
@@ -270,6 +278,18 @@ public class VoicesToText{
 		switch (index) {
 		case PLAY_SONG: {
 			SongUtils.playSong(mContext);
+		}
+			break;
+		case PLAY_SONG2: {
+			String text1="唱首";
+			String songName=text.substring(text.indexOf(text1)+text1.length());
+			SongUtils.playSong(mContext,songName);
+		}
+			break;
+		case PLAY_SONG3: {
+			String text1="唱个";
+			String songName=text.substring(text.indexOf(text1)+text1.length());
+			SongUtils.playSong(mContext,songName);
 		}
 			break;
 		case TELL_STORY: {

@@ -13,6 +13,9 @@ public class Config {
 	public static final String TEST_MESSAGE = "讲个故事三字经";
 
 	public static final String[] SUPPORT_SERVICE=new String[]{
+			"唱个国歌",
+			"唱首忘情水",
+			"唱首国歌",
 			"讲个故事三字经",
 			"播放忘情水",
 			"提醒我明天 6 点打电话",

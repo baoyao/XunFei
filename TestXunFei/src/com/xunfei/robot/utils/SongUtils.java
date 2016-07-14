@@ -26,11 +26,16 @@ import com.xunfei.robot.utils.RecordUtils.Mode;
  */
 public class SongUtils {
 	
+	private static Context mContext;
+	private static String mSongName;
+	
 	public static void playSong(Context context) {
 		playSong(context,null);
 	}
 
 	public static boolean playSong(Context context,String songName) {
+		mContext = context;
+		mSongName = songName;
 		Log.v("tt", "play song "+songName);
 		Cursor cursorData = null;
 		try {
@@ -82,6 +87,7 @@ public class SongUtils {
 						}
 					}
 					if (taglist.size() == 0) {
+						sayNotFound("");
 						return false;
 					}
 				}
@@ -103,8 +109,7 @@ public class SongUtils {
 			} else {
 				Log.v("tt", "play song not find music");
 				if(songName==null){
-					VoicesManager.getInstance(context).startTextToVoices(
-							Mode.ROBOT, "没有找到音乐");
+					sayNotFound("");
 				}else{
 					return false;
 				}
@@ -113,8 +118,7 @@ public class SongUtils {
 			Log.v("tt", "playing song Exception: " + e);
 			e.printStackTrace();
 			if(songName==null){
-				VoicesManager.getInstance(context).startTextToVoices(
-						Mode.ROBOT, "很抱歉，没有找到音乐");
+				sayNotFound("很抱歉，");
 			}else{
 				return false;
 			}
@@ -124,6 +128,13 @@ public class SongUtils {
 			}
 		}
 		return false;
+	}
+
+	private static void sayNotFound(String message){
+		VoicesManager.getInstance(mContext).startTextToVoices(
+				Mode.ROBOT, message+"没有找到音乐"+(
+					(mSongName==null||"".equals(mSongName))?"":
+					"《"+mSongName+"》"));
 	}
 
 	private static MediaPlayer player;

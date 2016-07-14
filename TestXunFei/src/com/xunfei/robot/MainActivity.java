@@ -60,15 +60,15 @@ public class MainActivity extends Activity {
 	public void onButtonClick(View view) {
 		switch (view.getId()) {
 		case R.id.button11:
-			VoicesManager.getInstance(this).startTextToText(Mode.PEOPLE, Config.SUPPORT_SERVICE[testCount1==-1?0:testCount1]);
+			VoicesManager.getInstance(this).getmVoicesToText().setResult(Config.SUPPORT_SERVICE[testCount1==-1?0:testCount1]);
 			break;
 		case R.id.button22:
-			VoicesManager.getInstance(this).startTextToText(Mode.PEOPLE, Config.UNSUPPORT_SERVICE[testCount2==-1?0:testCount2]);
+			VoicesManager.getInstance(this).getmVoicesToText().setResult(Config.UNSUPPORT_SERVICE[testCount2==-1?0:testCount2]);
 			break;
 		case R.id.button1:
 			if(Config.DEBUG){
 				testCount1++;
-				VoicesManager.getInstance(this).startTextToText(Mode.PEOPLE, Config.SUPPORT_SERVICE[testCount1]);
+				VoicesManager.getInstance(this).getmVoicesToText().setResult(Config.SUPPORT_SERVICE[testCount1]);
 				if(testCount1>=(Config.SUPPORT_SERVICE.length-1)){
 					testCount1=-1;
 				}
@@ -79,7 +79,7 @@ public class MainActivity extends Activity {
 		case R.id.button2:
 			if(Config.DEBUG){
 				testCount2++;
-				VoicesManager.getInstance(this).startTextToText(Mode.PEOPLE, Config.UNSUPPORT_SERVICE[testCount2]);
+				VoicesManager.getInstance(this).getmVoicesToText().setResult(Config.UNSUPPORT_SERVICE[testCount2]);
 				if(testCount2>=(Config.SUPPORT_SERVICE.length-1)){
 					testCount2=-1;
 				}

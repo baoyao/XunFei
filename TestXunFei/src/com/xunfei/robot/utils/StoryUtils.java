@@ -166,7 +166,8 @@ public class StoryUtils {
 		default:
 			code = "GBK";
 		}
-		return code;
+		Log.v("tt", "code "+code);
+		return "UTF-8";
 	}
 	
 	private void sayNotFound(String message){
