@@ -8,12 +8,12 @@ public class Config {
 
 	public static final int WAITING_TIME = 100;
 	
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 	
 	public static final String TEST_MESSAGE = "明天 6 点我有什么日程安排";
 
 	public static final String[] SUPPORT_SERVICE=new String[]{"提醒我明天 6 点打电话",
-			"今天下午 6 点我有什么日程安排","打开设置","帮我找一款免费的射击游戏",
+		"明天 6 点我有什么日程安排","今天下午 6 点我有什么日程安排","打开设置","帮我找一款免费的射击游戏",
 			"刘德华是谁","10的平方是多少","红烧肉怎么做","距离春节还有多少天","世界最高峰是什么峰",
 			"我想查一下明天海航的从合肥骆岗到北京首都机场的航班","我要订明天上海张江汉庭酒店的房间",
 			"我现在在哪里。","从合肥导航到北京","播放刘德华的忘情水","有没有周杰伦的歌","收听经济之声 fm104.7",

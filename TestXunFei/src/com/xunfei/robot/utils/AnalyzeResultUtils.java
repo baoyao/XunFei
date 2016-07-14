@@ -252,8 +252,9 @@ public class AnalyzeResultUtils {
 						ra.setIntercept(true);
 						ScheduleUtils.getInstance(mContext).createSchedule(service);
 					}else if(VIEW.equals(service.getOperation())){
-						ra.setIntercept(true);
-						ScheduleUtils.getInstance(mContext).query(service);
+						//ra.setIntercept(true);
+						String scheduleStr=ScheduleUtils.getInstance(mContext).query(service);
+						ra.setResult(scheduleStr);
 					}
 					break;
 				case STOCK:

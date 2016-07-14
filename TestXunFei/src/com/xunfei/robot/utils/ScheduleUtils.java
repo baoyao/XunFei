@@ -69,12 +69,15 @@ public class ScheduleUtils {
 		Log.w("tt", "createScheduleFailed "+e);
 	}
 	
-	public void query(BaseService service){
+	public String query(BaseService service){
 		Schedule schedule=queryScheduleData(parseDataToSchedule(service));
-		if(schedule!=null){
-			
+		if(schedule !=null){
+			return "您在"+schedule.getBeginDate()+schedule.getBeginTime()+" "
+					+"有一个提醒，"+schedule.getDescription();
 		}
+		return "您在这段时间没有提醒";
 	}
+	
 	private long getStartMillis(BaseService service){
 		String date=service.getSemantic().getSlots().getDatetime().getDate();
 		String time=service.getSemantic().getSlots().getDatetime().getTime();
@@ -112,6 +115,7 @@ public class ScheduleUtils {
 							schedule.getEventBeginDate(),schedule.getEventBeginTime(),
 							schedule.getEventEndDate(),schedule.getEventEndTime(),
 							schedule.getReminderMinutes());
+					saveScheduleData(schedule);
 				}catch(Exception e){
 					e.printStackTrace();
 					createScheduleFailed(e);
