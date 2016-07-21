@@ -67,10 +67,10 @@ public class MainActivity extends Activity {
 		case R.id.button1:
 			if(Config.DEBUG){
 				testCount1++;
-				VoicesManager.getInstance(this).getmVoicesToText().setResult(Config.SUPPORT_SERVICE[testCount1]);
-				if(testCount1>=(Config.SUPPORT_SERVICE.length-1)){
-					testCount1=-1;
+				if(testCount1>=Config.SUPPORT_SERVICE.length){
+					testCount1=0;
 				}
+				VoicesManager.getInstance(this).getmVoicesToText().setResult(Config.SUPPORT_SERVICE[testCount1]);
 			}else{
 				VoicesManager.getInstance(this).startVoicesToText();
 			}
@@ -78,10 +78,10 @@ public class MainActivity extends Activity {
 		case R.id.button2:
 			if(Config.DEBUG){
 				testCount2++;
-				VoicesManager.getInstance(this).getmVoicesToText().setResult(Config.UNSUPPORT_SERVICE[testCount2]);
-				if(testCount2>=(Config.SUPPORT_SERVICE.length-1)){
-					testCount2=-1;
+				if(testCount2>=Config.SUPPORT_SERVICE.length){
+					testCount2=0;
 				}
+				VoicesManager.getInstance(this).getmVoicesToText().setResult(Config.UNSUPPORT_SERVICE[testCount2]);
 			}else{
 				VoicesManager.getInstance(this).onDestroy();
 			}
