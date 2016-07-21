@@ -221,8 +221,6 @@ public class VoicesToText{
 	public synchronized void setResult(String text) {
 		if (text != null && !text.trim().equals("")) {
 			mResult.add(text);
-			RecordUtils.getInstance().setResult(
-					RecordUtils.Mode.PEOPLE, text);
 			if (!interceptResult(text))
 			VoicesManager.getInstance(mContext).startTextToText(Mode.PEOPLE,text);
 		}
@@ -267,6 +265,8 @@ public class VoicesToText{
 			}
 			if (bool) {
 				Log.v("tt", "interceptResult222");
+				RecordUtils.getInstance().setResult(
+						RecordUtils.Mode.PEOPLE, text);
 				doIntercept(i,text);
 				return true;
 			}

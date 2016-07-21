@@ -10,9 +10,10 @@ public class Config {
 	
 	public static final boolean DEBUG = false;
 	
-	public static final String TEST_MESSAGE = "讲个故事三字经";
+	public static final String TEST_MESSAGE = "圆周率等于多少";
 
 	public static final String[] SUPPORT_SERVICE=new String[]{
+			"3加2减5乘零等于几",
 			"唱个国歌",
 			"唱首忘情水",
 			"唱首国歌",
